@@ -11,41 +11,43 @@
   <link rel="shortcut icon" href="imagen/favicon.ico" type="image/x-icon">
   <link rel="icon" href="imagen/favicon.ico" type="image/x-icon">
   <!--- CSS --->
-  
-  <!--- JS --->
- 
-  <!-- Bootstrap core CSS -->
-  <link href="libs/MDB-Free_4.8.11/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Material Design Bootstrap -->
-  <link href="libs/MDB-Free_4.8.11/css/mdb.min.css" rel="stylesheet">
-  <!-- Font Awesome -->
-  <link href="libs/fontawesome-free-5.11.2-web/css/all.css" rel="stylesheet"> <!--load all styles -->
-  <!-- Scripts -->
-  <!-- JQuery -->
-  <script type="text/javascript" src="libs/MDB-Free_4.8.11/js/jquery-3.4.1.min.js"></script>
-  <!-- Bootstrap tooltips -->
-  <script type="text/javascript" src="libs/MDB-Free_4.8.11/js/popper.min.js"></script>
-  <!-- Bootstrap core JavaScript -->
-  <script type="text/javascript" src="libs/MDB-Free_4.8.11/js/bootstrap.min.js"></script>
-  <!-- MDB core JavaScript -->
-  <script type="text/javascript" src="libs/MDB-Free_4.8.11/js/mdb.min.js"></script>
-  <!-- Initializations -->
-  <script type="text/javascript">
-    // Animations initialization
-    new WOW().init();
-  </script>
+  <link rel="stylesheet" type="text/css" href="css/estilos.css">
+  <link rel="stylesheet" type="text/css" href="css/estilos_admin.css">
+  <link rel="stylesheet" type="text/css" href="css/estilos_crud.css">
+  <link href="libs/startbootstrap-simple-sidebar-gh-pages/css/simple-sidebar.css" rel="stylesheet">
+  <link href="libs/startbootstrap-simple-sidebar-gh-pages/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!--- jQuery --->
+  <script src="libs/jquery/jquery-3.4.1.min.js" type="text/javascript"></script>
+  <script src="libs/jquery/jquery-ui.js" type="text/javascript"></script>
   <!--- jQuery Validation --->
   <script type="text/javascript" src="libs/jquery-validation-1.19.0/lib/jquery-1.11.1.js"></script>
   <script type="text/javascript" src="libs/jquery-validation-1.19.0/dist/jquery.validate.js"></script>
   <!--- jQuery Mask Plugin --->
   <script type="text/javascript" src="libs/jQuery-Mask-Plugin/dist/jquery.mask.js"></script>
+  <!--- JS --->
+  <script type="text/javascript" src="js/funciones.js"></script>
+  <!--- Bootstrap 4 --->
+  <link rel="stylesheet" href="libs/bootstrap-4.1.3-dist/css/bootstrap.min.css"/>
+  <script src="libs/bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
+  <!--- Bootstrap 4 UI E-Commerce --->
+  <script src="libs/bootstrap-ecommerce-uikit/ui-ecommerce/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+  <link href="libs/bootstrap-ecommerce-uikit/ui-ecommerce/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="libs/bootstrap-ecommerce-uikit/ui-ecommerce/fonts/fontawesome/css/fontawesome-all.min.css" type="text/css" rel="stylesheet">
+  <link href="libs/bootstrap-ecommerce-uikit/ui-ecommerce/plugins/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="libs/bootstrap-ecommerce-uikit/ui-ecommerce/plugins/owlcarousel/assets/owl.theme.default.css" rel="stylesheet">
+  <script src="libs/bootstrap-ecommerce-uikit/ui-ecommerce/plugins/owlcarousel/owl.carousel.min.js"></script>
+  <link href="libs/bootstrap-ecommerce-uikit/ui-ecommerce/css/ui.css" rel="stylesheet" type="text/css"/>
+  <link href="libs/bootstrap-ecommerce-uikit/ui-ecommerce/css/responsive.css" rel="stylesheet" media="only screen and (max-width: 1200px)"/>
+  <script src="libs/bootstrap-ecommerce-uikit/ui-ecommerce/js/script.js" type="text/javascript"></script>
+  <!--- Bootstrap 4 File Style 2 --->
+  <script type="text/javascript" src="libs/bootstrap-filestyle-2.1.0/src/bootstrap-filestyle.min.js"> </script>
 </head>
 
 <body>
   <!-- Menú-->
   <header>
     <!-- Navbar -->
-    <nav class="navbar fixed-top navbar-expand-lg navbar navbar-dark warning-color-dark scrolling-navbar">
+    <nav class="navbar fixed-top navbar-expand-lg bg-primary navbar-dark scrolling-navbar">
       <div class="container">
         <!-- Logo -->
         <a class="navbar-brand" href="index.php">
@@ -60,26 +62,29 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <!-- Left -->
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link waves-effect" href="#"><i class="fa fa-home"></i> <b>Inicio</b>
+            <li class="nav-item active">
+              <a class="nav-link" href="#"><i class="fa fa-home"></i> <b>Inicio</b>
                 <span class="sr-only">(current)</span>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link waves-effect" href="#"><i class="fa fa-users"></i> <b>La Comunidad</b></a>
+            <li class="nav-item active">
+              <a class="nav-link" href="#"><i class="fa fa-users"></i> <b>La Comunidad</b></a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link waves-effect" href="#"
-                target="_blank"><i class="fa fa-phone-alt"></i> <b>Contacto</b></a>
+            <li class="nav-item active">
+              <a class="nav-link" href="#"
+                target="_blank"><i class="fa fa-phone"></i> <b>Contacto</b></a>
             </li>
           </ul>
           <!-- Right -->
           <ul class="navbar-nav nav-flex-icons">
+            <li class="nav-item active">
+              <a class="nav-link" href="paginas/usuario_inicio.php"><i class="fa fa-user"></i> <b>Iniciar Sesión</b></a>
+            </li>
             <li class="nav-item">
               <a class="nav-link" href="index.php" style="font-style: italic; font-weight: bold;"> Consejo Comunal Ambrosio Plaza </a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link waves-effect" href="paginas/admin_panel.php"><i class="fa fa-lock"></i></a>
+              <a class="nav-link" href="paginas/admin_panel.php"><i class="fa fa-lock"></i></a>
             </li>
           </ul>
         </div>
@@ -91,148 +96,108 @@
 
   <!--Main Layout-->
   <main class="mt-5 pt-5">
-    <div class="container">
+    <div class="container justify-content-center">
       <!--Section: Jumbotron-->
-      <section class="card sunny-morning-gradient wow fadeIn" id="intro">
-        <!-- Content -->
-        <div class="card-body text-white text-center py-1 px-1 my-1">
-          <h1 class="mb-4">
-            <strong>Consejo Comunal Ambrosio Plaza</strong>
-          </h1>
-          <p>
-            <strong>Comunidad de Ambrosio Plaza Pueblo Nuevo</strong>
-          </p>
-          <p class="mb-4">
-            <strong>Información sobre la Comunidad, Acontecimientos, Eventos, Jornadas, entre otros.</strong>
-          </p>
-          <a target="_blank" href="" class="btn btn-white btn-lg">¿Quíenes Somos?
-            <i class="fas fa-users ml-2"></i>
-          </a>
+      <div class="card" align="center">
+        <div class="card-body index-background">
+          <h2 class="card-title text-white"><b>Consejo Comunal Ambrosio Plaza</b></h2>
+          <p class="card-text text-white"><b>Comunidad de Ambrosio Plaza Pueblo Nuevo</b></p>
+          <p class="text-white">Información sobre la Comunidad, Acontecimientos, Eventos, Jornadas, entre otros.</p>
+          <a href="#" class="btn btn-light btn-lg"> <b>¿Quíenes Somos? </b><i class="fas fa-users ml-2"></i></a>
         </div>
-        <!-- Content -->
-      </section>
+      </div>
       <!--Section: Jumbotron-->
-
       <p class="">
       <h2 align="center"><b>Noticias</b></h2>
       <hr class="my-3">
       <!--Section: Cards-->
-      <section class="text-center">
-
-        <!--Grid row-->
-        <div class="row mb-4 wow fadeIn">
-          <!--Grid column-->
-          <div class="col-md-6 mb-4">
-            <!--Card-->
-            <!-- Card -->
-              <div class="card">
-                <!-- Card image -->
-                <div class="view overlay">
-                  <img class="card-img-top" src="imagen/panel-1.jpg" alt="Card image cap">
-                  <a href="#!">
-                    <div class="mask rgba-white-slight"></div>
-                  </a>
-                </div>
-                <!-- Card content -->
-                <div class="card-body">
-                  <!-- Title -->
-                  <h4 class="card-title">Ejemplo Noticia</h4>
-                  <!-- Text -->
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <!-- Button -->
-                  <a href="#" class="btn btn-deep-orange">Ver Noticia</a>
-                </div>
-              </div>
-            <!-- Card -->
-            <!--/.Card-->
+      <div class="container" align="center">
+        <div class="card-deck">
+          <div class="card col-lg-4">
+            <img src="imagen/panel-1.jpg" class="card-img-top" alt="Foto">
+            <div class="card-body">
+              <h4 class="card-title"><b>Ejemplo Noticia</b></h4>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
           </div>
-          <!--Grid column-->
-
-          <!--Grid column-->
-          <div class="col-md-6 mb-4">
-            <!--Card-->
-            <!-- Card -->
-              <div class="card">
-                <!-- Card image -->
-                <div class="view overlay">
-                  <img class="card-img-top" src="imagen/panel-2.jpg" alt="Card image cap">
-                  <a href="#!">
-                    <div class="mask rgba-white-slight"></div>
-                  </a>
-                </div>
-                <!-- Card content -->
-                <div class="card-body">
-                  <!-- Title -->
-                  <h4 class="card-title">Ejemplo Noticia</h4>
-                  <!-- Text -->
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <!-- Button -->
-                  <a href="#" class="btn btn-deep-orange">Ver Noticia</a>
-                </div>
-              </div>
-            <!-- Card -->
-            <!--/.Card-->
+          <div class="card col-lg-4">
+            <img src="imagen/panel-2.jpg" class="card-img-top" alt="Foto">
+            <div class="card-body">
+              <h4 class="card-title"><b>Ejemplo Noticia</b></h4>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
           </div>
-          <!--Grid column-->
+          <div class="card col-lg-4">
+            <img src="imagen/panel-3.jpg" class="card-img-top" alt="Foto">
+            <div class="card-body">
+              <h4 class="card-title"><b>Ejemplo Noticia</b></h4>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
         </div>
-        <!--Grid row-->
+      </div>
+    
+      <br>
 
-        <!--Pagination-->
-        <nav class="d-flex justify-content-center wow fadeIn">
-          <ul class="pagination pg-blue">
-            <!--Arrow left-->
-            <li class="page-item disabled">
-              <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-                <span class="sr-only">Previous</span>
-              </a>
-            </li>
-            <li class="page-item active">
-              <a class="page-link" href="#">1
-                <span class="sr-only">(current)</span>
-              </a>
-            </li>
-            <li class="page-item">
-              <a class="page-link" href="#">2</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link" href="#">3</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link" href="#">4</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link" href="#">5</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-                <span class="sr-only">Next</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </section>
-      <!--Section: Cards-->
+      <!--Pagination-->
+      <nav class="d-flex justify-content-center">
+        <ul class="pagination">
+          <!--Arrow left-->
+          <li class="page-item disabled">
+            <a class="page-link" href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+              <span class="sr-only">Previous</span>
+            </a>
+          </li>
+          <li class="page-item active">
+            <a class="page-link" href="#">1
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">2</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">3</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">4</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">5</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+              <span class="sr-only">Next</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
   </main>
+
+  <br>
   <!--Main Layout-->
 
   <!--Footer-->
-  <footer class="page-footer text-center font-small mdb-color grey darken-1 mt-4 wow fadeIn">
-    <hr class="my-4">
-    <!--Copyright-->
-    <div class="row">
-      <div class="footer-copyright col-sm-6 py-2">
-        <b>Desarrollado y Diseñado por:</b> 
-        <p class="text-white"> Dayana García, Jesus Carrillo, Isaac Clavijo y Carlos Guanipa </p>
-      </div>
-      <div class="footer-copyright col-sm-6 py-2">
-        <b>© 2019 Copyright:</b>
-        <p class="text-white"> Consejo Comunal Ambrosio Plaza </p>
-      </div>
-    </div>
-    <!--/.Copyright-->
+  <footer class="sticky-footer section-footer bg2 mt-2">
+    <div class="container my-auto">
+      <section class="footer-bottom row">
+        <div class="col-sm-6"> 
+          <p><b>Desarrollado y Diseñado por: </b><br>Dayana García, Jesus Carrillo, Isaac Clavijo y Carlos Guanipa<br>
+          <small>Servicio Comunitario UNEFA Táchira Semestre 2-2019 Ingeniería de Sistemas</small></p>
+
+        </div>
+        <div class="col-sm-6">
+          <p class="text-sm-right"><b>Consejo Comunal Ambrosio Plaza</b></p>
+          <p class="text-sm-right">Copyright &copy 2019<br>
+          </p>
+        </div>
+      </section>
   </footer>
   <!--/.Footer-->
   

@@ -1,3 +1,12 @@
+<?php
+  session_start();
+
+  if (!isset($_SESSION['active'])) {
+    header('Location: usuario_inicio.php');
+    exit();
+  }
+?>
+
 <?php 
 	require_once('includes/admin_header.php');
 ?>

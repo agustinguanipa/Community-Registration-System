@@ -1,3 +1,12 @@
+<?php
+  if (session_status() == PHP_SESSION_NONE) {
+      session_start();
+  }
+
+  require_once ("conexion.php");
+  require_once ("includes/funciones.php");  
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -16,14 +25,13 @@
   <link href="../libs/startbootstrap-simple-sidebar-gh-pages/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!--- jQuery --->
   <script src="../libs/jquery/jquery-3.4.1.min.js" type="text/javascript"></script>
-  <script src="../libs/jquery/jquery-ui.js" type="text/javascript"></script>
   <!--- jQuery Validation --->
   <script type="text/javascript" src="../libs/jquery-validation-1.19.0/lib/jquery-1.11.1.js"></script>
   <script type="text/javascript" src="../libs/jquery-validation-1.19.0/dist/jquery.validate.js"></script>
   <!--- jQuery Mask Plugin --->
   <script type="text/javascript" src="../libs/jQuery-Mask-Plugin/dist/jquery.mask.js"></script>
   <!--- JS --->
-  <script type="text/javascript" src="js/funciones.js"></script>
+  
   <!--- Bootstrap 4 --->
   <link rel="stylesheet" href="../libs/bootstrap-4.1.3-dist/css/bootstrap.min.css"/>
   <script src="../libs/bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
@@ -67,37 +75,27 @@
             </div>
           </a>
           
-          <a href="./usuario_lista.php" aria-expanded="false" class="bg-light text-dark list-group-item list-group-item-action flex-column align-items-start tamano-elemento-sidebar">
+          <a href="#" aria-expanded="false" class="bg-light text-dark list-group-item list-group-item-action flex-column align-items-start tamano-elemento-sidebar">
             <div class="d-flex w-100 justify-content-start align-items-center">
                 <span class="fa fa-newspaper fa-fw mr-3"></span> 
                 <span class="menu-collapsed">Noticias</span>
             </div>
           </a>
+          <a href="persona_lista.php" aria-expanded="false" class="bg-light text-dark list-group-item list-group-item-action flex-column align-items-start tamano-elemento-sidebar">
+            <div class="d-flex w-100 justify-content-start align-items-center">
+                <span class="fa fa-users fa-fw mr-3"></span> 
+                <span class="menu-collapsed">Personas</span>
+            </div>
+          </a>
           <a href="#submenu1" data-toggle="collapse" aria-expanded="false" class="bg-light text-dark list-group-item list-group-item-action flex-column align-items-start tamano-elemento-sidebar">
               <div class="d-flex w-100 justify-content-start align-items-center">
-                <span class="fa fa-users fa-fw mr-3"></span> 
-                <span class="menu-collapsed">Usuarios</span>
+                <span class="fa fa-table fa-fw mr-3"></span> 
+                <span class="menu-collapsed">Registros</span>
                 <span class="fa fa-caret-down ml-auto"></span>
               </div>
           </a>
             <!-- Submenu -->
             <div id='submenu1' class="collapse sidebar-submenu">
-              <a href="#" class="list-group-item list-group-item-action bg-light text-dark">
-                <span class="menu-collapsed">Libros</span>
-              </a>
-              <a href="#" class="list-group-item list-group-item-action bg-light text-dark">
-                <span class="menu-collapsed">Categorías</span>
-              </a>
-            </div>
-          <a href="#submenu2" data-toggle="collapse" aria-expanded="false" class="bg-light text-dark list-group-item list-group-item-action flex-column align-items-start tamano-elemento-sidebar">
-              <div class="d-flex w-100 justify-content-start align-items-center">
-                <span class="fa fa-table fa-fw mr-3"></span> 
-                <span class="menu-collapsed">Personas</span>
-                <span class="fa fa-caret-down ml-auto"></span>
-              </div>
-          </a>
-            <!-- Submenu -->
-            <div id='submenu2' class="collapse sidebar-submenu">
               <a href="#" class="list-group-item list-group-item-action bg-light text-dark">
                 <span class="menu-collapsed">Pasantías</span>
               </a>
@@ -108,7 +106,7 @@
                 <span class="menu-collapsed">Categorías</span>
               </a>
             </div>
-          <a href="#submenu3" data-toggle="collapse" aria-expanded="false" class="bg-light text-dark list-group-item list-group-item-action flex-column align-items-start tamano-elemento-sidebar">
+          <a href="#submenu2" data-toggle="collapse" aria-expanded="false" class="bg-light text-dark list-group-item list-group-item-action flex-column align-items-start tamano-elemento-sidebar">
               <div class="d-flex w-100 justify-content-start align-items-center">
                 <span class="fa fa-cogs fa-fw mr-3"></span> 
                 <span class="menu-collapsed">Administración</span>
@@ -116,7 +114,7 @@
               </div>
           </a>
             <!-- Submenu -->
-            <div id='submenu3' class="collapse sidebar-submenu">
+            <div id='submenu2' class="collapse sidebar-submenu">
               <a href="#" class="list-group-item list-group-item-action bg-light text-dark">
                 <span class="menu-collapsed">Administradores</span>
               </a>
@@ -143,10 +141,7 @@
                 <a class="nav-link" style="color: #FFFFFF;">San Cristobal, <?php echo fechaC(); ?></a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link" href="index.php.php" style="color: #FFFFFF;"><i class="fa fa-home"></i> Bienvenido <?php echo $_SESSION['nombr_usua']; ?> <?php echo $_SESSION['apeli_usua']; ?></a>
-              </li>
-              <li class="nav-item active">
-                <a class="nav-link"><img class="photouser" src="<?php echo $_SESSION['foto']; ?>" alt="Usuario"></a> 
+                <a class="nav-link" href="index.php.php" style="color: #FFFFFF;"><i class="fa fa-home"></i> Bienvenido <?php echo $_SESSION['nombr_per']; ?> <?php echo $_SESSION['apeli_per']; ?></a>
               </li>
               <li class="nav-item active">
                 <a class="nav-link" href="usuario_salir.php" style="color: #FFFFFF;"><i class="fa fa-sign-out-alt"></i> Cerrar Sesión</a>

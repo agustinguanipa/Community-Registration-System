@@ -16,7 +16,7 @@ if (!empty($_SESSION['active'])) {
       $usuar_per = mysqli_real_escape_string($conexion, $_POST['usuar_per']);
       $contr_per = mysqli_real_escape_string($conexion, $_POST['contr_per']);
 
-      $query = mysqli_query($conexion,"SELECT u.ident_per,u.cedul_per,u.nombr_per,u.apeli_per,u.fecna_per,u.telem_per,u.telec_per,u.email_per,u.direc_per,u.tifam_per,u.tibom_per,u.seria_per,u.usuar_per,u.contr_per,u.statu_per r.ident_tip, r.nombr_tip FROM tab_per u INNER JOIN tab_tip r ON u.ident_tip = r.ident_tip WHERE u.usuar_per = '$usuar_per' AND u.contr_per = '$contr_per'");
+      $query = mysqli_query($conexion,"SELECT u.ident_per,u.cedul_per,u.nombr_per,u.apeli_per,u.fecna_per,u.telem_per,u.telec_per,u.email_per,u.direc_per,u.tifam_per,u.tibom_per,u.seria_per,u.usuar_per,u.contr_per,u.statu_per, r.ident_tip, r.nombr_tip FROM tab_per u INNER JOIN tab_tip r ON u.ident_tip = r.ident_tip WHERE u.usuar_per = '$usuar_per' AND u.contr_per = '$contr_per'");
       mysqli_close($conexion);
       $result = mysqli_num_rows($query);
 
@@ -38,10 +38,8 @@ if (!empty($_SESSION['active'])) {
         $_SESSION['seria_per'] = $data['seria_per'];
         $_SESSION['usuar_per'] = $data['usuar_per'];
         $_SESSION['statu_per'] = $data['statu_per'];
-        $_SESSION['ident_tipu'] = $data['ident_tipu'];
-        $_SESSION['nombr_tipu'] = $data['nombr_tipu'];
-        
-        $_SESSION['foto'] = $foto;
+        $_SESSION['ident_tip'] = $data['ident_tip'];
+        $_SESSION['nombr_tip'] = $data['nombr_tip'];
         
         header('location: admin_panel.php');
       }else{
@@ -165,12 +163,5 @@ if (!empty($_SESSION['active'])) {
 jQuery.validator.addMethod("lettersonly", function(value, element) {
   return this.optional(element) || /^[A-Z^\s]+$/i.test(value);
 }, "Letters only please"); 
-
-/* Masks */
-
-$('.telef-mask').mask('(0000) 000 0000');
-$('.pesoo-mask').mask('##.##0,00', {reverse: true});
-$('.preci-mask').mask('000.000.000.000.000,00', {reverse: true});
-$('.taman-mask').mask('###.00 x ###.00 x ###.00', {reverse: false});
 
 </script>

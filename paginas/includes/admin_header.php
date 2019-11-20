@@ -141,7 +141,7 @@
                 <a class="nav-link" style="color: #FFFFFF;">San Cristobal, <?php echo fechaC(); ?></a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link" href="index.php.php" style="color: #FFFFFF;"><i class="fa fa-home"></i> Bienvenido <?php echo $_SESSION['nombr_per']; ?> <?php echo $_SESSION['apeli_per']; ?></a>
+                <a class="nav-link" href="../index.php" style="color: #FFFFFF;"><i class="fa fa-home"></i> Bienvenido <?php echo $_SESSION['nombr_per']; ?> <?php echo $_SESSION['apeli_per']; ?></a>
               </li>
               <li class="nav-item active">
                 <a class="nav-link" href="usuario_salir.php" style="color: #FFFFFF;"><i class="fa fa-sign-out-alt"></i> Cerrar Sesión</a>

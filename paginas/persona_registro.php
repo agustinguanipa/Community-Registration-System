@@ -14,11 +14,11 @@
 		    <b>Registrar Usuario</b>
 		  </div>
 	   	<div class="card-body">
-        <form role="form" id="persona_registro" class="justify-content-center mx- my-1" align="center" enctype="multipart/form-data" action="../ajax/guardar_persona.php" method="post">
+        <form role="form" id="usuario_registro" class="justify-content-center mx- my-1" align="center" enctype="multipart/form-data" action="../ajax/guardar_persona.php" method="post">
           <div class="form-row">
             <div class="col form-group">
               <label class="form-label" for="cedul_per"><b>Cédula de Identidad: </b></label>
-              <input type="text" class="form-control" name="cedul_per" autocomplete="off" id="cedul_per" placeholder="26607655" maxlength="20" onkeyup="this.value = this.value.toUpperCase();" required>
+              <input type="text" class="form-control" name="cedul_per" autocomplete="off" id="cedul_per" placeholder="26607655" maxlength="10" onkeyup="this.value = this.value.toUpperCase();" required>
             </div>
             <div class="col form-group">
               <label class="form-label" for="nombr_per"><b>Nombre: </b></label>
@@ -28,10 +28,8 @@
               <label class="form-label" for="apeli_per"><b>Apellido: </b></label>
               <input type="text" class="form-control" name="apeli_per" autocomplete="off" id="apeli_per" placeholder="Agustin" maxlength="20" onkeyup="this.value = this.value.toUpperCase();">
             </div>
-          </div>
-          <div class="form-row">
             <div class="col form-group">
-              <label class="form-label" for="ident_tipu"><b>Tipo de Usuario: </b></label>
+              <label class="form-label" for="ident_tip"><b>Tipo de Usuario: </b></label>
               <?php 
                 $query_rol = mysqli_query($conexion,"SELECT * FROM  tab_tip");
                 $result_rol = mysqli_num_rows($query_rol);
@@ -50,11 +48,17 @@
           </div>
           <div class="form-row">
             <div class="col form-group">
-              <label class="form-label" for="telef_per"><b>Teléfono: </b></label>
-              <input type="text" class="form-control telef-mask" name="telef_per" autocomplete="off" id="telef_per" placeholder="(0000) 000 0000" maxlength="15">
+              <label class="form-label" for="fecna_per"><b>Fecha de Nacimiento: </b></label>
+              <input type="date" class="form-control" name="fecna_per" autocomplete="off" id="fecna_per" placeholder="">
             </div>
-          </div>
-          <div class="form-row">
+            <div class="col form-group">
+              <label class="form-label" for="telem_per"><b>Teléfono Celular: </b></label>
+              <input type="text" class="form-control telem-mask" name="telem_per" autocomplete="off" id="telem_per" placeholder="(0000) 000 0000" maxlength="15">
+            </div>
+            <div class="col form-group">
+              <label class="form-label" for="telec_per"><b>Teléfono de Casa: </b></label>
+              <input type="text" class="form-control telec-mask" name="telec_per" autocomplete="off" id="telec_per" placeholder="(0000) 000 0000" maxlength="15">
+            </div>
             <div class="col form-group">
               <label class="form-label" for="email_per"><b>E-Mail: </b></label>
               <input type="email" class="form-control" name="email_per" autocomplete="off" id="email_per" placeholder="correo@mail.com" onkeyup="this.value = this.value.toUpperCase();">
@@ -68,6 +72,15 @@
           </div>
           <div class="form-row">
             <div class="col form-group">
+              <label class="form-label" for="tifam_per"><b>Tipo de Familiar: </b></label>
+              <select class="form-control" id="tifam_per" name="tifam_per">
+                <option value="JEFE DE FAMILIA">JEFE DE FAMILIA</option>
+                <option value="MADRE/PADRE">MADRE/PADRE</option>
+                <option value="HIJO/HIJA">HIJO/HIJA</option>
+                <option value="NIETO/NIETA">NIETO/NIETA</option>
+              </select>
+            </div>
+            <div class="col form-group">
               <label class="form-label" for="tibom_per"><b>Tipo de Bombona: </b></label>
               <select class="form-control" id="tibom_per" name="tibom_per">
                 <option value="10 KG">10 KG</option>
@@ -75,14 +88,16 @@
                 <option value="GRANEL">GRANEL</option>
               </select>
             </div>
+            <div class="col form-group">
+              <label class="form-label" for="seria_per"><b>Serial del Carnet de la Patria: </b></label>
+              <input type="text" class="form-control" name="seria_per" autocomplete="off" id="seria_per" placeholder="0123456789" maxlength="20">
+            </div>
           </div>
           <div class="form-row">
             <div class="col form-group">
               <label class="form-label" for="usuar_per"><b>Usuario: </b></label>
               <input type="text" class="form-control" name="usuar_per" autocomplete="off" id="usuar_per" placeholder="miusuario" maxlength="20" onkeyup="this.value = this.value.toUpperCase();">
             </div>
-          </div>
-          <div class="form-row">
             <div class="col form-group">
               <label class="form-label" for="contr_per"><b>Contraseña: </b></label>
               <input type="password" class="form-control" name="contr_per" autocomplete="off" id="contr_per" placeholder="********" maxlength="20">
@@ -101,7 +116,7 @@
         </form>    
 			</div>
 			<div class="card-footer">
-         <a href="usuario_lista.php" class="btn btn-primary float-left"><i class="fa fa-arrow-left"></i> Volver al Listado</a> 
+         <a href="persona_lista.php" class="btn btn-primary float-left"><i class="fa fa-arrow-left"></i> Volver al Listado</a> 
 			</div>
     </div>
   </div>
@@ -114,17 +129,57 @@
 	$( document ).ready( function () {
   $( "#usuario_registro" ).validate( {
     rules: {
-      nombr_usua: {
+      cedul_per: {
+        required: true,
+        number: false,
+        minlength: 6,
+        remote: {
+          url: "usuario_cedula_availability.php",
+          type: "post",
+          data:
+            {
+              usuar_per: function()
+              {
+                return $('#usuario_registro :input[name="cedul_per"]').val();
+              }
+            }
+        }     
+      },
+      nombr_per: {
         required: true,
         lettersonly: true,
         minlength: 2
       },
-      apeli_usua: {
+      apeli_per: {
         required: true,
         lettersonly: true,
         minlength: 2
       },
-      usuar_usua: {
+      fecna_per: {
+        required: true
+      },
+      telem_per: {
+        required: true,
+        number: false,
+        minlength: 15
+      },
+      telec_per: {
+        required: true,
+        number: false,
+        minlength: 15
+      },
+      email_per: {
+        required: true,
+        email: true
+      },
+      direc_per: {
+        required: true
+      },
+      seria_per: {
+        required: true,
+        number: false
+      },
+      usuar_per: {
         required: true,
         minlength: 2,
         remote: {
@@ -132,56 +187,70 @@
           type: "post",
           data:
             {
-              usuar_usua: function()
+              usuar_per: function()
               {
-                return $('#usuario_registro :input[name="usuar_usua"]').val();
+                return $('#usuario_registro :input[name="usuar_per"]').val();
               }
             }
         }     
       },
-      contr_usua: {
+      contr_per: {
         required: true,
         minlength: 4
       },
       confirm_password: {
         required: true,
         minlength: 4,
-        equalTo: "#contr_usua"
-      },
-      email_usua: {
-        required: true,
-        email: true,
-        remote: {
-          url: "usuario_email_availability.php",
-          type: "post",
-          data:
-            {
-              email_usua: function()
-              {
-                return $('#usuario_registro :input[name="email_usua"]').val();
-              }
-            }
-        }  
-      },
+        equalTo: "#contr_per"
+      }, 
     },
 
     messages: {
-      nombr_usua: {
-        required: "Ingrese su Nombre",
-        lettersonly: "Tu Nombre solo debe contener letras sin espacios",
-        minlength: "Tu Nombre debe contener al menos 2 caracteres"
-      },
-      apeli_usua: {
-        required: "Ingrese su Apellido",
-        lettersonly: "Tu Apellido solo debe contener letras sin espacios",
-        minlength: "Tu Apellido debe contener al menos 2 caracteres"
-      },
-      usuar_usua: {
-        required: "Ingrese un Nombre de Usuario",
-        minlength: "Tu Nombre de Usuario debe contener al menos 2 caracteres",
+      cedul_per: {
+        required: "Ingrese una Cédula de Identidad",
+        minlength: "La Cédula debe contener al menos 6 números",
         remote: jQuery.validator.format("{0} no esta disponible")
       },
-      contr_usua: {
+      nombr_per: {
+        required: "Ingrese un Nombre",
+        lettersonly: "El Nombre solo debe contener letras sin espacios",
+        minlength: "El Nombre debe contener al menos 2 caracteres"
+      },
+      apeli_per: {
+        required: "Ingrese un Apellido",
+        lettersonly: "El Apellido solo debe contener letras sin espacios",
+        minlength: "El Apellido debe contener al menos 2 caracteres"
+      },
+      fecna_per: {
+        required: "Ingrese una Fecha de Nacimiento"
+      },
+      telem_per: {
+        required: "Ingrese un Número de Teléfono Valido",
+        number: "Ingrese un Número de Teléfono Valido",
+        minlength: "Ingrese un Número de Teléfono Valido"
+      },
+      telec_per: {
+        required: "Ingrese un Número de Teléfono Valido",
+        number: "Ingrese un Número de Teléfono Valido",
+        minlength: "Ingrese un Número de Teléfono Valido"
+      },
+      email_per: {
+        required: "Ingrese una Dirección de Correo Electrónico Válida",
+        email: "Ingrese una Dirección de Correo Electrónico Válida"
+      },
+      direc_per: {
+        required: "Ingrese una Dirección"
+      },
+      seria_per: {
+        required: "Ingrese un Serial del Carnet",
+        number: "Ingrese un Serial del Carnet"
+      },
+      usuar_per: {
+        required: "Ingrese un Nombre de Usuario",
+        minlength: "El Nombre de Usuario debe contener al menos 2 caracteres",
+        remote: jQuery.validator.format("{0} no esta disponible")
+      },
+      contr_per: {
         required: "Ingrese una Contraseña",
         minlength: "Tu Contraseña debe contener al menos 5 caracteres"
       },
@@ -190,11 +259,7 @@
         minlength: "Tu Contraseña debe contener al menos 5 caracteres",
         equalTo: "Ingrese la Misma Contraseña"
       },
-      email_usua: {
-        required: "Ingrese una Dirección de Correo Electrónico Válida",
-        email: "Ingrese una Dirección de Correo Electrónico Válida",
-        remote: jQuery.validator.format("{0} no esta disponible")
-      }
+      
     },
 
     errorElement: "em",
@@ -221,5 +286,10 @@
 	jQuery.validator.addMethod("lettersonly", function(value, element) {
   return this.optional(element) || /^[A-Z^\s]+$/i.test(value);
 }, "Letters only please"); 
+
+// Masks
+
+$('.telem-mask').mask('(0000) 000 0000');
+$('.telec-mask').mask('(0000) 000 0000');
 
 </script>

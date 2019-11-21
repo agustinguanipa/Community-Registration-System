@@ -7,7 +7,7 @@
   }
 ?>
 
-<div class="container col-lg-8">
+<div class="container col-lg-10">
   <div class="form-group text-center">
     <div class="card">
     	<div class="card-header">
@@ -121,7 +121,6 @@
     </div>
   </div>
 </div>
-
 
 <?php require_once('includes/admin_footer.php');  ?>
 

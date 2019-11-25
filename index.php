@@ -1,3 +1,9 @@
+<?php 
+  session_start();
+
+  require_once ("paginas/conexion.php");
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -18,7 +24,6 @@
   <link href="libs/startbootstrap-simple-sidebar-gh-pages/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!--- jQuery --->
   <script src="libs/jquery/jquery-3.4.1.min.js" type="text/javascript"></script>
-  <script src="libs/jquery/jquery-ui.js" type="text/javascript"></script>
   <!--- jQuery Validation --->
   <script type="text/javascript" src="libs/jquery-validation-1.19.0/lib/jquery-1.11.1.js"></script>
   <script type="text/javascript" src="libs/jquery-validation-1.19.0/dist/jquery.validate.js"></script>
@@ -76,6 +81,20 @@
             </li>
           </ul>
           <!-- Right -->
+          <?php  if (isset($_SESSION['active'])) :  ?>
+          <ul class="navbar-nav nav-flex-icons">
+            <li class="nav-item active">
+              <a class="nav-link" href="#"><i class="fa fa-user"></i> <b>Bienvenido <?php echo $_SESSION['nombr_per']; ?> <?php echo $_SESSION['apeli_per']; ?></b></a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="paginas/admin_panel.php"><i class="fa fa-cogs"></i><b> Ir al Panel de Control </b></a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="paginas/usuario_salir.php"><i class="fa fa-sign-out-alt"></i> <b>Cerrar Sesión </b></a>
+            </li>
+          </ul>
+          <?php endif ?>
+          <?php  if (!isset($_SESSION['active'])) : ?>
           <ul class="navbar-nav nav-flex-icons">
             <li class="nav-item active">
               <a class="nav-link" href="paginas/usuario_inicio.php"><i class="fa fa-user"></i> <b>Iniciar Sesión</b></a>
@@ -83,10 +102,8 @@
             <li class="nav-item">
               <a class="nav-link" href="index.php" style="font-style: italic; font-weight: bold;"> Consejo Comunal Ambrosio Plaza </a>
             </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="paginas/admin_panel.php"><i class="fa fa-lock"></i></a>
-            </li>
           </ul>
+          <?php endif ?>
         </div>
       </div>
     </nav>
@@ -110,73 +127,89 @@
       <p class="">
       <h2 align="center"><b>Noticias</b></h2>
       <hr class="my-3">
-      <!--Section: Cards-->
-      <div class="container" align="center">
+
+      <!--Section: Noticias-->
+
+      <?php
+        include("paginas/conexion.php");
+         $perpage = 3;
+          if(isset($_GET['page']) & !empty($_GET['page'])){
+            $curpage = $_GET['page'];
+          }else{
+            $curpage = 1;
+          }
+          $start = ($curpage * $perpage) - $perpage;
+          $PageSql = "SELECT * FROM tab_not WHERE statu_not = 1";
+          $pageres = mysqli_query($conexion, $PageSql);
+          $totalres = mysqli_num_rows($pageres);
+
+          $endpage = ceil($totalres/$perpage);
+          $startpage = 1;
+          $nextpage = $curpage + 1;
+          $previouspage = $curpage - 1;
+
+          $ReadSql = "SELECT * FROM tab_not WHERE statu_not = 1 LIMIT $start, $perpage";
+          $res = mysqli_query($conexion, $ReadSql);
+      ?>
+
+      <div class="container text-center">
         <div class="card-deck">
-          <div class="card col-lg-4">
-            <img src="imagen/panel-1.jpg" class="card-img-top" alt="Foto">
-            <div class="card-body">
-              <h4 class="card-title"><b>Ejemplo Noticia</b></h4>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          <?php
+              while($row = mysqli_fetch_assoc($res)){
+
+                if ($row['image_not'] != 'default.jpg') 
+                {
+                  $foto = 'imagen/uploads/'.$row['image_not'];
+                }else{
+                  $foto = 'imagen/uploads/'.$row['image_not'];
+                }
+            ?>
+          <div class="col-lg-4">
+            <div class="card">
+              <img  class="card-img-fluid image-size-index" src="<?php echo $foto; ?>" alt="Foto de la Noticia">
+              <div class="card-body">
+                <h4 class="card-title"><b><?php echo $row['titul_not'] ?></b></h4>
+                <p class="card-text"><?php echo $row['desco_not'] ?></p>
+                <p class="card-text float-left"><small class="text-muted"><?php echo $row['fecpu_not'] ?></small></p>
+                <a href="paginas/noticia_detalle.php?id=<?php echo $row['ident_not']; ?>" class="btn btn-sm btn-primary float-right"><i class="fa fa-eye"></i> Leer Más</a>
+              </div>
             </div>
           </div>
-          <div class="card col-lg-4">
-            <img src="imagen/panel-2.jpg" class="card-img-top" alt="Foto">
-            <div class="card-body">
-              <h4 class="card-title"><b>Ejemplo Noticia</b></h4>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-          </div>
-          <div class="card col-lg-4">
-            <img src="imagen/panel-3.jpg" class="card-img-top" alt="Foto">
-            <div class="card-body">
-              <h4 class="card-title"><b>Ejemplo Noticia</b></h4>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-          </div>
+          <?php
+              }
+            ?>
         </div>
       </div>
-    
+
       <br>
 
       <!--Pagination-->
-      <nav class="d-flex justify-content-center">
-        <ul class="pagination">
-          <!--Arrow left-->
-          <li class="page-item disabled">
-            <a class="page-link" href="#" aria-label="Previous">
+      <nav aria-label="Page navigation">
+        <ul class="pagination float-right">
+        <?php if($curpage != $startpage){ ?>
+          <li class="page-item">
+            <a class="page-link" href="?page=<?php echo $startpage ?>" tabindex="-1" aria-label="Previous">
               <span aria-hidden="true">&laquo;</span>
-              <span class="sr-only">Previous</span>
+              <span class="sr-only">First</span>
             </a>
           </li>
-          <li class="page-item active">
-            <a class="page-link" href="#">1
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
+          <?php } ?>
+          <?php if($curpage >= 2){ ?>
+          <li class="page-item"><a class="page-link" href="?page=<?php echo $previouspage ?>"><?php echo $previouspage ?></a></li>
+          <?php } ?>
+          <li class="page-item active"><a class="page-link" href="?page=<?php echo $curpage ?>"><?php echo $curpage ?></a></li>
+          <?php if($curpage != $endpage){ ?>
+          <li class="page-item"><a class="page-link" href="?page=<?php echo $nextpage ?>"><?php echo $nextpage ?></a></li>
           <li class="page-item">
-            <a class="page-link" href="#">2</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" href="#">3</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" href="#">4</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" href="#">5</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
+            <a class="page-link" href="?page=<?php echo $endpage ?>" aria-label="Next">
               <span aria-hidden="true">&raquo;</span>
-              <span class="sr-only">Next</span>
+              <span class="sr-only">Last</span>
             </a>
           </li>
+          <?php } ?>
         </ul>
       </nav>
+      <br>
     </div>
   </main>
 
@@ -188,7 +221,7 @@
     <div class="container my-auto">
       <section class="footer-bottom row">
         <div class="col-sm-6"> 
-          <p><b>Desarrollado y Diseñado por: </b><br>Dayana García, Jesus Carrillo, Isaac Clavijo y Carlos Guanipa<br>
+          <p><b>Diseñado y Desarrollado por: </b><br>Dayana García, Jesus Carrillo, Isaac Clavijo y Carlos Guanipa<br>
           <small>Servicio Comunitario UNEFA Táchira Semestre 2-2019 Ingeniería de Sistemas</small></p>
 
         </div>

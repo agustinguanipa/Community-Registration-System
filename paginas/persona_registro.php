@@ -116,7 +116,7 @@
         </form>    
 			</div>
 			<div class="card-footer">
-         <a href="persona_lista.php" class="btn btn-primary float-left"><i class="fa fa-arrow-left"></i> Volver al Listado</a> 
+         <a href="persona_lista.php" class="btn btn-info float-left"><i class="fa fa-arrow-left"></i> Volver al Listado</a> 
 			</div>
     </div>
   </div>
@@ -133,7 +133,7 @@
         number: false,
         minlength: 6,
         remote: {
-          url: "usuario_cedula_availability.php",
+          url: "persona_cedula_availability.php",
           type: "post",
           data:
             {
@@ -182,7 +182,7 @@
         required: true,
         minlength: 2,
         remote: {
-          url: "usuario_usuario_availability.php",
+          url: "persona_usuario_availability.php",
           type: "post",
           data:
             {

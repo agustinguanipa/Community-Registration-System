@@ -9,7 +9,7 @@
 
 <?php 
 
-include 'conexion.php' ;
+include 'conexion.php';
 
 if (empty($_GET['id'])) {
   header('location: persona_lista.php');
@@ -46,158 +46,236 @@ if ($result_user == 0)
 mysqli_close($conexion);
 ?>
 
-<div class="container col-lg-6">
+<div class="container col-lg-10">
   <div class="form-group text-center">
     <div class="card">
     	<div class="card-header">
-			    <b>Editar Usuario</b>
+			    <b>Editar Persona</b>
 			  </div>
 		   	<div class="card-body">
-  				<form role="form" id="usuario_editar" class="justify-content-center mx-3 my-1" align="center" enctype="multipart/form-data" action="../ajax/editar_usuario.php" method="post">
+  				<form role="form" id="usuario_editar" class="justify-content-center mx-3 my-1" align="center" enctype="multipart/form-data" action="../ajax/editar_persona.php" method="post">
   					<input type="hidden" name="id" id="id" value="<?php echo $id ?>">
 		        <div class="form-row">
+              <!--
+              <div class="col form-group">
+                <label class="form-label" for="cedul_per"><b>Cédula de Identidad: </b></label>
+                <input type="text" class="form-control" name="cedul_per" autocomplete="off" id="cedul_per" value="<?php echo $cedul_per; ?>" maxlength="10" onkeyup="this.value = this.value.toUpperCase();">
+              </div> 
+              !-->
 		          <div class="col form-group">
-		            <label class="form-label" for="nombr_per">Nombre: </label>
+		            <label class="form-label" for="nombr_per"><b>Nombre: </b></label>
 		            <input type="text" class="form-control" name="nombr_per" autocomplete="off" id="nombr_per" value="<?php echo $nombr_per; ?>" maxlength="20" onkeyup="this.value = this.value.toUpperCase();">
 		          </div>
 		          <div class="col form-group">
-		            <label class="form-label" for="apeli_usua">Apellido: </label>
-		            <input type="text" class="form-control" name="apeli_usua" autocomplete="off" id="apeli_usua" value="<?php echo $apeli_usua; ?>" maxlength="20" onkeyup="this.value = this.value.toUpperCase();">
+		            <label class="form-label" for="apeli_per"><b>Apellido: </b></label>
+		            <input type="text" class="form-control" name="apeli_per" autocomplete="off" id="apeli_per" value="<?php echo $apeli_per; ?>" maxlength="20" onkeyup="this.value = this.value.toUpperCase();">
 		          </div>
-		        </div>
-		        <div class="form-row">
-		          <div class="col form-group">
-		            <label class="form-label" for="email_usua">E-Mail: </label>
-		            <input type="email" class="form-control" name="email_usua" autocomplete="off" value="<?php echo $email_usua; ?>" id="email_usua" placeholder="correo@mail.com" maxlength="100" onkeyup="this.value = this.value.toUpperCase();">
-		          </div>
-		        </div>
-		        <div class="form-row">
-		          <div class="col form-group">
-		            <label class="form-label" for="usuar_usua">Usuario: </label>
-		            <input type="text" class="form-control" name="usuar_usua" autocomplete="off" value="<?php echo $usuar_usua; ?>" id="usuar_usua" placeholder="miusuario" maxlength="20" onkeyup="this.value = this.value.toUpperCase();">
-		          </div>
-		        </div>
-		         <div class="form-row">
               <div class="col form-group">
-                <div class="photo">
-                      <label class="form-label" for="fotou_usua"><b>Imagen de Perfil: </b></label>  
-                        <div class="prevPhoto">
-                        <span class="delPhoto <?php $classRemove; ?>">X</span>
-                        <label for="foto"></label>
-                        <?php echo $foto; ?>
-                        </div>
-                        <div class="upimg">
-                        <input type="file" name="foto" id="foto">
-                        </div>
-                        <div id="form_alert"></div>
-                </div>
-                <!-- <label class="form-label" for="fotou_usua"><b>Imagen de Perfil: </b></label>  
-                <input type="file" class="filestyle" id="foto" name="foto" alt="Imagen de Perfil" data-btnClass="btn-primary" accept="image/*"> -->
+                <label class="form-label" for="ident_tip"><b>Tipo de Usuario: </b></label>
+                <?php
+                  include "conexion.php";
+                  $query_rol = mysqli_query($conexion,"SELECT * FROM  tab_tip");
+                  $result_rol = mysqli_num_rows($query_rol);
+                ?>
+                <select class="form-control" name="ident_tip" id="ident_tip">
+                  <option value="<?php echo $ident_tip;?>"><?php echo $nombr_tip;?></option>
+                  <?php 
+                    if ($result_rol > 0) {
+                    while ($rol = mysqli_fetch_array($query_rol)) {?>
+                    <option value="<?php echo $rol['ident_tip'];?>"><?php echo $rol['nombr_tip'];?></option>
+                  <?php
+                  }
+                  }
+                  ?>
+                </select>
               </div>
-            </div>
+		        </div>
 		        <div class="form-row">
+              <div class="col form-group">
+                <label class="form-label" for="fecna_per"><b>Fecha de Nacimiento: </b></label>
+                <input type="date" class="form-control" name="fecna_per" autocomplete="off" value="<?php echo $fecna_per; ?>" id="fecna_per">
+              </div>
+              <div class="col form-group">
+                <label class="form-label" for="telem_per"><b>Teléfono Celular: </b></label>
+                <input type="text" class="form-control telem-mask" name="telem_per" autocomplete="off" id="telem_per" value="<?php echo $telem_per; ?>" maxlength="15">
+              </div>
+              <div class="col form-group">
+                <label class="form-label" for="telec_per"><b>Teléfono de Casa: </b></label>
+                <input type="text" class="form-control telec-mask" name="telec_per" autocomplete="off" id="telec_per" value="<?php echo $telec_per; ?>" maxlength="15">
+              </div>
 		          <div class="col form-group">
-		            <label class="form-label" for="ident_tip"><b>Tipo de Usuario: </b></label>
-		            <?php
-		            	include "../conexion.php";
-									$query_rol = mysqli_query($conexion,"SELECT * FROM  tab_tipusu");
-									$result_rol = mysqli_num_rows($query_rol);
-								?>
-								<select class="form-control" name="ident_usua" id="ident_usua">
-                  <option value="<?php echo $ident_tip;?>"><?php echo $nombr_tipu;?></option>
-									<?php 
-										if ($result_rol > 0) {
-										while ($rol = mysqli_fetch_array($query_rol)) {?>
-										<option value="<?php echo $rol['ident_tip'];?>"><?php echo $rol['nombr_tipu'];?></option>
-									<?php
-									}
-									}
-									?>
-								</select>
+		            <label class="form-label" for="email_per"><b>E-Mail: </b></label>
+		            <input type="email" class="form-control" name="email_per" autocomplete="off" value="<?php echo $email_per; ?>" id="email_per" maxlength="100" onkeyup="this.value = this.value.toUpperCase();">
 		          </div>
 		        </div>
 		        <div class="form-row">
+              <div class="col form-group">
+                <label class="form-label" for="direc_per"><b>Dirección: </b></label>
+                <input type="text" class="form-control" name="direc_per" autocomplete="off" id="direc_per" value="<?php echo $direc_per; ?>" onkeyup="this.value = this.value.toUpperCase();">
+              </div>
+		        </div>
+            <div class="form-row">
+              <div class="col form-group">
+                <label class="form-label" for="tifam_per"><b>Tipo de Familiar: </b></label>
+                <select class="form-control" name="tifam_per" id="tifam_per">
+                  <option value="<?php echo $tifam_per;?>"><?php echo $tifam_per;?></option>
+                  <option value="JEFE DE FAMILIA">JEFE DE FAMILIA</option>
+                  <option value="MADRE/PADRE">MADRE/PADRE</option>
+                  <option value="HIJO/HIJA">HIJO/HIJA</option>
+                  <option value="NIETO/NIETA">NIETO/NIETA</option>
+                </select>
+              </div>
+              <div class="col form-group">
+                <label class="form-label" for="tibom_per"><b>Tipo de Bombona: </b></label>
+                <select class="form-control" id="tibom_per" name="tibom_per">
+                  <option value="<?php echo $tibom_per;?>"><?php echo $tibom_per;?></option>
+                  <option value="10 KG">10 KG</option>
+                  <option value="20 KG">20 KG</option>
+                  <option value="GRANEL">GRANEL</option>
+                </select>
+              </div>
+              <div class="col form-group">
+                <label class="form-label" for="seria_per"><b>Serial del Carnet de la Patria: </b></label>
+                <input type="text" class="form-control" name="seria_per" autocomplete="off" id="seria_per" value="<?php echo $seria_per; ?>" maxlength="20">
+              </div>
+              <!--
+              <div class="col form-group">
+                <label class="form-label" for="usuar_per"><b>Usuario: </b></label>
+                <input type="text" class="form-control" name="usuar_per" autocomplete="off" id="usuar_per" value="<?php echo $usuar_per; ?>" maxlength="20" onkeyup="this.value = this.value.toUpperCase();">
+              </div>
+              !-->
+		        </div>
+		        <div class="form-row">
 		          <div class="col form-group">
-		            <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-user"></i> Actualizar Usuario</button>
+		            <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-user"></i> Actualizar Persona</button>
 		            <button type="reset" class="btn btn-light btn-block"><i class="fa fa-undo"></i> Limpiar</button>
 		          </div>
 		        </div>
 		      </form>
 				</div>
 				<div class="card-footer">
-           <a href="usuario_lista.php" class="btn btn-primary float-left"><i class="fa fa-arrow-left"></i> Volver al Listado</a> 
+           <a href="persona_lista.php" class="btn btn-info float-left"><i class="fa fa-arrow-left"></i> Volver al Listado</a> 
 				</div>
     </div> 
   </div>
 </div>
 
 <script type="text/javascript">
-	$( document ).ready( function () {
+  $( document ).ready( function () {
   $( "#usuario_editar" ).validate( {
     rules: {
-      nombr_per: {
+      cedul_per: {
         required: true,
-        lettersonly: true,
-        minlength: 2
-      },
-      apeli_usua: {
-        required: true,
-        lettersonly: true,
-        minlength: 2
-      },
-      usuar_usua: {
-        required: true,
-        minlength: 2,
+        number: false,
+        minlength: 6,
         remote: {
-          url: "usuario_usuario_availability.php",
+          url: "persona_cedula_availability.php",
           type: "post",
           data:
             {
-              usuar_usua: function()
+              usuar_per: function()
               {
-                return $('#usuario_registro :input[name="usuar_usua"]').val();
+                return $('#usuario_editar :input[name="cedul_per"]').val();
               }
             }
         }     
       },
-      email_usua: {
+      nombr_per: {
         required: true,
-        email: true,
+        lettersonly: true,
+        minlength: 2
+      },
+      apeli_per: {
+        required: true,
+        lettersonly: true,
+        minlength: 2
+      },
+      fecna_per: {
+        required: true
+      },
+      telem_per: {
+        required: true,
+        number: false,
+        minlength: 15
+      },
+      telec_per: {
+        required: true,
+        number: false,
+        minlength: 15
+      },
+      email_per: {
+        required: true,
+        email: true
+      },
+      direc_per: {
+        required: true
+      },
+      seria_per: {
+        required: true,
+        number: false
+      },
+      usuar_per: {
+        required: true,
+        minlength: 2,
         remote: {
-          url: "usuario_email_availability.php",
+          url: "persona_usuario_availability.php",
           type: "post",
           data:
             {
-              email_usua: function()
+              usuar_per: function()
               {
-                return $('#usuario_registro :input[name="email_usua"]').val();
+                return $('#usuario_editar :input[name="usuar_per"]').val();
               }
             }
-        }  
+        }     
       },
     },
 
     messages: {
+      cedul_per: {
+        required: "Ingrese una Cédula de Identidad",
+        minlength: "La Cédula debe contener al menos 6 números",
+        remote: jQuery.validator.format("{0} no esta disponible")
+      },
       nombr_per: {
-        required: "Ingrese su Nombre",
-        lettersonly: "Tu Nombre solo debe contener letras sin espacios",
-        minlength: "Tu Nombre debe contener al menos 2 caracteres"
+        required: "Ingrese un Nombre",
+        lettersonly: "El Nombre solo debe contener letras sin espacios",
+        minlength: "El Nombre debe contener al menos 2 caracteres"
       },
-      apeli_usua: {
-        required: "Ingrese su Apellido",
-        lettersonly: "Tu Apellido solo debe contener letras sin espacios",
-        minlength: "Tu Apellido debe contener al menos 2 caracteres"
+      apeli_per: {
+        required: "Ingrese un Apellido",
+        lettersonly: "El Apellido solo debe contener letras sin espacios",
+        minlength: "El Apellido debe contener al menos 2 caracteres"
       },
-      usuar_usua: {
-        required: "Ingrese un Nombre de Usuario",
-        minlength: "Tu Nombre de Usuario debe contener al menos 2 caracteres",
-        remote: jQuery.validator.format("{0} no esta disponible")
+      fecna_per: {
+        required: "Ingrese una Fecha de Nacimiento"
       },
-      email_usua: {
+      telem_per: {
+        required: "Ingrese un Número de Teléfono Valido",
+        number: "Ingrese un Número de Teléfono Valido",
+        minlength: "Ingrese un Número de Teléfono Valido"
+      },
+      telec_per: {
+        required: "Ingrese un Número de Teléfono Valido",
+        number: "Ingrese un Número de Teléfono Valido",
+        minlength: "Ingrese un Número de Teléfono Valido"
+      },
+      email_per: {
         required: "Ingrese una Dirección de Correo Electrónico Válida",
-        email: "Ingrese una Dirección de Correo Electrónico Válida",
+        email: "Ingrese una Dirección de Correo Electrónico Válida"
+      },
+      direc_per: {
+        required: "Ingrese una Dirección"
+      },
+      seria_per: {
+        required: "Ingrese un Serial del Carnet",
+        number: "Ingrese un Serial del Carnet"
+      },
+      usuar_per: {
+        required: "Ingrese un Nombre de Usuario",
+        minlength: "El Nombre de Usuario debe contener al menos 2 caracteres",
         remote: jQuery.validator.format("{0} no esta disponible")
-      }
+      },
     },
 
     errorElement: "em",
@@ -221,9 +299,13 @@ mysqli_close($conexion);
 
 } );
 
-	jQuery.validator.addMethod("lettersonly", function(value, element) {
+  jQuery.validator.addMethod("lettersonly", function(value, element) {
   return this.optional(element) || /^[A-Z^\s]+$/i.test(value);
 }, "Letters only please"); 
-</script>
 
-<?php require_once('includes/admin_footer.php');  ?>
+// Masks
+
+$('.telem-mask').mask('(0000) 000 0000');
+$('.telec-mask').mask('(0000) 000 0000');
+
+</script>

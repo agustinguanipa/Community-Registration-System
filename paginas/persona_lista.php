@@ -44,7 +44,6 @@
 							<th class='text-center'>Apellido</th>
 							<th class='text-center'>Telef. Celular</th>
 							<th class='text-center'>Email</th>
-							<th class='text-center'>Usuario</th>
 							<th class='text-center'>Tipo</th>
 							<th class='text-center'>Ver</th>
 							<th class='text-center'>Editar</th>
@@ -87,7 +86,6 @@
 										<td class='text-center'><?php echo $data['apeli_per']; ?></td>
 										<td class='text-center'><?php echo $data['telem_per']; ?></td>
 										<td class='text-center'><?php echo $data['email_per']; ?></td>
-										<td class='text-center'><?php echo $data['usuar_per']; ?></td>
 										<td class='text-center'><?php echo $data['nombr_tip']; ?></td>
 										<td class='text-center'>
 											<a href="persona_ver.php?id=<?php echo $data['ident_per']; ?>" class="look"><i class="fa fa-eye"></i></a>
@@ -97,7 +95,7 @@
 										</td>
 										<td class='text-center'>
 											<?php  
-												if ($data['ident_tip'] != 1) {
+												if ($data['ident_per'] != 1) {
 												?>
 													<a href="persona_borrar.php?id=<?php echo $data['ident_per']; ?>" class="delete eliminar"><i class="fa fa-trash-alt"></i></a>
 													
@@ -153,13 +151,5 @@
 </div>
 
 <?php require_once('includes/admin_footer.php');  ?>
-
-<script type="text/javascript">
-	
-function eliminar(e) {
-	 e.preventDefault();
-   alert('hola');
-}	
-</script>
 
                                		                            

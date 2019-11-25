@@ -21,6 +21,7 @@
   <link rel="stylesheet" type="text/css" href="../css/estilos.css">
   <link rel="stylesheet" type="text/css" href="../css/estilos_admin.css">
   <link rel="stylesheet" type="text/css" href="../css/estilos_crud.css">
+  <link rel="stylesheet" type="text/css" href="../css/foto.css">
   <link href="../libs/startbootstrap-simple-sidebar-gh-pages/css/simple-sidebar.css" rel="stylesheet">
   <link href="../libs/startbootstrap-simple-sidebar-gh-pages/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!--- jQuery --->
@@ -31,7 +32,7 @@
   <!--- jQuery Mask Plugin --->
   <script type="text/javascript" src="../libs/jQuery-Mask-Plugin/dist/jquery.mask.js"></script>
   <!--- JS --->
-  
+  <script type="text/javascript" src="../js/funciones.js"></script>
   <!--- Bootstrap 4 --->
   <link rel="stylesheet" href="../libs/bootstrap-4.1.3-dist/css/bootstrap.min.css"/>
   <script src="../libs/bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
@@ -74,8 +75,7 @@
                 <span class="menu-collapsed">Inicio</span>
             </div>
           </a>
-          
-          <a href="#" aria-expanded="false" class="bg-light text-dark list-group-item list-group-item-action flex-column align-items-start tamano-elemento-sidebar">
+          <a href="noticia_lista.php" aria-expanded="false" class="bg-light text-dark list-group-item list-group-item-action flex-column align-items-start tamano-elemento-sidebar">
             <div class="d-flex w-100 justify-content-start align-items-center">
                 <span class="fa fa-newspaper fa-fw mr-3"></span> 
                 <span class="menu-collapsed">Noticias</span>

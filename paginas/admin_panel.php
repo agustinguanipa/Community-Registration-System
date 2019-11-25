@@ -34,7 +34,7 @@
 		    <p class="card-text">Agrega y Visualiza todas las Noticias Publicadas.</p>
 		  </div>
 		  <div class="card-footer">
-		  	<a href="#" class="btn btn-primary">Ver Noticias</a>
+		  	<a href="noticia_lista.php" class="btn btn-primary">Ver Noticias</a>
 		  </div>
 		</div>
 	  <div class="card mb-3">
@@ -44,7 +44,7 @@
 		    <p class="card-text">Listado de Personas que integran la Comunidad.</p>
 		  </div>
 		  <div class="card-footer">
-		  	<a href="#" class="btn btn-primary">Ver Personas</a>
+		  	<a href="persona_lista.php" class="btn btn-primary">Ver Personas</a>
 		  </div>
 		</div>
 		<div class="card mb-3">

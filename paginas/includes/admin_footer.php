@@ -4,7 +4,7 @@
         <div class="container my-auto">
           <section class="footer-bottom row">
             <div class="col-sm-6"> 
-              <p><b>Desarrollado y Diseñado por: </b><br>Dayana García, Jesus Carrillo, Isaac Clavijo y Carlos Guanipa</p>
+              <p><b>Diseñado y Desarrollado por: </b><br>Dayana García, Jesus Carrillo, Isaac Clavijo y Carlos Guanipa</p>
             </div>
             <div class="col-sm-6">
               <p class="text-sm-right"><b>Consejo Comunal Ambrosio Plaza</b></p>

@@ -131,7 +131,7 @@ mysqli_close($conexion);
 			</div>
 		</div>
 		<div class="card-footer">
-           <a href="persona_lista.php" class="btn btn-primary float-left"><i class="fa fa-arrow-left"></i> Volver al Listado</a> 
+           <a href="persona_lista.php" class="btn btn-info float-left"><i class="fa fa-arrow-left"></i> Volver al Listado</a> 
 				</div>
 	</div>
 </div>

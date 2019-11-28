@@ -56,7 +56,7 @@ if (!empty($_SESSION['active'])) {
 <?php require_once('includes/logreg_header.php'); ?>
 
 <head>
-  <title>Iniciar Sesión | Biblioteca UNEFA Táchira</title>
+  <title>Iniciar Sesión | Consejo Comunal Ambrosio Plaza</title>
 </head>
 
 <body>

@@ -81,47 +81,28 @@
                 <span class="menu-collapsed">Noticias</span>
             </div>
           </a>
-          <a href="persona_lista.php" aria-expanded="false" class="bg-light text-dark list-group-item list-group-item-action flex-column align-items-start tamano-elemento-sidebar">
-            <div class="d-flex w-100 justify-content-start align-items-center">
-                <span class="fa fa-users fa-fw mr-3"></span> 
-                <span class="menu-collapsed">Personas</span>
-            </div>
-          </a>
           <a href="#submenu1" data-toggle="collapse" aria-expanded="false" class="bg-light text-dark list-group-item list-group-item-action flex-column align-items-start tamano-elemento-sidebar">
               <div class="d-flex w-100 justify-content-start align-items-center">
-                <span class="fa fa-table fa-fw mr-3"></span> 
-                <span class="menu-collapsed">Registros</span>
+                <span class="fa fa-users fa-fw mr-3"></span> 
+                <span class="menu-collapsed">Comunidad</span>
                 <span class="fa fa-caret-down ml-auto"></span>
               </div>
           </a>
             <!-- Submenu -->
             <div id='submenu1' class="collapse sidebar-submenu">
-              <a href="#" class="list-group-item list-group-item-action bg-light text-dark">
-                <span class="menu-collapsed">Pasantías</span>
+              <a href="familia_lista.php" class="list-group-item list-group-item-action bg-light text-dark">
+                <span class="menu-collapsed">Jefes de Familia</span>
               </a>
-              <a href="#" class="list-group-item list-group-item-action bg-light text-dark">
-                <span class="menu-collapsed">TEG</span>
-              </a>
-              <a href="#" class="list-group-item list-group-item-action bg-light text-dark">
-                <span class="menu-collapsed">Categorías</span>
+              <a href="persona_lista.php" class="list-group-item list-group-item-action bg-light text-dark">
+                <span class="menu-collapsed">Personas</span>
               </a>
             </div>
-          <a href="#submenu2" data-toggle="collapse" aria-expanded="false" class="bg-light text-dark list-group-item list-group-item-action flex-column align-items-start tamano-elemento-sidebar">
-              <div class="d-flex w-100 justify-content-start align-items-center">
+          <a href="#" aria-expanded="false" class="bg-light text-dark list-group-item list-group-item-action flex-column align-items-start tamano-elemento-sidebar">
+            <div class="d-flex w-100 justify-content-start align-items-center">
                 <span class="fa fa-cogs fa-fw mr-3"></span> 
                 <span class="menu-collapsed">Administración</span>
-                <span class="fa fa-caret-down ml-auto"></span>
-              </div>
-          </a>
-            <!-- Submenu -->
-            <div id='submenu2' class="collapse sidebar-submenu">
-              <a href="#" class="list-group-item list-group-item-action bg-light text-dark">
-                <span class="menu-collapsed">Administradores</span>
-              </a>
-              <a href="./admin_configuracion.php" class="list-group-item list-group-item-action bg-light text-dark">
-                <span class="menu-collapsed">Configuración</span>
-              </a>
             </div>
+          </a>
         </ul>
       </div>
     </div>

@@ -11,10 +11,10 @@
   <div class="form-group text-center">
     <div class="card">
     	<div class="card-header">
-		    <b>Registrar Persona</b>
+		    <b>Registrar Jefe de Familia</b>
 		  </div>
 	   	<div class="card-body">
-        <form role="form" id="usuario_registro" class="justify-content-center mx- my-1" align="center" enctype="multipart/form-data" action="../ajax/guardar_persona.php" method="post">
+        <form role="form" id="usuario_registro" class="justify-content-center mx- my-1" align="center" enctype="multipart/form-data" action="../ajax/guardar_familia.php" method="post">
           <div class="form-row">
             <div class="col form-group">
               <label class="form-label" for="cedul_per"><b>Cédula de Identidad: </b></label>
@@ -55,24 +55,6 @@
           </div>
           <div class="form-row">
             <div class="col form-group">
-              <label class="form-label" for="tifam_per"><b>Jefe de Familia: </b></label>
-              <?php 
-                $query_fam = mysqli_query($conexion,"SELECT * FROM  tab_fam");
-                $result_fam = mysqli_num_rows($query_fam);
-              ?>
-              <select class="form-control" name="ident_tip" id="ident_tip">
-                <?php 
-                  if ($result_fam > 0) {
-                  while ($fam = mysqli_fetch_array($query_fam)) {?>
-                  <option value="<?php echo $fam['ident_fam'];?>"><?php echo $fam['ident_fam'];?></option>
-                <?php
-                }
-                }
-                ?>
-              </select>
-            </div>
-          </select>
-            <div class="col form-group">
               <label class="form-label" for="tibom_per"><b>Tipo de Bombona: </b></label>
               <select class="form-control" id="tibom_per" name="tibom_per">
                 <option value="10 KG">10 KG</option>
@@ -101,19 +83,20 @@
                 }
                 }
                 ?>
+                <option value="CIUDADANO">CIUDADANO</option>
               </select>
             </div>
             <div class="col form-group">
               <label class="form-label" for="usuar_per"><b>Usuario: </b></label>
-              <input type="text" class="form-control" name="usuar_per" autocomplete="off" id="usuar_per" placeholder="miusuario" maxlength="20" onkeyup="this.value = this.value.toUpperCase();">
+              <input type="text" class="form-control tipo" name="usuar_per" autocomplete="off" id="usuar_per" placeholder="miusuario" maxlength="20" onkeyup="this.value = this.value.toUpperCase();">
             </div>
             <div class="col form-group">
               <label class="form-label" for="contr_per"><b>Contraseña: </b></label>
-              <input type="password" class="form-control" name="contr_per" autocomplete="off" id="contr_per" placeholder="********" maxlength="20">
+              <input type="password" class="form-control tipo" name="contr_per" autocomplete="off" id="contr_per" placeholder="********" maxlength="20">
             </div>
             <div class="col form-group">
               <label class="form-label" for="confirm_password"><b>Confirmar Contraseña: </b></label>
-              <input type="password" class="form-control" name="confirm_password" autocomplete="off" id="confirm_password" placeholder="********" maxlength="20">
+              <input type="password" class="form-control tipo" name="confirm_password" autocomplete="off" id="confirm_password" placeholder="********" maxlength="20">
             </div>
           </div>
           <div class="form-row">
@@ -299,5 +282,16 @@
 
 $('.telem-mask').mask('(0000) 000 0000');
 $('.telec-mask').mask('(0000) 000 0000');
+
+</script>
+
+<script type="text/javascript">
+  
+  $(function() {
+    $("select.form-control").on("change",function() {
+      $(".tipo").prop('disabled',this.value=="CIUDADANO");
+    }).change(); // execute on load
+  });
+
 
 </script>

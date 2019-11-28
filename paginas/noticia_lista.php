@@ -47,7 +47,7 @@
 						</tr>
 						<?php 
 							
-						//Paginador 
+						// Paginador 
 
 							$sql_registe = mysqli_query($conexion,"SELECT COUNT(*) as total_registro FROM tab_not WHERE statu_not = 1");
 							$result_registe = mysqli_fetch_array($sql_registe);
@@ -66,7 +66,7 @@
 							$desde = ($pagina-1) * $por_pagina;
 							$total_paginas = ceil($total_registro / $por_pagina);
 
-							$query = mysqli_query($conexion,"SELECT ident_not, titul_not, fecpu_not FROM tab_not WHERE statu_not = 1  ORDER BY ident_not DESC LIMIT $desde,$por_pagina");
+							$query = mysqli_query($conexion,"SELECT ident_not, titul_not, fecpu_not FROM tab_not WHERE statu_not = 1 ORDER BY ident_not DESC LIMIT $desde,$por_pagina");
 							mysqli_close($conexion);
 							$result = mysqli_num_rows($query);
 
@@ -86,14 +86,10 @@
 											<a href="noticia_editar.php?id=<?php echo $data['ident_not']; ?>" class="edit"><i class="fa fa-edit"></i></a>
 										</td>
 										<td class='text-center'>
-											<?php  
-												if ($data['ident_tip'] != 1) {
-												?>
+											
 													<a href="noticia_borrar.php?id=<?php echo $data['ident_not']; ?>" class="delete eliminar"><i class="fa fa-trash-alt"></i></a>
 													
-												<?php	
-												}
-											?>
+												
 										</td>
 									</tr>
 

@@ -10,7 +10,7 @@
 	$telec_per = $_POST['telec_per'];
 	$email_per = $_POST['email_per'];
 	$direc_per = $_POST['direc_per'];
-	$tifam_per = $_POST['tifam_per'];
+	$tifam_per = 'JEFE DE FAMILIA';
 	$tibom_per = $_POST['tibom_per'];
 	$seria_per = $_POST['seria_per'];
 	$usuar_per = $_POST['usuar_per'];

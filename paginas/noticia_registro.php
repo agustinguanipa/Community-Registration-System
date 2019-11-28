@@ -37,7 +37,7 @@
           <div class="form-row">
             <div class="col form-group">
               <label class="form-label" for="desco_not"><b>Descripción Corta: </b></label>
-              <input type="text" class="form-control" name="desco_not" autocomplete="off" id="desco_not" maxlength="100">
+              <input type="text" class="form-control" name="desco_not" autocomplete="off" id="desco_not" maxlength="50">
             </div>
           </div>
           <div class="form-row">        

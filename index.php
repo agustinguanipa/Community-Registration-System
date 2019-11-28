@@ -139,7 +139,7 @@
             $curpage = 1;
           }
           $start = ($curpage * $perpage) - $perpage;
-          $PageSql = "SELECT * FROM tab_not WHERE statu_not = 1";
+          $PageSql = "SELECT * FROM tab_not WHERE statu_not = 1 ORDER BY ident_not DESC";
           $pageres = mysqli_query($conexion, $PageSql);
           $totalres = mysqli_num_rows($pageres);
 
@@ -148,7 +148,7 @@
           $nextpage = $curpage + 1;
           $previouspage = $curpage - 1;
 
-          $ReadSql = "SELECT * FROM tab_not WHERE statu_not = 1 LIMIT $start, $perpage";
+          $ReadSql = "SELECT * FROM tab_not WHERE statu_not = 1 ORDER BY ident_not DESC LIMIT $start, $perpage";
           $res = mysqli_query($conexion, $ReadSql);
       ?>
 
@@ -165,7 +165,7 @@
                 }
             ?>
           <div class="col-lg-4">
-            <div class="card">
+            <div class="card h-100">
               <img  class="card-img-fluid image-size-index" src="<?php echo $foto; ?>" alt="Foto de la Noticia">
               <div class="card-body">
                 <h4 class="card-title"><b><?php echo $row['titul_not'] ?></b></h4>

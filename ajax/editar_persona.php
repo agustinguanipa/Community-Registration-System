@@ -15,9 +15,9 @@ include "../paginas/conexion.php";
 	$tifam_per = $_POST['tifam_per'];
 	$tibom_per = $_POST['tibom_per'];
 	$seria_per = $_POST['seria_per'];
-	$ident_tip = $_POST['ident_tip'];
+	$ident_jef = $_POST['ident_jef'];
 
-	$query_user = mysqli_query($conexion,"UPDATE tab_per SET nombr_per='".$nombr_per."', apeli_per='".$apeli_per."',fecna_per='".$fecna_per."', telem_per='".$telem_per."', telec_per='".$telec_per."', email_per='".$email_per."', tifam_per='".$tifam_per."', tibom_per='".$tibom_per."', seria_per='".$seria_per."', ident_tip='".$ident_tip."' WHERE ident_per='".$id."'");
+	$query_user = mysqli_query($conexion,"UPDATE tab_per SET nombr_per='".$nombr_per."', apeli_per='".$apeli_per."',fecna_per='".$fecna_per."', telem_per='".$telem_per."', telec_per='".$telec_per."', email_per='".$email_per."', tifam_per='".$tifam_per."', tibom_per='".$tibom_per."', seria_per='".$seria_per."', ident_jef='".$ident_jef."' WHERE ident_per='".$id."'");
 
 	header('location: ../paginas/persona_actualizar_exito.php');
 ?>

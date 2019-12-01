@@ -90,13 +90,19 @@
           </a>
             <!-- Submenu -->
             <div id='submenu1' class="collapse sidebar-submenu">
-              <a href="familia_lista.php" class="list-group-item list-group-item-action bg-light text-dark">
+              <a href="jefe_lista.php" class="list-group-item list-group-item-action bg-light text-dark">
                 <span class="menu-collapsed">Jefes de Familia</span>
               </a>
               <a href="persona_lista.php" class="list-group-item list-group-item-action bg-light text-dark">
                 <span class="menu-collapsed">Personas</span>
               </a>
             </div>
+          <a href="#" aria-expanded="false" class="bg-light text-dark list-group-item list-group-item-action flex-column align-items-start tamano-elemento-sidebar">
+            <div class="d-flex w-100 justify-content-start align-items-center">
+                <span class="fa fa-table fa-fw mr-3"></span> 
+                <span class="menu-collapsed">Registros</span>
+            </div>
+          </a>
           <a href="#" aria-expanded="false" class="bg-light text-dark list-group-item list-group-item-action flex-column align-items-start tamano-elemento-sidebar">
             <div class="d-flex w-100 justify-content-start align-items-center">
                 <span class="fa fa-cogs fa-fw mr-3"></span> 
@@ -122,7 +128,7 @@
                 <a class="nav-link" style="color: #FFFFFF;">San Cristobal, <?php echo fechaC(); ?></a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link" href="../index.php" style="color: #FFFFFF;"><i class="fa fa-home"></i> Bienvenido <?php echo $_SESSION['nombr_per']; ?> <?php echo $_SESSION['apeli_per']; ?></a>
+                <a class="nav-link" href="../index.php" style="color: #FFFFFF;"><i class="fa fa-home"></i> Bienvenido <?php echo $_SESSION['nombr_jef']; ?> <?php echo $_SESSION['apeli_jef']; ?></a>
               </li>
               <li class="nav-item active">
                 <a class="nav-link" href="usuario_salir.php" style="color: #FFFFFF;"><i class="fa fa-sign-out-alt"></i> Cerrar Sesión</a>

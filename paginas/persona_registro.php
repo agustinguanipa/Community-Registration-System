@@ -14,7 +14,7 @@
 		    <b>Registrar Persona</b>
 		  </div>
 	   	<div class="card-body">
-        <form role="form" id="usuario_registro" class="justify-content-center mx- my-1" align="center" enctype="multipart/form-data" action="../ajax/guardar_persona.php" method="post">
+        <form role="form" id="persona_registro" class="justify-content-center mx- my-1" align="center" enctype="multipart/form-data" action="../ajax/guardar_persona.php" method="post">
           <div class="form-row">
             <div class="col form-group">
               <label class="form-label" for="cedul_per"><b>Cédula de Identidad: </b></label>
@@ -55,65 +55,44 @@
           </div>
           <div class="form-row">
             <div class="col form-group">
-              <label class="form-label" for="tifam_per"><b>Jefe de Familia: </b></label>
+              <label class="form-label" for="ident_jef"><b>Jefe de Familia: </b></label>
               <?php 
-                $query_fam = mysqli_query($conexion,"SELECT * FROM  tab_fam");
-                $result_fam = mysqli_num_rows($query_fam);
+                $query_jef = mysqli_query($conexion,"SELECT * FROM tab_jef");
+                $result_jef = mysqli_num_rows($query_jef);
               ?>
-              <select class="form-control" name="ident_tip" id="ident_tip">
+              <select class="form-control" name="ident_jef" id="ident_jef">
                 <?php 
-                  if ($result_fam > 0) {
-                  while ($fam = mysqli_fetch_array($query_fam)) {?>
-                  <option value="<?php echo $fam['ident_fam'];?>"><?php echo $fam['ident_fam'];?></option>
+                  if ($result_jef > 0) {
+                  while ($jef = mysqli_fetch_array($query_jef)) {?>
+                  <option value="<?php echo $jef['ident_jef'];?>"><?php echo $jef['ident_jef'];?> - <?php echo $jef['nombr_jef'];?> <?php echo $jef['apeli_jef'];?></option>
                 <?php
                 }
                 }
                 ?>
               </select>
             </div>
-          </select>
+            <div class="col form-group">
+              <label class="form-label" for="tifam_per"><b>Tipo de Familiar: </b></label>
+              <select class="form-control" id="tifam_per" name="tifam_per">
+                <option value="MADRE/PADRE">MADRE/PADRE</option>
+                <option value="HIJO/HIJA">HIJO/HIJA</option>
+                <option value="NIETO/NIETA">NIETO/NIETA</option>
+                <option value="ESPOSO/ESPOSA">ESPOSO/ESPOSA</option>
+              </select>
+            </div>
             <div class="col form-group">
               <label class="form-label" for="tibom_per"><b>Tipo de Bombona: </b></label>
               <select class="form-control" id="tibom_per" name="tibom_per">
                 <option value="10 KG">10 KG</option>
-                <option value="20 KG">20 KG</option>
+                <option value="18 KG">18 KG</option>
+                <option value="27 KG">27 KG</option>
+                <option value="43 KG">43 KG</option>
                 <option value="GRANEL">GRANEL</option>
               </select>
             </div>
             <div class="col form-group">
               <label class="form-label" for="seria_per"><b>Serial del Carnet de la Patria: </b></label>
               <input type="text" class="form-control" name="seria_per" autocomplete="off" id="seria_per" placeholder="0123456789" maxlength="20">
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="col form-group">
-              <label class="form-label" for="ident_tip"><b>Tipo de Usuario: </b></label>
-              <?php 
-                $query_tip = mysqli_query($conexion,"SELECT * FROM  tab_tip");
-                $result_tip = mysqli_num_rows($query_tip);
-              ?>
-              <select class="form-control" name="ident_tip" id="ident_tip">
-                <?php 
-                  if ($result_tip > 0) {
-                  while ($tip = mysqli_fetch_array($query_tip)) {?>
-                  <option value="<?php echo $tip['ident_tip'];?>"><?php echo $tip['nombr_tip'];?></option>
-                <?php
-                }
-                }
-                ?>
-              </select>
-            </div>
-            <div class="col form-group">
-              <label class="form-label" for="usuar_per"><b>Usuario: </b></label>
-              <input type="text" class="form-control" name="usuar_per" autocomplete="off" id="usuar_per" placeholder="miusuario" maxlength="20" onkeyup="this.value = this.value.toUpperCase();">
-            </div>
-            <div class="col form-group">
-              <label class="form-label" for="contr_per"><b>Contraseña: </b></label>
-              <input type="password" class="form-control" name="contr_per" autocomplete="off" id="contr_per" placeholder="********" maxlength="20">
-            </div>
-            <div class="col form-group">
-              <label class="form-label" for="confirm_password"><b>Confirmar Contraseña: </b></label>
-              <input type="password" class="form-control" name="confirm_password" autocomplete="off" id="confirm_password" placeholder="********" maxlength="20">
             </div>
           </div>
           <div class="form-row">
@@ -135,20 +114,20 @@
 
 <script type="text/javascript">
 	$( document ).ready( function () {
-  $( "#usuario_registro" ).validate( {
+  $( "#persona_registro" ).validate( {
     rules: {
       cedul_per: {
         required: true,
-        number: false,
+        number: true,
         minlength: 6,
         remote: {
           url: "persona_cedula_availability.php",
           type: "post",
           data:
             {
-              usuar_per: function()
+              cedul_per: function()
               {
-                return $('#usuario_registro :input[name="cedul_per"]').val();
+                return $('#persona_registro :input[name="cedul_per"]').val();
               }
             }
         }     
@@ -184,38 +163,14 @@
         required: true
       },
       seria_per: {
-        required: true,
-        number: false
+        number: true
       },
-      usuar_per: {
-        required: true,
-        minlength: 2,
-        remote: {
-          url: "persona_usuario_availability.php",
-          type: "post",
-          data:
-            {
-              usuar_per: function()
-              {
-                return $('#usuario_registro :input[name="usuar_per"]').val();
-              }
-            }
-        }     
-      },
-      contr_per: {
-        required: true,
-        minlength: 4
-      },
-      confirm_password: {
-        required: true,
-        minlength: 4,
-        equalTo: "#contr_per"
-      }, 
     },
 
     messages: {
       cedul_per: {
         required: "Ingrese una Cédula de Identidad",
+        number: "Ingrese solo números",
         minlength: "La Cédula debe contener al menos 6 números",
         remote: jQuery.validator.format("{0} no esta disponible")
       },
@@ -250,24 +205,8 @@
         required: "Ingrese una Dirección"
       },
       seria_per: {
-        required: "Ingrese un Serial del Carnet",
-        number: "Ingrese un Serial del Carnet"
-      },
-      usuar_per: {
-        required: "Ingrese un Nombre de Usuario",
-        minlength: "El Nombre de Usuario debe contener al menos 2 caracteres",
-        remote: jQuery.validator.format("{0} no esta disponible")
-      },
-      contr_per: {
-        required: "Ingrese una Contraseña",
-        minlength: "Tu Contraseña debe contener al menos 5 caracteres"
-      },
-      confirm_password: {
-        required: "Ingrese una Contraseña",
-        minlength: "Tu Contraseña debe contener al menos 5 caracteres",
-        equalTo: "Ingrese la Misma Contraseña"
-      },
-      
+        number: "Ingrese solo números"
+      }, 
     },
 
     errorElement: "em",

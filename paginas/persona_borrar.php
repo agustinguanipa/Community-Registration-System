@@ -29,7 +29,7 @@ $data = mysqli_fetch_array($query_user);
 			    <b>Eliminar Persona</b>
 			  </div>
 		   	<div class="card-body">
-  				<form role="form" id="usuario_editar" class="justify-content-center mx-3 my-1" align="center" enctype="" action="persona_proceso_eliminar.php" method="post">
+  				<form role="form" id="persona_borrar" class="justify-content-center mx-3 my-1" align="center" enctype="" action="persona_proceso_eliminar.php" method="post">
   					<input type="hidden" name="id" id="id" value="<?php echo $id ?>">
 						<h2><b>¿Esta seguro que desea eliminar el siguiente registro?</b></h2>
 					  <div class="form-row">

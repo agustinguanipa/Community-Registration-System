@@ -32,7 +32,7 @@
                 <input type="file" name="foto" id="foto">
                 </div>
                 <div id="form_alert"></div>
-          </div>
+            </div>
           </div>
           <div class="form-row">
             <div class="col form-group">

@@ -7,16 +7,16 @@ if (!empty($_SESSION['active'])) {
 }else{
 
   if (!empty($_POST)) {
-    if (empty($_POST['usuar_per']) || empty($_POST['contr_per'])) 
+    if (empty($_POST['usuar_jef']) || empty($_POST['contr_jef'])) 
     {
       $alert = '(*) Ingrese su usuario y/o clave';
     }else{
 
       require_once 'conexion.php';
-      $usuar_per = mysqli_real_escape_string($conexion, $_POST['usuar_per']);
-      $contr_per = mysqli_real_escape_string($conexion, $_POST['contr_per']);
+      $usuar_jef = mysqli_real_escape_string($conexion, $_POST['usuar_jef']);
+      $contr_jef = mysqli_real_escape_string($conexion, $_POST['contr_jef']);
 
-      $query = mysqli_query($conexion,"SELECT u.ident_per,u.cedul_per,u.nombr_per,u.apeli_per,u.fecna_per,u.telem_per,u.telec_per,u.email_per,u.direc_per,u.tifam_per,u.tibom_per,u.seria_per,u.usuar_per,u.contr_per,u.statu_per, r.ident_tip, r.nombr_tip FROM tab_per u INNER JOIN tab_tip r ON u.ident_tip = r.ident_tip WHERE u.usuar_per = '$usuar_per' AND u.contr_per = '$contr_per'");
+      $query = mysqli_query($conexion,"SELECT u.ident_jef,u.cedul_jef,u.nombr_jef,u.apeli_jef,u.fecna_jef,u.telem_jef,u.telec_jef,u.email_jef,u.direc_jef,u.tibom_jef,u.seria_jef,u.usuar_jef,u.contr_jef,u.statu_jef, r.ident_tip, r.nombr_tip FROM tab_jef u INNER JOIN tab_tip r ON u.ident_tip = r.ident_tip WHERE u.usuar_jef = '$usuar_jef' AND u.contr_jef = '$contr_jef'");
       mysqli_close($conexion);
       $result = mysqli_num_rows($query);
 
@@ -25,19 +25,18 @@ if (!empty($_SESSION['active'])) {
         $data = mysqli_fetch_array($query);
         
         $_SESSION['active'] = true;
-        $_SESSION['idUser'] = $data['ident_per'];
-        $_SESSION['nombr_per'] = $data['nombr_per'];
-        $_SESSION['apeli_per'] = $data['apeli_per'];
-        $_SESSION['fecna_per'] = $data['fecna_per'];
-        $_SESSION['telem_per'] = $data['telem_per'];
-        $_SESSION['telec_per'] = $data['telec_per'];
-        $_SESSION['email_per'] = $data['email_per'];
-        $_SESSION['direc_per'] = $data['direc_per'];
-        $_SESSION['tifam_per'] = $data['tifam_per'];
-        $_SESSION['tibom_per'] = $data['tibom_per'];
-        $_SESSION['seria_per'] = $data['seria_per'];
-        $_SESSION['usuar_per'] = $data['usuar_per'];
-        $_SESSION['statu_per'] = $data['statu_per'];
+        $_SESSION['idUser'] = $data['ident_jef'];
+        $_SESSION['nombr_jef'] = $data['nombr_jef'];
+        $_SESSION['apeli_jef'] = $data['apeli_jef'];
+        $_SESSION['fecna_jef'] = $data['fecna_jef'];
+        $_SESSION['telem_jef'] = $data['telem_jef'];
+        $_SESSION['telec_jef'] = $data['telec_jef'];
+        $_SESSION['email_jef'] = $data['email_jef'];
+        $_SESSION['direc_jef'] = $data['direc_jef'];
+        $_SESSION['tibom_jef'] = $data['tibom_jef'];
+        $_SESSION['seria_jef'] = $data['seria_jef'];
+        $_SESSION['usuar_jef'] = $data['usuar_jef'];
+        $_SESSION['statu_jef'] = $data['statu_jef'];
         $_SESSION['ident_tip'] = $data['ident_tip'];
         $_SESSION['nombr_tip'] = $data['nombr_tip'];
         
@@ -89,14 +88,14 @@ if (!empty($_SESSION['active'])) {
           <hr class="my-4">
           <div class="form-row">
             <div class="col form-group">
-              <label class="form-label" for="usuar_per"><b>Usuario: </b></label>
-              <input type="text" class="form-control" name="usuar_per" autocomplete="off" id="usuar_per" placeholder="miusuario" maxlength="20" onkeyup="this.value = this.value.toUpperCase();">
+              <label class="form-label" for="usuar_jef"><b>Usuario: </b></label>
+              <input type="text" class="form-control" name="usuar_jef" autocomplete="off" id="usuar_jef" placeholder="miusuario" maxlength="20" onkeyup="this.value = this.value.toUpjefCase();">
             </div>
           </div>
           <div class="form-row">
             <div class="col form-group">
-              <label class="form-label" for="contr_per"><b>Contraseña: </b></label>
-              <input type="password" class="form-control" name="contr_per" autocomplete="off" id="contr_per" placeholder="********" maxlength="20">
+              <label class="form-label" for="contr_jef"><b>Contraseña: </b></label>
+              <input type="password" class="form-control" name="contr_jef" autocomplete="off" id="contr_jef" placeholder="********" maxlength="20">
             </div>
           </div>
           <div class="form-row">
@@ -118,22 +117,22 @@ if (!empty($_SESSION['active'])) {
  $( document ).ready( function () {
   $( "#usuario_inicio" ).validate( {
     rules: {
-      usuar_per: {
+      usuar_jef: {
         required: true,
         minlength: 2
       },
-      contr_per: {
+      contr_jef: {
         required: true,
         minlength: 4
       }
     },
 
     messages: {
-      usuar_per: {
+      usuar_jef: {
         required: "Ingrese un Nombre de Usuario",
         minlength: "Tu Nombre de Usuario debe contener al menos 2 caracteres"
       },
-      contr_per: {
+      contr_jef: {
         required: "Ingrese una Contraseña",
         minlength: "Tu Contraseña debe contener al menos 5 caracteres"
       }

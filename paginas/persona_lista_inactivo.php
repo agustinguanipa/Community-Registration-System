@@ -43,7 +43,6 @@
 							<th class='text-center'>Apellido</th>
 							<th class='text-center'>Telef. Celular</th>
 							<th class='text-center'>Email</th>
-							<th class='text-center'>Tipo</th>
 							<th class='text-center'>Restaurar</th>
 						</tr>
 						<?php 
@@ -83,16 +82,8 @@
 										<td class='text-center'><?php echo $data['apeli_per']; ?></td>
 										<td class='text-center'><?php echo $data['telem_per']; ?></td>
 										<td class='text-center'><?php echo $data['email_per']; ?></td>
-										<td class='text-center'><?php echo $data['nombr_tip']; ?></td>
 										<td class='text-center'>
-											<?php  
-												if ($data['ident_per'] != 1) {
-												?>
-													<a href="persona_restaurar.php?id=<?php echo $data['ident_per']; ?>" class="restaurar"><i class="fa fa-check"></i></a>
-													
-												<?php	
-												}
-											?>
+											<a href="persona_restaurar.php?id=<?php echo $data['ident_per']; ?>" class="restaurar"><i class="fa fa-check"></i></a>
 										</td>
 									</tr>
 

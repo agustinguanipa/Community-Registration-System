@@ -40,8 +40,9 @@ if ($result_user == 0)
   $tibom_per = $data_per['tibom_per'];
   $seria_per = $data_per['seria_per'];
   $usuar_per = $data_per['usuar_per'];
-  $ident_tip = $data_per['ident_tip'];
-  $nombr_tip = $data_per['nombr_tip'];
+  $ident_jef = $data_per['ident_jef'];
+  $nombr_jef = $data_per['nombr_jef'];
+  $apeli_jef = $data_per['apeli_jef'];
 }
 mysqli_close($conexion);
 ?>
@@ -53,7 +54,7 @@ mysqli_close($conexion);
 			    <b>Editar Persona</b>
 			  </div>
 		   	<div class="card-body">
-  				<form role="form" id="usuario_editar" class="justify-content-center mx-3 my-1" align="center" enctype="multipart/form-data" action="../ajax/editar_persona.php" method="post">
+  				<form role="form" id="persona_editar" class="justify-content-center mx-3 my-1" align="center" enctype="multipart/form-data" action="../ajax/editar_persona.php" method="post">
   					<input type="hidden" name="id" id="id" value="<?php echo $id ?>">
 		        <div class="form-row">
               <!--
@@ -71,18 +72,18 @@ mysqli_close($conexion);
 		            <input type="text" class="form-control" name="apeli_per" autocomplete="off" id="apeli_per" value="<?php echo $apeli_per; ?>" maxlength="20" onkeyup="this.value = this.value.toUpperCase();">
 		          </div>
               <div class="col form-group">
-                <label class="form-label" for="ident_tip"><b>Tipo de Usuario: </b></label>
+                <label class="form-label" for="ident_jef"><b>Jefe de Familia: </b></label>
                 <?php
                   include "conexion.php";
-                  $query_rol = mysqli_query($conexion,"SELECT * FROM  tab_tip");
-                  $result_rol = mysqli_num_rows($query_rol);
+                  $query_jef = mysqli_query($conexion,"SELECT * FROM tab_jef");
+                  $result_jef = mysqli_num_rows($query_jef);
                 ?>
-                <select class="form-control" name="ident_tip" id="ident_tip">
-                  <option value="<?php echo $ident_tip;?>"><?php echo $nombr_tip;?></option>
+                <select class="form-control" name="ident_jef" id="ident_jef">
+                  <option value="<?php echo $ident_jef;?>"><?php echo $nombr_jef;?> <?php echo $apeli_jef;?></option>
                   <?php 
-                    if ($result_rol > 0) {
-                    while ($rol = mysqli_fetch_array($query_rol)) {?>
-                    <option value="<?php echo $rol['ident_tip'];?>"><?php echo $rol['nombr_tip'];?></option>
+                    if ($result_jef > 0) {
+                    while ($jef = mysqli_fetch_array($query_jef)) {?>
+                    <option value="<?php echo $jef['ident_jef'];?>"><?php echo $jef['nombr_jef'];?> <?php echo $jef['apeli_jef'];?></option>
                   <?php
                   }
                   }
@@ -119,10 +120,10 @@ mysqli_close($conexion);
                 <label class="form-label" for="tifam_per"><b>Tipo de Familiar: </b></label>
                 <select class="form-control" name="tifam_per" id="tifam_per">
                   <option value="<?php echo $tifam_per;?>"><?php echo $tifam_per;?></option>
-                  <option value="JEFE DE FAMILIA">JEFE DE FAMILIA</option>
                   <option value="MADRE/PADRE">MADRE/PADRE</option>
                   <option value="HIJO/HIJA">HIJO/HIJA</option>
                   <option value="NIETO/NIETA">NIETO/NIETA</option>
+                  <option value="ESPOSO/ESPOSA">ESPOSO/ESPOSA</option>
                 </select>
               </div>
               <div class="col form-group">
@@ -130,7 +131,9 @@ mysqli_close($conexion);
                 <select class="form-control" id="tibom_per" name="tibom_per">
                   <option value="<?php echo $tibom_per;?>"><?php echo $tibom_per;?></option>
                   <option value="10 KG">10 KG</option>
-                  <option value="20 KG">20 KG</option>
+                  <option value="18 KG">18 KG</option>
+                  <option value="27 KG">27 KG</option>
+                  <option value="43 KG">43 KG</option>
                   <option value="GRANEL">GRANEL</option>
                 </select>
               </div>
@@ -162,24 +165,8 @@ mysqli_close($conexion);
 
 <script type="text/javascript">
   $( document ).ready( function () {
-  $( "#usuario_editar" ).validate( {
+  $( "#persona_editar" ).validate( {
     rules: {
-      cedul_per: {
-        required: true,
-        number: false,
-        minlength: 6,
-        remote: {
-          url: "persona_cedula_availability.php",
-          type: "post",
-          data:
-            {
-              usuar_per: function()
-              {
-                return $('#usuario_editar :input[name="cedul_per"]').val();
-              }
-            }
-        }     
-      },
       nombr_per: {
         required: true,
         lettersonly: true,
@@ -211,32 +198,11 @@ mysqli_close($conexion);
         required: true
       },
       seria_per: {
-        required: true,
-        number: false
-      },
-      usuar_per: {
-        required: true,
-        minlength: 2,
-        remote: {
-          url: "persona_usuario_availability.php",
-          type: "post",
-          data:
-            {
-              usuar_per: function()
-              {
-                return $('#usuario_editar :input[name="usuar_per"]').val();
-              }
-            }
-        }     
+        number: true
       },
     },
 
     messages: {
-      cedul_per: {
-        required: "Ingrese una Cédula de Identidad",
-        minlength: "La Cédula debe contener al menos 6 números",
-        remote: jQuery.validator.format("{0} no esta disponible")
-      },
       nombr_per: {
         required: "Ingrese un Nombre",
         lettersonly: "El Nombre solo debe contener letras sin espacios",
@@ -268,14 +234,8 @@ mysqli_close($conexion);
         required: "Ingrese una Dirección"
       },
       seria_per: {
-        required: "Ingrese un Serial del Carnet",
-        number: "Ingrese un Serial del Carnet"
-      },
-      usuar_per: {
-        required: "Ingrese un Nombre de Usuario",
-        minlength: "El Nombre de Usuario debe contener al menos 2 caracteres",
-        remote: jQuery.validator.format("{0} no esta disponible")
-      },
+        number: "Ingrese solo números"
+      }, 
     },
 
     errorElement: "em",

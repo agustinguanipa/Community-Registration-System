@@ -84,7 +84,7 @@
           <?php  if (isset($_SESSION['active'])) :  ?>
           <ul class="navbar-nav nav-flex-icons">
             <li class="nav-item active">
-              <a class="nav-link" href="#"><i class="fa fa-user"></i> <b>Bienvenido <?php echo $_SESSION['nombr_per']; ?> <?php echo $_SESSION['apeli_per']; ?></b></a>
+              <a class="nav-link" href="#"><i class="fa fa-user"></i> <b>Bienvenido <?php echo $_SESSION['nombr_jef']; ?> <?php echo $_SESSION['apeli_jef']; ?></b></a>
             </li>
             <li class="nav-item active">
               <a class="nav-link" href="paginas/admin_panel.php"><i class="fa fa-cogs"></i><b> Ir al Panel de Control </b></a>

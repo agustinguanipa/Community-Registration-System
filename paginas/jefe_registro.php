@@ -14,57 +14,59 @@
 		    <b>Registrar Jefe de Familia</b>
 		  </div>
 	   	<div class="card-body">
-        <form role="form" id="usuario_registro" class="justify-content-center mx- my-1" align="center" enctype="multipart/form-data" action="../ajax/guardar_familia.php" method="post">
+        <form role="form" id="jefe_registro" class="justify-content-center mx- my-1" align="center" enctype="multipart/form-data" action="../ajax/guardar_jefe.php" method="post">
           <div class="form-row">
             <div class="col form-group">
-              <label class="form-label" for="cedul_per"><b>Cédula de Identidad: </b></label>
-              <input type="text" class="form-control" name="cedul_per" autocomplete="off" id="cedul_per" placeholder="26607655" maxlength="10" onkeyup="this.value = this.value.toUpperCase();" required>
+              <label class="form-label" for="cedul_jef"><b>Cédula de Identidad: </b></label>
+              <input type="text" class="form-control" name="cedul_jef" autocomplete="off" id="cedul_jef" placeholder="26607655" maxlength="10" onkeyup="this.value = this.value.toUpperCase();" required>
             </div>
             <div class="col form-group">
-              <label class="form-label" for="nombr_per"><b>Nombre: </b></label>
-              <input type="text" class="form-control" name="nombr_per" autocomplete="off" id="nombr_per" placeholder="Carlos" maxlength="20" onkeyup="this.value = this.value.toUpperCase();" required>
+              <label class="form-label" for="nombr_jef"><b>Nombre: </b></label>
+              <input type="text" class="form-control" name="nombr_jef" autocomplete="off" id="nombr_jef" placeholder="Carlos" maxlength="20" onkeyup="this.value = this.value.toUpperCase();" required>
             </div>
             <div class="col form-group">
-              <label class="form-label" for="apeli_per"><b>Apellido: </b></label>
-              <input type="text" class="form-control" name="apeli_per" autocomplete="off" id="apeli_per" placeholder="Agustin" maxlength="20" onkeyup="this.value = this.value.toUpperCase();">
+              <label class="form-label" for="apeli_jef"><b>Apellido: </b></label>
+              <input type="text" class="form-control" name="apeli_jef" autocomplete="off" id="apeli_jef" placeholder="Agustin" maxlength="20" onkeyup="this.value = this.value.toUpperCase();">
             </div>
           </div>
           <div class="form-row">
             <div class="col form-group">
-              <label class="form-label" for="fecna_per"><b>Fecha de Nacimiento: </b></label>
-              <input type="date" class="form-control" name="fecna_per" autocomplete="off" id="fecna_per" placeholder="">
+              <label class="form-label" for="fecna_jef"><b>Fecha de Nacimiento: </b></label>
+              <input type="date" class="form-control" name="fecna_jef" autocomplete="off" id="fecna_jef" placeholder="">
             </div>
             <div class="col form-group">
-              <label class="form-label" for="telem_per"><b>Teléfono Celular: </b></label>
-              <input type="text" class="form-control telem-mask" name="telem_per" autocomplete="off" id="telem_per" placeholder="(0000) 000 0000" maxlength="15">
+              <label class="form-label" for="telem_jef"><b>Teléfono Celular: </b></label>
+              <input type="text" class="form-control telem-mask" name="telem_jef" autocomplete="off" id="telem_jef" placeholder="(0000) 000 0000" maxlength="15">
             </div>
             <div class="col form-group">
-              <label class="form-label" for="telec_per"><b>Teléfono de Casa: </b></label>
-              <input type="text" class="form-control telec-mask" name="telec_per" autocomplete="off" id="telec_per" placeholder="(0000) 000 0000" maxlength="15">
+              <label class="form-label" for="telec_jef"><b>Teléfono de Casa: </b></label>
+              <input type="text" class="form-control telec-mask" name="telec_jef" autocomplete="off" id="telec_jef" placeholder="(0000) 000 0000" maxlength="15">
             </div>
             <div class="col form-group">
-              <label class="form-label" for="email_per"><b>E-Mail: </b></label>
-              <input type="email" class="form-control" name="email_per" autocomplete="off" id="email_per" placeholder="correo@mail.com" onkeyup="this.value = this.value.toUpperCase();">
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="col form-group">
-              <label class="form-label" for="direc_per"><b>Dirección: </b></label>
-              <input type="text" class="form-control" name="direc_per" autocomplete="off" id="direc_per" placeholder="Calle 2 Bellavista" onkeyup="this.value = this.value.toUpperCase();">
+              <label class="form-label" for="email_jef"><b>E-Mail: </b></label>
+              <input type="email" class="form-control" name="email_jef" autocomplete="off" id="email_jef" placeholder="correo@mail.com" onkeyup="this.value = this.value.toUpperCase();">
             </div>
           </div>
           <div class="form-row">
             <div class="col form-group">
-              <label class="form-label" for="tibom_per"><b>Tipo de Bombona: </b></label>
-              <select class="form-control" id="tibom_per" name="tibom_per">
+              <label class="form-label" for="direc_jef"><b>Dirección: </b></label>
+              <input type="text" class="form-control" name="direc_jef" autocomplete="off" id="direc_jef" placeholder="Calle 2 Bellavista" onkeyup="this.value = this.value.toUpperCase();">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col form-group">
+              <label class="form-label" for="tibom_jef"><b>Tipo de Bombona: </b></label>
+              <select class="form-control" id="tibom_jef" name="tibom_jef">
                 <option value="10 KG">10 KG</option>
-                <option value="20 KG">20 KG</option>
+                <option value="18 KG">18 KG</option>
+                <option value="27 KG">27 KG</option>
+                <option value="43 KG">43 KG</option>
                 <option value="GRANEL">GRANEL</option>
               </select>
             </div>
             <div class="col form-group">
-              <label class="form-label" for="seria_per"><b>Serial del Carnet de la Patria: </b></label>
-              <input type="text" class="form-control" name="seria_per" autocomplete="off" id="seria_per" placeholder="0123456789" maxlength="20">
+              <label class="form-label" for="seria_jef"><b>Serial del Carnet de la Patria: </b></label>
+              <input type="text" class="form-control" name="seria_jef" autocomplete="off" id="seria_jef" placeholder="0123456789" maxlength="20">
             </div>
           </div>
           <div class="form-row">
@@ -83,16 +85,15 @@
                 }
                 }
                 ?>
-                <option value="CIUDADANO">CIUDADANO</option>
               </select>
             </div>
             <div class="col form-group">
-              <label class="form-label" for="usuar_per"><b>Usuario: </b></label>
-              <input type="text" class="form-control tipo" name="usuar_per" autocomplete="off" id="usuar_per" placeholder="miusuario" maxlength="20" onkeyup="this.value = this.value.toUpperCase();">
+              <label class="form-label" for="usuar_jef"><b>Usuario: </b></label>
+              <input type="text" class="form-control tipo" name="usuar_jef" autocomplete="off" id="usuar_jef" placeholder="miusuario" maxlength="20" onkeyup="this.value = this.value.toUpperCase();">
             </div>
             <div class="col form-group">
-              <label class="form-label" for="contr_per"><b>Contraseña: </b></label>
-              <input type="password" class="form-control tipo" name="contr_per" autocomplete="off" id="contr_per" placeholder="********" maxlength="20">
+              <label class="form-label" for="contr_jef"><b>Contraseña: </b></label>
+              <input type="password" class="form-control tipo" name="contr_jef" autocomplete="off" id="contr_jef" placeholder="********" maxlength="20">
             </div>
             <div class="col form-group">
               <label class="form-label" for="confirm_password"><b>Confirmar Contraseña: </b></label>
@@ -108,7 +109,7 @@
         </form>    
 			</div>
 			<div class="card-footer">
-         <a href="persona_lista.php" class="btn btn-info float-left"><i class="fa fa-arrow-left"></i> Volver al Listado</a> 
+         <a href="jefe_lista.php" class="btn btn-info float-left"><i class="fa fa-arrow-left"></i> Volver al Listado</a> 
 			</div>
     </div>
   </div>
@@ -118,130 +119,131 @@
 
 <script type="text/javascript">
 	$( document ).ready( function () {
-  $( "#usuario_registro" ).validate( {
+  $( "#jefe_registro" ).validate( {
     rules: {
-      cedul_per: {
+      cedul_jef: {
         required: true,
-        number: false,
+        number: true,
         minlength: 6,
         remote: {
           url: "persona_cedula_availability.php",
           type: "post",
           data:
             {
-              usuar_per: function()
+              cedul_jef: function()
               {
-                return $('#usuario_registro :input[name="cedul_per"]').val();
+                return $('#jefe_registro :input[name="cedul_jef"]').val();
               }
             }
         }     
       },
-      nombr_per: {
+      nombr_jef: {
         required: true,
         lettersonly: true,
         minlength: 2
       },
-      apeli_per: {
+      apeli_jef: {
         required: true,
         lettersonly: true,
         minlength: 2
       },
-      fecna_per: {
+      fecna_jef: {
         required: true
       },
-      telem_per: {
+      telem_jef: {
         required: true,
         number: false,
         minlength: 15
       },
-      telec_per: {
+      telec_jef: {
         required: true,
         number: false,
         minlength: 15
       },
-      email_per: {
+      email_jef: {
         required: true,
         email: true
       },
-      direc_per: {
+      direc_jef: {
         required: true
       },
-      seria_per: {
+      seria_jef: {
         required: true,
         number: false
       },
-      usuar_per: {
+      usuar_jef: {
         required: true,
         minlength: 2,
         remote: {
-          url: "persona_usuario_availability.php",
+          url: "jefe_usuario_availability.php",
           type: "post",
           data:
             {
-              usuar_per: function()
+              usuar_jef: function()
               {
-                return $('#usuario_registro :input[name="usuar_per"]').val();
+                return $('#jefe_registro :input[name="usuar_jef"]').val();
               }
             }
         }     
       },
-      contr_per: {
+      contr_jef: {
         required: true,
         minlength: 4
       },
       confirm_password: {
         required: true,
         minlength: 4,
-        equalTo: "#contr_per"
+        equalTo: "#contr_jef"
       }, 
     },
 
     messages: {
-      cedul_per: {
+      cedul_jef: {
         required: "Ingrese una Cédula de Identidad",
+        number: "Ingrese solo números",
         minlength: "La Cédula debe contener al menos 6 números",
         remote: jQuery.validator.format("{0} no esta disponible")
       },
-      nombr_per: {
+      nombr_jef: {
         required: "Ingrese un Nombre",
         lettersonly: "El Nombre solo debe contener letras sin espacios",
         minlength: "El Nombre debe contener al menos 2 caracteres"
       },
-      apeli_per: {
+      apeli_jef: {
         required: "Ingrese un Apellido",
         lettersonly: "El Apellido solo debe contener letras sin espacios",
         minlength: "El Apellido debe contener al menos 2 caracteres"
       },
-      fecna_per: {
+      fecna_jef: {
         required: "Ingrese una Fecha de Nacimiento"
       },
-      telem_per: {
+      telem_jef: {
         required: "Ingrese un Número de Teléfono Valido",
         number: "Ingrese un Número de Teléfono Valido",
         minlength: "Ingrese un Número de Teléfono Valido"
       },
-      telec_per: {
+      telec_jef: {
         required: "Ingrese un Número de Teléfono Valido",
         number: "Ingrese un Número de Teléfono Valido",
         minlength: "Ingrese un Número de Teléfono Valido"
       },
-      email_per: {
+      email_jef: {
         required: "Ingrese una Dirección de Correo Electrónico Válida",
         email: "Ingrese una Dirección de Correo Electrónico Válida"
       },
-      direc_per: {
+      direc_jef: {
         required: "Ingrese una Dirección"
       },
-      seria_per: {
+      seria_jef: {
         required: "Ingrese un Serial del Carnet",
         number: "Ingrese un Serial del Carnet"
       },
-      usuar_per: {
+      usuar_jef: {
         required: "Ingrese un Nombre de Usuario",
         minlength: "El Nombre de Usuario debe contener al menos 2 caracteres",
         remote: jQuery.validator.format("{0} no esta disponible")
       },
-      contr_per: {
+      contr_jef: {
         required: "Ingrese una Contraseña",
         minlength: "Tu Contraseña debe contener al menos 5 caracteres"
       },

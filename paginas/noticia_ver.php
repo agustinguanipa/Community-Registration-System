@@ -62,7 +62,7 @@ mysqli_close($conexion);
 		  </div>
 		  <div class="form-row">
 		    <div class="col form-group">
-		      <label class="form-label" for="fecpu_not"><b>Fecha de Pub.: </b></label>
+		      <label class="form-label" for="fecpu_not"><b>Fecha de Publicación: </b></label>
 		      <label><?php echo $fecpu_not; ?></label>
 		    </div>
 		  </div>

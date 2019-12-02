@@ -23,11 +23,11 @@
 	    <div class="row" style="padding-top: 2px;">
 	    	<div class="col-sm-8">
 				</div>
-				<form action="persona_buscar.php" method="GET" class="col-sm-4" style="padding-top: 1px;">
+				<form action="persona_buscar_inactivo.php" method="GET" class="col-sm-4" style="padding-top: 1px;">
 					<div class="input-group">			
 						<input type="text" class="form-control" name="busqueda" id="busqueda" placeholder="Buscar">
 						<div class="input-group-append">
-							<button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+							<button type="submit" class="btn btn-info"><i class="fa fa-search"></i></button>
 						</div>
 					</div>
 				</form>

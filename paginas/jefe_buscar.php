@@ -7,6 +7,14 @@
   }
 ?>
 
+<?php 
+	$busqueda = strtolower($_REQUEST['busqueda']);
+	if (empty($busqueda)) {
+		header('location: jefe_lista.php');
+		mysqli_close($conexion);
+	}
+?>
+
 <div class="container-fluid">
 	<div class="table-wrapper">
 	    <div class="table-title">
@@ -26,7 +34,7 @@
 				</div>
 				<form action="jefe_buscar.php" method="GET" class="col-sm-4" style="padding-top: 1px;">
 					<div class="input-group">			
-						<input type="text" class="form-control" name="busqueda" id="busqueda" placeholder="Buscar" value="<?php echo $busqueda; ?>">
+						<input type="text" class="form-control" name="busqueda" id="busqueda" placeholder="Buscar" value="<?php echo $busqueda; ?>" onkeyup="this.value = this.value.toUpperCase();">
 						<div class="input-group-append">
 							<button type="submit" class="btn btn-info"><i class="fa fa-search"></i></button>
 						</div>

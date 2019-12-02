@@ -13,15 +13,13 @@
 
 <div class="container-fluid">
 	<div class="card-deck">
-		<div class="card text-center">
-		  <div class="card-header">
-		    <b>Bienvenido al Panel de Control</b>
-		  </div>
-		  <div class="card-body">
-		    <h5 class="card-title">Consejo Comunal Ambrosio Plaza</h5>
-		    <a href="../index.php" class="btn btn-primary">Ir a la Web</a>
-		  </div>
-		</div>
+		<div class="card" align="center">
+    <div class="card-body index-background">
+      <h2 class="card-title text-white"><b>Consejo Comunal Ambrosio Plaza</b></h2>
+      <p class="card-text text-white"><b>Comunidad de Ambrosio Plaza Pueblo Nuevo</b></p>
+      <a href="../index.php" class="btn btn-light btn-lg"> <b>Ir a la Web</b><i class="fa fa-home ml-2"></i></a>
+    </div>
+  </div>
 	</div>
 </div>
 </br>
@@ -31,30 +29,31 @@
 		  <img src="../imagen/panel-1.jpg" class="card-img-top" alt="Panel Noticias">
 		  <div class="card-body">
 		    <h5 class="card-title"><b>Noticias</b></h5>
-		    <p class="card-text">Agrega y Visualiza todas las Noticias Publicadas.</p>
+		    <p class="card-text">Agrega y Visualiza todas las Noticias Publicadas</p>
 		  </div>
 		  <div class="card-footer">
 		  	<a href="noticia_lista.php" class="btn btn-primary">Ver Noticias</a>
 		  </div>
 		</div>
 	  <div class="card mb-3">
-		  <img src="../imagen/panel-3.jpg" class="card-img-top" alt="Panel Personas">
+		  <img src="../imagen/panel-3.jpg" class="card-img-top" alt="Panel Comunidad">
 		  <div class="card-body">
-		    <h5 class="card-title"><b>Personas</b></h5>
-		    <p class="card-text">Listado de Personas que integran la Comunidad.</p>
+		    <h5 class="card-title"><b>Comunidad</b></h5>
+		    <p class="card-text">Listado de Personas que integran la Comunidad</p>
 		  </div>
 		  <div class="card-footer">
+		  	<a href="jefe_lista.php" class="btn btn-primary">Ver Jefes de Familia</a>
 		  	<a href="persona_lista.php" class="btn btn-primary">Ver Personas</a>
 		  </div>
 		</div>
 		<div class="card mb-3">
-		  <img src="../imagen/panel-2.jpg" class="card-img-top" alt="Panel Personas">
+		  <img src="../imagen/panel-2.jpg" class="card-img-top" alt="Panel Registros">
 		  <div class="card-body">
-		    <h5 class="card-title"><b>Usuarios</b></h5>
-		    <p class="card-text">Usuarios Registrados para Administrar el Sistema</p>
+		    <h5 class="card-title"><b>Registros</b></h5>
+		    <p class="card-text">Registros de CLAP, Gas y demás</p>
 		  </div>
 		  <div class="card-footer">
-		  	<a href="#" class="btn btn-primary">Ver Usuarios</a>
+		  	<a href="registro_lista.php" class="btn btn-primary">Ver Registros</a>
 		  </div>
 		</div>
 	  

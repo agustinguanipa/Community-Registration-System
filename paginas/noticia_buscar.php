@@ -7,12 +7,20 @@
   }
 ?>
 
+<?php 
+	$busqueda = strtolower($_REQUEST['busqueda']);
+	if (empty($busqueda)) {
+		header('location: noticia_lista.php');
+		mysqli_close($conexion);
+	}
+?>
+
 <div class="container-fluid">
 	<div class="table-wrapper">
 	    <div class="table-title">
 	        <div class="row">
             <div class="col-sm-6">
-							<h2>Administrar <b>Noticias Inactivas</b></h2>
+							<h2>Administrar <b>Noticias</b></h2>
 						</div>
 						<div class="col-sm-6">
 							<a href="noticia_lista.php" class="btn btn-light text-dark"><i class="fa fa-users"></i> Noticias Activas</a>
@@ -22,10 +30,11 @@
 	    </div>
 	    <div class="row" style="padding-top: 2px;">
 	    	<div class="col-sm-8">
+					<a href="noticia_registro.php" class="btn btn-info float-left"><i class="fa fa-plus"></i> Publicar Noticia</a>
 				</div>
-				<form action="noticia_buscar_inactivo.php" method="GET" class="col-sm-4" style="padding-top: 1px;">
+				<form action="noticia_buscar.php" method="GET" class="col-sm-4" style="padding-top: 1px;">
 					<div class="input-group">			
-						<input type="text" class="form-control" name="busqueda" id="busqueda" placeholder="Buscar">
+						<input type="text" class="form-control" name="busqueda" id="busqueda" placeholder="Buscar" value="<?php echo $busqueda; ?>" onkeyup="this.value = this.value.toUpperCase();">
 						<div class="input-group-append">
 							<button type="submit" class="btn btn-info"><i class="fa fa-search"></i></button>
 						</div>
@@ -40,13 +49,21 @@
 							<th class='text-center'>#</th>
 							<th class='text-center'>Título</th>
 							<th class='text-center'>Fecha de Publicación</th>
-							<th class='text-center'>Restaurar</th>
+							<th class='text-center'>Ver</th>
+							<th class='text-center'>Editar</th>
+							<th class='text-center'>Borrar</th>
 						</tr>
 						<?php 
 							
-						//Paginador 
+						// Paginador 
 
-							$sql_registe = mysqli_query($conexion,"SELECT COUNT(*) as total_registro FROM tab_not WHERE statu_not = 0");
+							$sql_registe = mysqli_query($conexion,"SELECT COUNT(*) as total_registro FROM tab_not WHERE 
+								(ident_not LIKE '%busqueda%' OR
+								titul_not LIKE '%busqueda%' OR
+								desco_not LIKE '%busqueda%' OR
+								descr_not LIKE '%busqueda%' OR
+								fecpu_not LIKE '%busqueda%' )
+								AND statu_not = 1");
 							$result_registe = mysqli_fetch_array($sql_registe);
 							$total_registro = $result_registe['total_registro'];
 
@@ -63,7 +80,13 @@
 							$desde = ($pagina-1) * $por_pagina;
 							$total_paginas = ceil($total_registro / $por_pagina);
 
-							$query = mysqli_query($conexion,"SELECT ident_not, titul_not, fecpu_not FROM tab_not WHERE statu_not = 0  ORDER BY ident_not DESC LIMIT $desde,$por_pagina");
+							$query = mysqli_query($conexion,"SELECT ident_not, titul_not, desco_not, descr_not, fecpu_not FROM tab_not WHERE 
+								( ident_not LIKE '%$busqueda%' OR
+								titul_not LIKE '%$busqueda%' OR  
+								desco_not LIKE '%$busqueda%' OR 
+								descr_not LIKE '%$busqueda%' OR 
+								fecpu_not LIKE '%$busqueda%' )
+								AND statu_not = 1  ORDER BY ident_not ASC LIMIT $desde,$por_pagina");
 							mysqli_close($conexion);
 							$result = mysqli_num_rows($query);
 
@@ -77,14 +100,16 @@
 										<td class='text-center'><?php echo $data['titul_not']; ?></td>
 										<td class='text-center'><?php echo $data['fecpu_not']; ?></td>
 										<td class='text-center'>
-											<?php  
-												if ($data['ident_tip'] != 1) {
-												?>
-													<a href="noticia_restaurar.php?id=<?php echo $data['ident_not']; ?>" class="restaurar"><i class="fa fa-check"></i></a>
+											<a href="noticia_ver.php?id=<?php echo $data['ident_not']; ?>" class="look"><i class="fa fa-eye"></i></a>
+										</td>
+										<td class='text-center'>
+											<a href="noticia_editar.php?id=<?php echo $data['ident_not']; ?>" class="edit"><i class="fa fa-edit"></i></a>
+										</td>
+										<td class='text-center'>
+											
+													<a href="noticia_borrar.php?id=<?php echo $data['ident_not']; ?>" class="delete eliminar"><i class="fa fa-trash-alt"></i></a>
 													
-												<?php	
-												}
-											?>
+												
 										</td>
 									</tr>
 

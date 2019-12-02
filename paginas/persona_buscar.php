@@ -7,26 +7,34 @@
   }
 ?>
 
+<?php 
+	$busqueda = strtolower($_REQUEST['busqueda']);
+	if (empty($busqueda)) {
+		header('location: persona_lista.php');
+		mysqli_close($conexion);
+	}
+?>
+
 <div class="container-fluid">
 	<div class="table-wrapper">
 	    <div class="table-title">
 	        <div class="row">
             <div class="col-sm-6">
-							<h2>Administrar <b>Jefes de Familia</b></h2>
+							<h2>Administrar <b>Personas</b></h2>
 						</div>
 						<div class="col-sm-6">
-							<a href="jefe_lista.php" class="btn btn-light text-dark"><i class="fa fa-users"></i> Jefes de Familia Activos</a>
-							<a href="jefe_lista_inactivo.php" class="btn btn-light text-dark"><i class="fa fa-trash"></i> Jefes de Familia Inactivos</a>
+							<a href="persona_lista.php" class="btn btn-light text-dark"><i class="fa fa-users"></i> Personas Activas</a>
+							<a href="persona_lista_inactivo.php" class="btn btn-light text-dark"><i class="fa fa-trash"></i> Personas Inactivas</a>
 						</div>
 	        </div>
 	    </div>
 	    <div class="row" style="padding-top: 2px;">
 	    	<div class="col-sm-8">
-				
+					<a href="persona_registro.php" class="btn btn-info float-left"><i class="fa fa-plus"></i> Registrar Persona</a>
 				</div>
-				<form action="jefe_buscar_inactivo.php" method="GET" class="col-sm-4" style="padding-top: 1px;">
+				<form action="persona_buscar.php" method="GET" class="col-sm-4" style="padding-top: 1px;">
 					<div class="input-group">			
-						<input type="text" class="form-control" name="busqueda" id="busqueda" placeholder="Buscar">
+						<input type="text" class="form-control" name="busqueda" id="busqueda" placeholder="Buscar" value="<?php echo $busqueda; ?>" onkeyup="this.value = this.value.toUpperCase();">
 						<div class="input-group-append">
 							<button type="submit" class="btn btn-info"><i class="fa fa-search"></i></button>
 						</div>
@@ -43,14 +51,22 @@
 							<th class='text-center'>Nombre</th>
 							<th class='text-center'>Apellido</th>
 							<th class='text-center'>Telef. Celular</th>
-							<th class='text-center'>Tipo</th>
-							<th class='text-center'>Restaurar</th>
+							<th class='text-center'>E-Mail</th>
+							<th class='text-center'>Ver</th>
+							<th class='text-center'>Editar</th>
+							<th class='text-center'>Borrar</th>
 						</tr>
 						<?php 
 							
 						// Paginador 
 
-							$sql_registe = mysqli_query($conexion,"SELECT COUNT(*) as total_registro FROM tab_jef WHERE statu_jef = 0");
+							$sql_registe = mysqli_query($conexion,"SELECT COUNT(*) as total_registro FROM tab_per WHERE 
+								(ident_per LIKE '%busqueda%' OR
+								cedul_per LIKE '%busqueda%' OR
+								nombr_per LIKE '%busqueda%' OR
+								apeli_per LIKE '%busqueda%' OR
+								telem_per LIKE '%busqueda%' )
+								AND statu_per = 1");
 							$result_registe = mysqli_fetch_array($sql_registe);
 							$total_registro = $result_registe['total_registro'];
 
@@ -67,7 +83,13 @@
 							$desde = ($pagina-1) * $por_pagina;
 							$total_paginas = ceil($total_registro / $por_pagina);
 
-							$query = mysqli_query($conexion,"SELECT u.ident_jef, u.cedul_jef,u.nombr_jef, u.apeli_jef, u.telem_jef, u.usuar_jef, r.ident_tip, r.nombr_tip FROM tab_jef u INNER JOIN tab_tip r ON u.ident_tip = r.ident_tip WHERE statu_jef = 0 ORDER BY ident_jef ASC LIMIT $desde,$por_pagina");
+							$query = mysqli_query($conexion,"SELECT ident_per, cedul_per, nombr_per, apeli_per, telem_per FROM tab_per WHERE 
+								( ident_per LIKE '%$busqueda%' OR
+								cedul_per LIKE '%$busqueda%' OR  
+								nombr_per LIKE '%$busqueda%' OR 
+								apeli_per LIKE '%$busqueda%' OR 
+								telem_per LIKE '%$busqueda%' )
+								AND statu_per = 1  ORDER BY ident_per ASC LIMIT $desde,$por_pagina");
 							mysqli_close($conexion);
 							$result = mysqli_num_rows($query);
 
@@ -76,15 +98,21 @@
 
 							 		?>
 
-							 		<tr class="row<?php echo $data['ident_jef']; ?>">
-										<td class='text-center'><?php echo $data['ident_jef']; ?></td>
-										<td class='text-center'><?php echo $data['cedul_jef']; ?></td>
-										<td class='text-center'><?php echo $data['nombr_jef']; ?></td>
-										<td class='text-center'><?php echo $data['apeli_jef']; ?></td>
-										<td class='text-center'><?php echo $data['telem_jef']; ?></td>
-										<td class='text-center'><?php echo $data['nombr_tip']; ?></td>
+							 		<tr class="row<?php echo $data['ident_per']; ?>">
+										<td class='text-center'><?php echo $data['ident_per']; ?></td>
+										<td class='text-center'><?php echo $data['cedul_per']; ?></td>
+										<td class='text-center'><?php echo $data['nombr_per']; ?></td>
+										<td class='text-center'><?php echo $data['apeli_per']; ?></td>
+										<td class='text-center'><?php echo $data['telem_per']; ?></td>
+										<td class='text-center'><?php echo $data['email_per']; ?></td>
 										<td class='text-center'>
-											<a href="jefe_restaurar.php?id=<?php echo $data['ident_jef']; ?>" class="restaurar"><i class="fa fa-check"></i></a>
+											<a href="persona_ver.php?id=<?php echo $data['ident_per']; ?>" class="look"><i class="fa fa-eye"></i></a>
+										</td>
+										<td class='text-center'>
+											<a href="persona_editar.php?id=<?php echo $data['ident_per']; ?>" class="edit"><i class="fa fa-edit"></i></a>
+										</td>
+										<td class='text-center'>
+											<a href="persona_borrar.php?id=<?php echo $data['ident_per']; ?>" class="delete eliminar"><i class="fa fa-trash-alt"></i></a>	
 										</td>
 									</tr>
 

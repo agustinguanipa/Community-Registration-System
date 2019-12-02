@@ -7,6 +7,14 @@
   }
 ?>
 
+<?php 
+	$busqueda = strtolower($_REQUEST['busqueda']);
+	if (empty($busqueda)) {
+		header('location: noticia_lista_inactivo.php');
+		mysqli_close($conexion);
+	}
+?>
+
 <div class="container-fluid">
 	<div class="table-wrapper">
 	    <div class="table-title">
@@ -46,7 +54,13 @@
 							
 						//Paginador 
 
-							$sql_registe = mysqli_query($conexion,"SELECT COUNT(*) as total_registro FROM tab_not WHERE statu_not = 0");
+							$sql_registe = mysqli_query($conexion,"SELECT COUNT(*) as total_registro FROM tab_not WHERE 
+								(ident_not LIKE '%busqueda%' OR
+								titul_not LIKE '%busqueda%' OR
+								desco_not LIKE '%busqueda%' OR
+								descr_not LIKE '%busqueda%' OR
+								fecpu_not LIKE '%busqueda%' )
+								AND statu_not = 0");
 							$result_registe = mysqli_fetch_array($sql_registe);
 							$total_registro = $result_registe['total_registro'];
 
@@ -63,7 +77,13 @@
 							$desde = ($pagina-1) * $por_pagina;
 							$total_paginas = ceil($total_registro / $por_pagina);
 
-							$query = mysqli_query($conexion,"SELECT ident_not, titul_not, fecpu_not FROM tab_not WHERE statu_not = 0  ORDER BY ident_not DESC LIMIT $desde,$por_pagina");
+							$query = mysqli_query($conexion,"SELECT ident_not, titul_not, desco_not, descr_not, fecpu_not FROM tab_not WHERE 
+								( ident_not LIKE '%$busqueda%' OR
+								titul_not LIKE '%$busqueda%' OR  
+								desco_not LIKE '%$busqueda%' OR 
+								descr_not LIKE '%$busqueda%' OR 
+								fecpu_not LIKE '%$busqueda%' )
+								AND statu_not = 0  ORDER BY ident_not ASC LIMIT $desde,$por_pagina");
 							mysqli_close($conexion);
 							$result = mysqli_num_rows($query);
 

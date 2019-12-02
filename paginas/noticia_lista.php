@@ -28,7 +28,7 @@
 					<div class="input-group">			
 						<input type="text" class="form-control" name="busqueda" id="busqueda" placeholder="Buscar">
 						<div class="input-group-append">
-							<button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+							<button type="submit" class="btn btn-info"><i class="fa fa-search"></i></button>
 						</div>
 					</div>
 				</form>

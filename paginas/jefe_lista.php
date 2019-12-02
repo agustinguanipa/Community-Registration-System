@@ -1,10 +1,12 @@
 <?php 
-	require_once('includes/admin_header.php');
+	session_start();
 
 	if (!isset($_SESSION['active'])) {
     header('Location: usuario_inicio.php');
     exit();
   }
+
+  require_once('includes/admin_header.php');
 ?>
 
 <div class="container-fluid">
@@ -28,7 +30,7 @@
 					<div class="input-group">			
 						<input type="text" class="form-control" name="busqueda" id="busqueda" placeholder="Buscar">
 						<div class="input-group-append">
-							<button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+							<button type="submit" class="btn btn-info"><i class="fa fa-search"></i></button>
 						</div>
 					</div>
 				</form>
@@ -93,7 +95,7 @@
 										</td>
 										<td class='text-center'>
 											<?php  
-												if ($data['nombr_tip'] != 'ADMINISTRADOR') {
+												if ($data['nombr_tip'] != 'ADMINISTRADOR' && ($_SESSION['ident_tip'] == 1 || $_SESSION['ident_tip'] == 2)) {
 												?>
 													<a href="jefe_borrar.php?id=<?php echo $data['ident_jef']; ?>" class="delete eliminar"><i class="fa fa-trash-alt"></i></a>
 												<?php	

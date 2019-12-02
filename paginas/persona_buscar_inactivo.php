@@ -7,23 +7,31 @@
   }
 ?>
 
+<?php 
+	$busqueda = strtolower($_REQUEST['busqueda']);
+	if (empty($busqueda)) {
+		header('location: persona_lista_inactivo.php');
+		mysqli_close($conexion);
+	}
+?>
+
 <div class="container-fluid">
 	<div class="table-wrapper">
 	    <div class="table-title">
 	        <div class="row">
             <div class="col-sm-6">
-							<h2>Administrar <b>Noticias Inactivas</b></h2>
+							<h2>Administrar <b>Personas Inactivas</b></h2>
 						</div>
 						<div class="col-sm-6">
-							<a href="noticia_lista.php" class="btn btn-light text-dark"><i class="fa fa-users"></i> Noticias Activas</a>
-							<a href="noticia_lista_inactivo.php" class="btn btn-light text-dark"><i class="fa fa-trash"></i> Noticias Inactivas</a>
+							<a href="persona_lista.php" class="btn btn-light text-dark"><i class="fa fa-users"></i> Personas Activas</a>
+							<a href="persona_lista_inactivo.php" class="btn btn-light text-dark"><i class="fa fa-trash"></i> Personas Inactivas</a>
 						</div>
 	        </div>
 	    </div>
 	    <div class="row" style="padding-top: 2px;">
 	    	<div class="col-sm-8">
 				</div>
-				<form action="noticia_buscar_inactivo.php" method="GET" class="col-sm-4" style="padding-top: 1px;">
+				<form action="persona_buscar_inactivo.php" method="GET" class="col-sm-4" style="padding-top: 1px;">
 					<div class="input-group">			
 						<input type="text" class="form-control" name="busqueda" id="busqueda" placeholder="Buscar">
 						<div class="input-group-append">
@@ -38,15 +46,24 @@
 					<table class="table table-striped table-hover">
 						<tr>
 							<th class='text-center'>#</th>
-							<th class='text-center'>Título</th>
-							<th class='text-center'>Fecha de Publicación</th>
+							<th class='text-center'>Cedula</th>
+							<th class='text-center'>Nombre</th>
+							<th class='text-center'>Apellido</th>
+							<th class='text-center'>Telef. Celular</th>
+							<th class='text-center'>Email</th>
 							<th class='text-center'>Restaurar</th>
 						</tr>
 						<?php 
 							
-						//Paginador 
+						// Paginador 
 
-							$sql_registe = mysqli_query($conexion,"SELECT COUNT(*) as total_registro FROM tab_not WHERE statu_not = 0");
+							$sql_registe = mysqli_query($conexion,"SELECT COUNT(*) as total_registro FROM tab_per WHERE 
+								(ident_per LIKE '%busqueda%' OR
+								cedul_per LIKE '%busqueda%' OR
+								nombr_per LIKE '%busqueda%' OR
+								apeli_per LIKE '%busqueda%' OR
+								telem_per LIKE '%busqueda%' )
+								AND statu_per = 0");
 							$result_registe = mysqli_fetch_array($sql_registe);
 							$total_registro = $result_registe['total_registro'];
 
@@ -63,7 +80,13 @@
 							$desde = ($pagina-1) * $por_pagina;
 							$total_paginas = ceil($total_registro / $por_pagina);
 
-							$query = mysqli_query($conexion,"SELECT ident_not, titul_not, fecpu_not FROM tab_not WHERE statu_not = 0  ORDER BY ident_not DESC LIMIT $desde,$por_pagina");
+							$query = mysqli_query($conexion,"SELECT ident_per, cedul_per, nombr_per, apeli_per, telem_per FROM tab_per WHERE 
+								( ident_per LIKE '%$busqueda%' OR
+								cedul_per LIKE '%$busqueda%' OR  
+								nombr_per LIKE '%$busqueda%' OR 
+								apeli_per LIKE '%$busqueda%' OR 
+								telem_per LIKE '%$busqueda%' )
+								AND statu_per = 0  ORDER BY ident_per ASC LIMIT $desde,$por_pagina");
 							mysqli_close($conexion);
 							$result = mysqli_num_rows($query);
 
@@ -72,19 +95,15 @@
 
 							 		?>
 
-							 		<tr class="row<?php echo $data['ident_not']; ?>">
-										<td class='text-center'><?php echo $data['ident_not']; ?></td>
-										<td class='text-center'><?php echo $data['titul_not']; ?></td>
-										<td class='text-center'><?php echo $data['fecpu_not']; ?></td>
+							 		<tr class="row<?php echo $data['ident_per']; ?>">
+										<td class='text-center'><?php echo $data['ident_per']; ?></td>
+										<td class='text-center'><?php echo $data['cedul_per']; ?></td>
+										<td class='text-center'><?php echo $data['nombr_per']; ?></td>
+										<td class='text-center'><?php echo $data['apeli_per']; ?></td>
+										<td class='text-center'><?php echo $data['telem_per']; ?></td>
+										<td class='text-center'><?php echo $data['email_per']; ?></td>
 										<td class='text-center'>
-											<?php  
-												if ($data['ident_tip'] != 1) {
-												?>
-													<a href="noticia_restaurar.php?id=<?php echo $data['ident_not']; ?>" class="restaurar"><i class="fa fa-check"></i></a>
-													
-												<?php	
-												}
-											?>
+											<a href="persona_restaurar.php?id=<?php echo $data['ident_per']; ?>" class="restaurar"><i class="fa fa-check"></i></a>
 										</td>
 									</tr>
 
@@ -134,5 +153,6 @@
 </div>
 
 <?php require_once('includes/admin_footer.php');  ?>
+
 
                                		                            

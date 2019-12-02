@@ -1,5 +1,12 @@
 <?php 
-	require_once('includes/admin_header.php');
+	session_start();
+
+	if (!isset($_SESSION['active'])) {
+    header('Location: usuario_inicio.php');
+    exit();
+  }
+
+  require_once('includes/admin_header.php');
 ?>
 
 <div class="container col-lg-6">

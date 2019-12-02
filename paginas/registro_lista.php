@@ -12,22 +12,23 @@
 	    <div class="table-title">
 	        <div class="row">
             <div class="col-sm-6">
-							<h2>Administrar <b>Noticias Inactivas</b></h2>
+							<h2>Administrar <b>Registros</b></h2>
 						</div>
 						<div class="col-sm-6">
-							<a href="noticia_lista.php" class="btn btn-light text-dark"><i class="fa fa-users"></i> Noticias Activas</a>
-							<a href="noticia_lista_inactivo.php" class="btn btn-light text-dark"><i class="fa fa-trash"></i> Noticias Inactivas</a>
+							<a href="registro_lista.php" class="btn btn-light text-dark"><i class="fa fa-users"></i> Registros Activos</a>
+							<a href="registro_lista_inactivo.php" class="btn btn-light text-dark"><i class="fa fa-trash"></i> Registros Inactivos</a>
 						</div>
 	        </div>
 	    </div>
 	    <div class="row" style="padding-top: 2px;">
 	    	<div class="col-sm-8">
+					<a href="registro_nuevo.php" class="btn btn-info float-left"><i class="fa fa-plus"></i> Nuevo Registro</a>
 				</div>
-				<form action="noticia_buscar_inactivo.php" method="GET" class="col-sm-4" style="padding-top: 1px;">
+				<form action="registro_buscar.php" method="GET" class="col-sm-4" style="padding-top: 1px;">
 					<div class="input-group">			
 						<input type="text" class="form-control" name="busqueda" id="busqueda" placeholder="Buscar">
 						<div class="input-group-append">
-							<button type="submit" class="btn btn-info"><i class="fa fa-search"></i></button>
+							<button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
 						</div>
 					</div>
 				</form>
@@ -38,15 +39,17 @@
 					<table class="table table-striped table-hover">
 						<tr>
 							<th class='text-center'>#</th>
-							<th class='text-center'>Título</th>
-							<th class='text-center'>Fecha de Publicación</th>
-							<th class='text-center'>Restaurar</th>
+							<th class='text-center'>Nombre</th>
+							<th class='text-center'>Fecha</th>
+							<th class='text-center'>Ver</th>
+							<th class='text-center'>Editar</th>
+							<th class='text-center'>Borrar</th>
 						</tr>
 						<?php 
 							
-						//Paginador 
+						// Paginador 
 
-							$sql_registe = mysqli_query($conexion,"SELECT COUNT(*) as total_registro FROM tab_not WHERE statu_not = 0");
+							$sql_registe = mysqli_query($conexion,"SELECT COUNT(*) as total_registro FROM tab_jef WHERE statu_jef = 1");
 							$result_registe = mysqli_fetch_array($sql_registe);
 							$total_registro = $result_registe['total_registro'];
 
@@ -63,7 +66,7 @@
 							$desde = ($pagina-1) * $por_pagina;
 							$total_paginas = ceil($total_registro / $por_pagina);
 
-							$query = mysqli_query($conexion,"SELECT ident_not, titul_not, fecpu_not FROM tab_not WHERE statu_not = 0  ORDER BY ident_not DESC LIMIT $desde,$por_pagina");
+							$query = mysqli_query($conexion,"SELECT u.ident_jef, u.cedul_jef,u.nombr_jef, u.apeli_jef, u.telem_jef, u.usuar_jef, r.ident_tip, r.nombr_tip FROM tab_jef u INNER JOIN tab_tip r ON u.ident_tip = r.ident_tip WHERE statu_jef = 1 ORDER BY ident_jef ASC LIMIT $desde,$por_pagina");
 							mysqli_close($conexion);
 							$result = mysqli_num_rows($query);
 
@@ -72,16 +75,24 @@
 
 							 		?>
 
-							 		<tr class="row<?php echo $data['ident_not']; ?>">
-										<td class='text-center'><?php echo $data['ident_not']; ?></td>
-										<td class='text-center'><?php echo $data['titul_not']; ?></td>
-										<td class='text-center'><?php echo $data['fecpu_not']; ?></td>
+							 		<tr class="row<?php echo $data['ident_jef']; ?>">
+										<td class='text-center'><?php echo $data['ident_jef']; ?></td>
+										<td class='text-center'><?php echo $data['cedul_jef']; ?></td>
+										<td class='text-center'><?php echo $data['nombr_jef']; ?></td>
+										<td class='text-center'><?php echo $data['apeli_jef']; ?></td>
+										<td class='text-center'><?php echo $data['telem_jef']; ?></td>
+										<td class='text-center'><?php echo $data['nombr_tip']; ?></td>
+										<td class='text-center'>
+											<a href="jefe_ver.php?id=<?php echo $data['ident_jef']; ?>" class="look"><i class="fa fa-eye"></i></a>
+										</td>
+										<td class='text-center'>
+											<a href="jefe_editar.php?id=<?php echo $data['ident_jef']; ?>" class="edit"><i class="fa fa-edit"></i></a>
+										</td>
 										<td class='text-center'>
 											<?php  
-												if ($data['ident_tip'] != 1) {
+												if ($data['nombr_tip'] != 'ADMINISTRADOR') {
 												?>
-													<a href="noticia_restaurar.php?id=<?php echo $data['ident_not']; ?>" class="restaurar"><i class="fa fa-check"></i></a>
-													
+													<a href="jefe_borrar.php?id=<?php echo $data['ident_jef']; ?>" class="delete eliminar"><i class="fa fa-trash-alt"></i></a>
 												<?php	
 												}
 											?>

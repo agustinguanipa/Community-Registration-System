@@ -48,7 +48,7 @@
           </div>
           <div class="form-row">
             <div class="col form-group">
-              <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-user"></i> Publicar Noticia</button>
+              <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-newspaper"></i> Publicar Noticia</button>
               <button type="reset" class="btn btn-light btn-block"><i class="fa fa-undo"></i> Limpiar</button>
             </div>
           </div> 

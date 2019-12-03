@@ -33,9 +33,16 @@
   <script type="text/javascript" src="../libs/jQuery-Mask-Plugin/dist/jquery.mask.js"></script>
   <!--- JS --->
   <script type="text/javascript" src="../js/funciones.js"></script>
+  <script src="../libs/popper.min.js"></script>
   <!--- Bootstrap 4 --->
   <link rel="stylesheet" href="../libs/bootstrap-4.1.3-dist/css/bootstrap.min.css"/>
   <script src="../libs/bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
+  <!--- Bootstrap 4 Multiselect--->
+  <script type="text/javascript" src="../libs/bootstrap-select-1.13.12/dist/js/bootstrap-select.js"></script>
+  <link rel="stylesheet" href="../libs/bootstrap-select-1.13.12/dist/css/bootstrap-select.css" type="text/css"/>
+
+  <script type="text/javascript" src="../libs/bootstrap-multiselect/dist/js/bootstrap-multiselect.js"></script>
+  <link rel="stylesheet" href="../libs/bootstrap-multiselect/dist/css/bootstrap-multiselect.css" type="text/css"/>  
   <!--- Bootstrap 4 UI E-Commerce --->
   <script src="../libs/bootstrap-ecommerce-uikit/ui-ecommerce/js/bootstrap.bundle.min.js" type="text/javascript"></script>
   <link href="../libs/bootstrap-ecommerce-uikit/ui-ecommerce/css/bootstrap.css" rel="stylesheet" type="text/css"/>
@@ -48,6 +55,7 @@
   <script src="../libs/bootstrap-ecommerce-uikit/ui-ecommerce/js/script.js" type="text/javascript"></script>
   <!--- Bootstrap 4 File Style 2 --->
   <script type="text/javascript" src="../libs/bootstrap-filestyle-2.1.0/src/bootstrap-filestyle.min.js"> </script>
+
 </head>
 
 <body>

@@ -49,7 +49,7 @@
 							
 						// Paginador 
 
-							$sql_registe = mysqli_query($conexion,"SELECT COUNT(*) as total_registro FROM tab_jef WHERE statu_jef = 1");
+							$sql_registe = mysqli_query($conexion,"SELECT COUNT(*) as total_registro FROM tab_reg WHERE statu_reg = 1");
 							$result_registe = mysqli_fetch_array($sql_registe);
 							$total_registro = $result_registe['total_registro'];
 
@@ -66,7 +66,7 @@
 							$desde = ($pagina-1) * $por_pagina;
 							$total_paginas = ceil($total_registro / $por_pagina);
 
-							$query = mysqli_query($conexion,"SELECT u.ident_jef, u.cedul_jef,u.nombr_jef, u.apeli_jef, u.telem_jef, u.usuar_jef, r.ident_tip, r.nombr_tip FROM tab_jef u INNER JOIN tab_tip r ON u.ident_tip = r.ident_tip WHERE statu_jef = 1 ORDER BY ident_jef ASC LIMIT $desde,$por_pagina");
+							$query = mysqli_query($conexion,"SELECT ident_reg, nombr_reg, fecre_reg FROM tab_reg WHERE statu_reg = 1 ORDER BY ident_reg DESC LIMIT $desde,$por_pagina");
 							mysqli_close($conexion);
 							$result = mysqli_num_rows($query);
 
@@ -75,24 +75,21 @@
 
 							 		?>
 
-							 		<tr class="row<?php echo $data['ident_jef']; ?>">
-										<td class='text-center'><?php echo $data['ident_jef']; ?></td>
-										<td class='text-center'><?php echo $data['cedul_jef']; ?></td>
-										<td class='text-center'><?php echo $data['nombr_jef']; ?></td>
-										<td class='text-center'><?php echo $data['apeli_jef']; ?></td>
-										<td class='text-center'><?php echo $data['telem_jef']; ?></td>
-										<td class='text-center'><?php echo $data['nombr_tip']; ?></td>
+							 		<tr class="row<?php echo $data['ident_reg']; ?>">
+										<td class='text-center'><?php echo $data['ident_reg']; ?></td>
+										<td class='text-center'><?php echo $data['nombr_reg']; ?></td>
+										<td class='text-center'><?php echo $data['fecre_reg']; ?></td>
 										<td class='text-center'>
-											<a href="jefe_ver.php?id=<?php echo $data['ident_jef']; ?>" class="look"><i class="fa fa-eye"></i></a>
+											<a href="jefe_ver.php?id=<?php echo $data['ident_reg']; ?>" class="look"><i class="fa fa-eye"></i></a>
 										</td>
 										<td class='text-center'>
-											<a href="jefe_editar.php?id=<?php echo $data['ident_jef']; ?>" class="edit"><i class="fa fa-edit"></i></a>
+											<a href="jefe_editar.php?id=<?php echo $data['ident_reg']; ?>" class="edit"><i class="fa fa-edit"></i></a>
 										</td>
 										<td class='text-center'>
 											<?php  
 												if ($data['nombr_tip'] != 'ADMINISTRADOR') {
 												?>
-													<a href="jefe_borrar.php?id=<?php echo $data['ident_jef']; ?>" class="delete eliminar"><i class="fa fa-trash-alt"></i></a>
+													<a href="jefe_borrar.php?id=<?php echo $data['ident_reg']; ?>" class="delete eliminar"><i class="fa fa-trash-alt"></i></a>
 												<?php	
 												}
 											?>

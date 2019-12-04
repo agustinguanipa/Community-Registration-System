@@ -1,10 +1,12 @@
 <?php 
-  require_once('includes/admin_header.php');
+	session_start();
 
-  if (!isset($_SESSION['active'])) {
+	if (!isset($_SESSION['active'])) {
     header('Location: usuario_inicio.php');
     exit();
   }
+
+  require_once('includes/admin_header.php');
 ?>
 
 <?php 
@@ -17,7 +19,7 @@ if (empty($_GET['id'])) {
 
 $id = $_GET['id'];
 
-	$query_jef = mysqli_query($conexion,"SELECT u.ident_jef,u.cedul_jef,u.nombr_jef, u.apeli_jef, u.fecna_jef, u.telem_jef, u.telec_jef, u.email_jef, u.direc_jef, u.usuar_jef, u.tibom_jef, u.seria_jef, r.ident_tip, r.nombr_tip FROM tab_jef u INNER JOIN tab_tip r ON u.ident_jef = r.ident_tip WHERE ident_jef = '$id' AND statu_jef = 1");
+	$query_jef = mysqli_query($conexion,"SELECT u.ident_jef,u.cedul_jef,u.nombr_jef, u.apeli_jef, u.fecna_jef, u.telem_jef, u.telec_jef, u.email_jef, u.calle_jef, u.direc_jef, u.usuar_jef, u.tibom_jef, u.seria_jef, r.ident_tip, r.nombr_tip FROM tab_jef u INNER JOIN tab_tip r ON u.ident_jef = r.ident_tip WHERE ident_jef = '$id' AND statu_jef = 1");
 	
 $result_jef = mysqli_num_rows($query_jef);
 
@@ -34,6 +36,7 @@ if ($result_jef == 0)
 	$telem_jef = $data_jef['telem_jef'];
 	$telec_jef = $data_jef['telec_jef'];
 	$email_jef = $data_jef['email_jef'];
+	$calle_jef = $data_jef['calle_jef'];
 	$direc_jef = $data_jef['direc_jef'];
 	$tibom_jef = $data_jef['tibom_jef'];
 	$seria_jef = $data_jef['seria_jef'];
@@ -85,15 +88,19 @@ mysqli_close($conexion);
 		  </div>
 		  <hr>
 		  <div class="form-row">
+		  	<div class="col form-group">
+		      <label class="form-label" for="calle_jef"><b>Calle o Carrera: </b></label>
+		      <label><?php echo $calle_jef; ?></label>
+		    </div>
 		    <div class="col form-group">
-		      <label class="form-label" for="usuar_jef"><b>Dirección: </b></label>
+		      <label class="form-label" for="direc_jef"><b>Dirección: </b></label>
 		      <label><?php echo $direc_jef; ?></label>
 		    </div>
 		  </div>
 		  <hr>
 		  <div class="form-row">
 		  	<div class="col form-group">
-		      <label class="form-label" for="tibom_jef"><b>Usuario: </b></label>
+		      <label class="form-label" for="usuar_jef"><b>Usuario: </b></label>
 		      <label><?php echo $usuar_jef; ?></label>
 		    </div>
 		    <div class="col form-group">

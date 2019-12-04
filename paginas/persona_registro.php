@@ -1,10 +1,12 @@
 <?php 
-  require_once('includes/admin_header.php');
+  session_start();
 
   if (!isset($_SESSION['active'])) {
     header('Location: usuario_inicio.php');
     exit();
   }
+
+  require_once('includes/admin_header.php');
 ?>
 
 <div class="container col-lg-10">
@@ -48,7 +50,14 @@
             </div>
           </div>
           <div class="form-row">
-            <div class="col form-group">
+            <div class="col form-group col-lg-4">
+              <label class="form-label" for="calle_per"><b>Calle o Carrera: </b></label>
+              <select class="form-control" id="calle_per" name="calle_per">
+                <option value="CALLE 2">CALLE 2</option>
+                <option value="CARRERA 7">CARRERA 7</option>
+              </select>
+            </div>
+            <div class="col form-group col-lg-8">
               <label class="form-label" for="direc_per"><b>Dirección: </b></label>
               <input type="text" class="form-control" name="direc_per" autocomplete="off" id="direc_per" placeholder="Calle 2 Bellavista" onkeyup="this.value = this.value.toUpperCase();">
             </div>
@@ -97,7 +106,7 @@
           </div>
           <div class="form-row">
             <div class="col form-group">
-              <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-user"></i> Registrar Usuario</button>
+              <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-user"></i> Registrar Persona</button>
               <button type="reset" class="btn btn-light btn-block"><i class="fa fa-undo"></i> Limpiar</button>
             </div>
           </div> 

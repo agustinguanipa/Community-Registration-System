@@ -68,7 +68,7 @@
       <div class="sidebar-heading" align="center">
         <a href="admin_panel.php" style="text-decoration: none;">
           <img src="../imagen/logo-cc-color.png" width="30" height="30" class="d-inline-block align-top" alt="">
-          <span class="menu-collapsed" style="color: #000000; font-size: 14px;">Panel de Control</span>
+          <span class="menu-collapsed" style="color: #000000; font-size: 14px;"><b>Panel de Control</b></span>
         </a>
       </div>
       <div class="list-group list-group-flush">
@@ -111,10 +111,10 @@
                 <span class="menu-collapsed">Registros</span>
             </div>
           </a>
-          <a href="configuracion.php" aria-expanded="false" class="bg-light text-dark list-group-item list-group-item-action flex-column align-items-start tamano-elemento-sidebar">
+          <a href="admin_configuracion.php" aria-expanded="false" class="bg-light text-dark list-group-item list-group-item-action flex-column align-items-start tamano-elemento-sidebar">
             <div class="d-flex w-100 justify-content-start align-items-center">
                 <span class="fa fa-cogs fa-fw mr-3"></span> 
-                <span class="menu-collapsed">Administración</span>
+                <span class="menu-collapsed">Configuración</span>
             </div>
           </a>
         </ul>

@@ -1,10 +1,12 @@
 <?php 
-  require_once('includes/admin_header.php');
+  session_start();
 
   if (!isset($_SESSION['active'])) {
     header('Location: usuario_inicio.php');
     exit();
   }
+
+  require_once('includes/admin_header.php');
 ?>
 
 <div class="container col-lg-10">
@@ -48,7 +50,14 @@
             </div>
           </div>
           <div class="form-row">
-            <div class="col form-group">
+            <div class="col form-group col-lg-4">
+              <label class="form-label" for="calle_jef"><b>Calle o Carrera: </b></label>
+              <select class="form-control" id="calle_jef" name="calle_jef">
+                <option value="CALLE 2">CALLE 2</option>
+                <option value="CARRERA 7">CARRERA 7</option>
+              </select>
+            </div>
+            <div class="col form-group col-lg-8">
               <label class="form-label" for="direc_jef"><b>Dirección: </b></label>
               <input type="text" class="form-control" name="direc_jef" autocomplete="off" id="direc_jef" placeholder="Calle 2 Bellavista" onkeyup="this.value = this.value.toUpperCase();">
             </div>
@@ -126,7 +135,7 @@
         number: true,
         minlength: 6,
         remote: {
-          url: "persona_cedula_availability.php",
+          url: "jefe_cedula_availability.php",
           type: "post",
           data:
             {

@@ -17,7 +17,7 @@ if (empty($_GET['id'])) {
 
 $id = $_GET['id'];
 
-  $query_jef = mysqli_query($conexion,"SELECT u.ident_jef,u.cedul_jef,u.nombr_jef, u.apeli_jef, u.fecna_jef, u.telem_jef, u.telec_jef, u.email_jef, u.direc_jef, u.tibom_jef, u.seria_jef, r.ident_tip, r.nombr_tip FROM tab_jef u INNER JOIN tab_tip r ON u.ident_jef = r.ident_tip WHERE ident_jef = '$id' AND statu_jef = 1");
+  $query_jef = mysqli_query($conexion,"SELECT u.ident_jef,u.cedul_jef,u.nombr_jef, u.apeli_jef, u.fecna_jef, u.telem_jef, u.telec_jef, u.email_jef, u.calle_jef, u.direc_jef, u.tibom_jef, u.seria_jef, r.ident_tip, r.nombr_tip FROM tab_jef u INNER JOIN tab_tip r ON u.ident_jef = r.ident_tip WHERE ident_jef = '$id' AND statu_jef = 1");
   
 $result_jef = mysqli_num_rows($query_jef);
 
@@ -34,6 +34,7 @@ if ($result_jef == 0)
   $telem_jef = $data_jef['telem_jef'];
   $telec_jef = $data_jef['telec_jef'];
   $email_jef = $data_jef['email_jef'];
+  $calle_jef = $data_jef['calle_jef'];
   $direc_jef = $data_jef['direc_jef'];
   $tibom_jef = $data_jef['tibom_jef'];
   $seria_jef = $data_jef['seria_jef'];
@@ -82,7 +83,15 @@ mysqli_close($conexion);
 		          </div>
 		        </div>
 		        <div class="form-row">
-              <div class="col form-group">
+              <div class="col form-group col-lg-4">
+                <label class="form-label" for="calle_jef"><b>Calle o Carrera: </b></label>
+                <select class="form-control notItemOne" id="calle_jef" name="calle_jef">
+                  <option value="<?php echo $calle_jef;?>"><?php echo $calle_jef;?></option>
+                  <option value="CALLE 2">CALLE 2</option>
+                  <option value="CARRERA 7">CARRERA 7</option>
+                </select>
+              </div>
+              <div class="col form-group col-lg-8">
                 <label class="form-label" for="direc_jef"><b>Dirección: </b></label>
                 <input type="text" class="form-control" name="direc_jef" autocomplete="off" id="direc_jef" value="<?php echo $direc_jef; ?>" onkeyup="this.value = this.value.toUpperCase();">
               </div>
@@ -95,7 +104,7 @@ mysqli_close($conexion);
                   $query_tip = mysqli_query($conexion,"SELECT * FROM tab_tip");
                   $result_tip = mysqli_num_rows($query_tip);
                 ?>
-                <select class="form-control" name="ident_tip" id="ident_tip">
+                <select class="form-control notItemOne" name="ident_tip" id="ident_tip">
                   <option value="<?php echo $ident_tip;?>"><?php echo $nombr_tip;?></option>
                   <?php 
                     if ($result_tip > 0) {
@@ -109,7 +118,7 @@ mysqli_close($conexion);
               </div>
               <div class="col form-group">
                 <label class="form-label" for="tibom_jef"><b>Tipo de Bombona: </b></label>
-                <select class="form-control" id="tibom_jef" name="tibom_jef">
+                <select class="form-control notItemOne" id="tibom_jef" name="tibom_jef">
                   <option value="<?php echo $tibom_jef;?>"><?php echo $tibom_jef;?></option>
                   <option value="10 KG">10 KG</option>
                   <option value="18 KG">18 KG</option>
@@ -125,7 +134,7 @@ mysqli_close($conexion);
 		        </div>
 		        <div class="form-row">
 		          <div class="col form-group">
-		            <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-user"></i> Actualizar Persona</button>
+		            <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-user"></i> Actualizar Jefe de Familia</button>
 		            <button type="reset" class="btn btn-light btn-block"><i class="fa fa-undo"></i> Limpiar</button>
 		          </div>
 		        </div>

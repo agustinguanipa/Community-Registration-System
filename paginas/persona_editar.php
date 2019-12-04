@@ -1,10 +1,12 @@
 <?php 
-  require_once('includes/admin_header.php');
+  session_start();
 
   if (!isset($_SESSION['active'])) {
     header('Location: usuario_inicio.php');
     exit();
   }
+
+  require_once('includes/admin_header.php');
 ?>
 
 <?php 
@@ -35,6 +37,7 @@ if ($result_user == 0)
   $telem_per = $data_per['telem_per'];
   $telec_per = $data_per['telec_per'];
   $email_per = $data_per['email_per'];
+  $calle_jef = $data_per['calle_jef'];
   $direc_per = $data_per['direc_per'];
   $tifam_per = $data_per['tifam_per'];
   $tibom_per = $data_per['tibom_per'];
@@ -110,7 +113,15 @@ mysqli_close($conexion);
 		          </div>
 		        </div>
 		        <div class="form-row">
-              <div class="col form-group">
+              <div class="col form-group col-lg-4">
+                <label class="form-label" for="calle_per"><b>Calle o Carrera: </b></label>
+                <select class="form-control notItemOne" id="calle_per" name="calle_per">
+                  <option value="<?php echo $calle_jef;?>"><?php echo $calle_jef;?></option>
+                  <option value="CALLE 2">CALLE 2</option>
+                  <option value="CARRERA 7">CARRERA 7</option>
+                </select>
+              </div>
+              <div class="col form-group col-lg-8">
                 <label class="form-label" for="direc_per"><b>Dirección: </b></label>
                 <input type="text" class="form-control" name="direc_per" autocomplete="off" id="direc_per" value="<?php echo $direc_per; ?>" onkeyup="this.value = this.value.toUpperCase();">
               </div>
@@ -118,7 +129,7 @@ mysqli_close($conexion);
             <div class="form-row">
               <div class="col form-group">
                 <label class="form-label" for="tifam_per"><b>Tipo de Familiar: </b></label>
-                <select class="form-control" name="tifam_per" id="tifam_per">
+                <select class="form-control notItemOne" name="tifam_per" id="tifam_per">
                   <option value="<?php echo $tifam_per;?>"><?php echo $tifam_per;?></option>
                   <option value="MADRE/PADRE">MADRE/PADRE</option>
                   <option value="HIJO/HIJA">HIJO/HIJA</option>
@@ -128,7 +139,7 @@ mysqli_close($conexion);
               </div>
               <div class="col form-group">
                 <label class="form-label" for="tibom_per"><b>Tipo de Bombona: </b></label>
-                <select class="form-control" id="tibom_per" name="tibom_per">
+                <select class="form-control notItemOne" id="tibom_per" name="tibom_per">
                   <option value="<?php echo $tibom_per;?>"><?php echo $tibom_per;?></option>
                   <option value="10 KG">10 KG</option>
                   <option value="18 KG">18 KG</option>

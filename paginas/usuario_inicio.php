@@ -89,7 +89,7 @@ if (!empty($_SESSION['active'])) {
           <div class="form-row">
             <div class="col form-group">
               <label class="form-label" for="usuar_jef"><b>Usuario: </b></label>
-              <input type="text" class="form-control" name="usuar_jef" autocomplete="off" id="usuar_jef" placeholder="miusuario" maxlength="20" onkeyup="this.value = this.value.toUpjefCase();">
+              <input type="text" class="form-control" name="usuar_jef" autocomplete="off" id="usuar_jef" placeholder="miusuario" maxlength="20" onkeyup="this.value = this.value.toUpperCase();">
             </div>
           </div>
           <div class="form-row">

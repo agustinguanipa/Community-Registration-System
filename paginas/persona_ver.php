@@ -1,10 +1,12 @@
 <?php 
-  require_once('includes/admin_header.php');
+	session_start();
 
-  if (!isset($_SESSION['active'])) {
+	if (!isset($_SESSION['active'])) {
     header('Location: usuario_inicio.php');
     exit();
   }
+
+  require_once('includes/admin_header.php');
 ?>
 
 <?php 
@@ -34,6 +36,7 @@ if ($result_per == 0)
 	$telem_per = $data_per['telem_per'];
 	$telec_per = $data_per['telec_per'];
 	$email_per = $data_per['email_per'];
+	$calle_per = $data_per['calle_per'];
 	$direc_per = $data_per['direc_per'];
 	$tifam_per = $data_per['tifam_per'];
 	$tibom_per = $data_per['tibom_per'];
@@ -87,6 +90,10 @@ mysqli_close($conexion);
 		  </div>
 		  <hr>
 		  <div class="form-row">
+		  	<div class="col form-group">
+		      <label class="form-label" for="calle_per"><b>Calle o Carrera: </b></label>
+		      <label><?php echo $calle_per; ?></label>
+		    </div>
 		    <div class="col form-group">
 		      <label class="form-label" for="usuar_per"><b>Dirección: </b></label>
 		      <label><?php echo $direc_per; ?></label>

@@ -1,10 +1,12 @@
 <?php 
-	require_once('includes/admin_header.php');
+	session_start();
 
 	if (!isset($_SESSION['active'])) {
     header('Location: usuario_inicio.php');
     exit();
   }
+
+  require_once('includes/admin_header.php');
 ?>
 
 <div class="container-fluid">
@@ -69,7 +71,7 @@
 							$desde = ($pagina-1) * $por_pagina;
 							$total_paginas = ceil($total_registro / $por_pagina);
 
-							$query = mysqli_query($conexion,"SELECT u.ident_per, u.cedul_per,u.nombr_per, u.apeli_per, u.telem_per, u.email_per, u.usuar_per, r.ident_tip, r.nombr_tip FROM tab_per u INNER JOIN tab_tip r ON u.ident_tip = r.ident_tip WHERE statu_per = 1  ORDER BY ident_per ASC LIMIT $desde,$por_pagina");
+							$query = mysqli_query($conexion,"SELECT u.ident_per, u.cedul_per, u.nombr_per, u.apeli_per, u.telem_per, u.email_per, r.ident_tip, r.nombr_tip FROM tab_per u INNER JOIN tab_tip r ON u.ident_tip = r.ident_tip WHERE statu_per = 1  ORDER BY ident_per ASC LIMIT $desde,$por_pagina");
 							mysqli_close($conexion);
 							$result = mysqli_num_rows($query);
 

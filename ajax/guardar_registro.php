@@ -7,15 +7,17 @@
 	$fecre_reg = $_POST['fecre_reg'];
 	$ident_jef=$_POST['ident_jef'];
 
-
- $jefe = implode(', ', $ident_jef['ident_jef']);
- 
-
 	$ident_ref = 1;
 	$statu_reg = 1;
 	
 
-		$query_insert = mysqli_query($conexion,"INSERT INTO tab_reg(nombr_reg,descr_reg,fecre_reg,statu_reg,ident_jef,ident_ref) VALUES('$nombr_reg','$descr_reg','$fecre_reg','$statu_reg','$jefe','$ident_ref')");
+		$query_insert = mysqli_query($conexion,"INSERT INTO tab_reg(nombr_reg,descr_reg,fecre_reg,statu_reg) VALUES('$nombr_reg','$descr_reg','$fecre_reg','$statu_reg')");
+
+		 foreach($query_insert){
+		 		$query_insert_det = mysqli_query($conexion,"INSERT INTO det_reg(ident_reg,ident_jef) VALUES('$ident_reg','$ident_jef')");
+		 }
+
+	
 
 		 
 	header('location: ../paginas/noticia_registro_exito.php');

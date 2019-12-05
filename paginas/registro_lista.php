@@ -14,17 +14,17 @@
 	    <div class="table-title">
 	        <div class="row">
             <div class="col-sm-6">
-							<h2>Administrar <b>Registros</b></h2>
+							<h2>Administrar <b>Eventos</b></h2>
 						</div>
 						<div class="col-sm-6">
-							<a href="registro_lista.php" class="btn btn-light text-dark"><i class="fa fa-users"></i> Registros Activos</a>
-							<a href="registro_lista_inactivo.php" class="btn btn-light text-dark"><i class="fa fa-trash"></i> Registros Inactivos</a>
+							<a href="registro_lista.php" class="btn btn-light text-dark"><i class="fa fa-users"></i> Eventos Activos</a>
+							<a href="registro_lista_inactivo.php" class="btn btn-light text-dark"><i class="fa fa-trash"></i> Eventos Inactivos</a>
 						</div>
 	        </div>
 	    </div>
 	    <div class="row" style="padding-top: 2px;">
 	    	<div class="col-sm-8">
-					<a href="registro_nuevo.php" class="btn btn-info float-left"><i class="fa fa-plus"></i> Nuevo Registro</a>
+					<a href="registro_nuevo.php" class="btn btn-info float-left"><i class="fa fa-plus"></i> Nuevo Evento</a>
 				</div>
 				<form action="registro_buscar.php" method="GET" class="col-sm-4" style="padding-top: 1px;">
 					<div class="input-group">			
@@ -82,16 +82,16 @@
 										<td class='text-center'><?php echo $data['nombr_reg']; ?></td>
 										<td class='text-center'><?php echo $data['fecre_reg']; ?></td>
 										<td class='text-center'>
-											<a href="jefe_ver.php?id=<?php echo $data['ident_reg']; ?>" class="look"><i class="fa fa-eye"></i></a>
+											<a href="registro_ver.php?id=<?php echo $data['ident_reg']; ?>" class="look"><i class="fa fa-eye"></i></a>
 										</td>
 										<td class='text-center'>
-											<a href="jefe_editar.php?id=<?php echo $data['ident_reg']; ?>" class="edit"><i class="fa fa-edit"></i></a>
+											<a href="registro_editar.php?id=<?php echo $data['ident_reg']; ?>" class="edit"><i class="fa fa-edit"></i></a>
 										</td>
 										<td class='text-center'>
 											<?php  
 												if ($data['nombr_tip'] != 'ADMINISTRADOR') {
 												?>
-													<a href="jefe_borrar.php?id=<?php echo $data['ident_reg']; ?>" class="delete eliminar"><i class="fa fa-trash-alt"></i></a>
+													<a href="registro_borrar.php?id=<?php echo $data['ident_reg']; ?>" class="delete eliminar"><i class="fa fa-trash-alt"></i></a>
 												<?php	
 												}
 											?>

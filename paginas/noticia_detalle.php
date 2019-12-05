@@ -1,6 +1,6 @@
 <?php 
 
-require_once('includes/header.php'); 
+require_once('includes/principal_header.php'); 
 
 $id = $_GET['id'];
 
@@ -44,4 +44,4 @@ $id = $_GET['id'];
   }
 ?>
 
-<?php require_once('includes/footer.php'); ?>
+<?php require_once('includes/principal_footer.php'); ?>

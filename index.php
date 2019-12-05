@@ -73,11 +73,10 @@
               </a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href="#"><i class="fa fa-users"></i> <b>La Comunidad</b></a>
+              <a class="nav-link" href="paginas/principal_comunidad.php"><i class="fa fa-users"></i> <b>La Comunidad</b></a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href="#"
-                target="_blank"><i class="fa fa-phone"></i> <b>Contacto</b></a>
+              <a class="nav-link" href="paginas/principal_contacto.php"><i class="fa fa-phone"></i> <b>Contacto</b></a>
             </li>
           </ul>
           <!-- Right -->
@@ -120,7 +119,7 @@
           <h2 class="card-title text-white"><b>Consejo Comunal Ambrosio Plaza</b></h2>
           <p class="card-text text-white"><b>Comunidad de Ambrosio Plaza Pueblo Nuevo</b></p>
           <p class="text-white">Información sobre la Comunidad, Acontecimientos, Eventos, Jornadas, entre otros.</p>
-          <a href="#" class="btn btn-light btn-lg"> <b>¿Quíenes Somos? </b><i class="fas fa-users ml-2"></i></a>
+          <a href="paginas/principal_comunidad.php" class="btn btn-light btn-lg"> <b>¿Quíenes Somos? </b><i class="fas fa-users ml-2"></i></a>
         </div>
       </div>
       <!--Section: Jumbotron-->

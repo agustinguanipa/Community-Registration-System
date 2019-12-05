@@ -37,7 +37,7 @@
   <!--- Bootstrap 4 --->
   <link rel="stylesheet" href="../libs/bootstrap-4.1.3-dist/css/bootstrap.min.css"/>
   <script src="../libs/bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
-  <!--- Bootstrap 4 Multiselect--->
+  <!--- Bootstrap 4 Select--->
   <script type="text/javascript" src="../libs/bootstrap-select-1.13.12/dist/js/bootstrap-select.js"></script>
   <link rel="stylesheet" href="../libs/bootstrap-select-1.13.12/dist/css/bootstrap-select.css" type="text/css"/>
 

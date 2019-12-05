@@ -13,7 +13,7 @@
   <div class="form-group text-center">
     <div class="card">
       <div class="card-header">
-        <b>Nuevo Registro</b>
+        <b>Nuevo Evento</b>
       </div>
       <div class="card-body">
         <form role="form" id="registro_nuevo" class="justify-content-center mx- my-1" align="center" enctype="multipart/form-data" action="../ajax/guardar_registro.php" method="post">

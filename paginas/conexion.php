@@ -1,9 +1,9 @@
 <?php 
 
-$host = 'localhost';
-$user = 'root';
-$pw = 'root';
-$bd = 'ccambpla';
+$host = 'sql203.epizy.com';
+$user = 'epiz_24886940';
+$pw = '52Glgvyfp9ZaIpP';
+$bd = 'epiz_24886940_ccambpla';
 
 $conexion = @mysqli_connect($host,$user,$pw,$bd);
 

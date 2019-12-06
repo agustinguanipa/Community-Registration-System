@@ -102,18 +102,7 @@
     rules: {
     	txtPassUser: {
     		required: true,
-    		minlength: 4,
-    		remote: {
-          url: "jefe_contr_check.php",
-          type: "post",
-          data:
-            {
-              txtPassUser: function()
-              {
-                return $('#frmChangePass :input[name="txtPassUser"]').val();
-              }
-            }
-        }     
+    		minlength: 4  
     	},
       txtNewPassUser: {
         required: true,
@@ -129,8 +118,7 @@
     messages: {
     	txtPassUser: {
     		required: "Ingrese su Contraseña Actual",
-        minlength: "Tu Contraseña debe contener al menos 5 caracteres",
-        remote: jQuery.validator.format("{1} no esta disponible")
+        minlength: "Tu Contraseña debe contener al menos 5 caracteres"
     	},
       txtNewPassUser: {
         required: "Ingrese una Contraseña Nueva",

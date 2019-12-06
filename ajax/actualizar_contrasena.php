@@ -5,7 +5,7 @@ session_start();
  $actual = md5($_POST['txtPassUser']);
  $nueva = md5($_POST['txtNewPassUser']);
  $confirmacion = $_POST['txtPassConfirm'];
- $idUser = $_SESSION['idUser'];
+ $ident_jef = $_SESSION['idUser'];
 
 	 
 	$query_user = mysqli_query($conexion,"SELECT * FROM tab_jef WHERE contr_jef = '$actual' AND ident_jef = '$ident_jef'");
@@ -22,7 +22,6 @@ session_start();
 
 		}else{
 			echo 'La clave actual es incorrecta';
-			header('location: ../paginas/admin_configuracion.php');
 		}
 		header('location: ../paginas/configuracion_actualizar_exito.php');
  ?>

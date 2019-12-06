@@ -20,7 +20,7 @@
           <div class="form-row">
             <div class="col form-group col-lg-8">
               <label class="form-label" for="nombr_reg"><b>Nombre: </b></label>
-              <input type="text" class="form-control" name="nombr_reg" autocomplete="off" id="nombr_reg"  maxlength="100" required>
+              <input type="text" class="form-control" name="nombr_reg" autocomplete="off" id="nombr_reg"  maxlength="100" onkeyup="this.value = this.value.toUpperCase();" required>
             </div>
             <div class="col form-group col-lg-4">
               <label class="form-label" for="fecre_reg"><b>Fecha de Registro: </b></label>
@@ -30,7 +30,7 @@
           <div class="form-row">
             <div class="col form-group">
               <label class="form-label" for="descr_reg"><b>Descripción: </b></label>
-              <input type="text" class="form-control" name="descr_reg" autocomplete="off" id="descr_reg" maxlength="100">
+              <input type="text" class="form-control" name="descr_reg" autocomplete="off" id="descr_reg" maxlength="100" onkeyup="this.value = this.value.toUpperCase();" required>
             </div>
           </div>
           <div class="form-row">
@@ -54,7 +54,7 @@
           </div>
           <div class="form-row">
             <div class="col form-group">
-              <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-save"></i> Guardar Registro</button>
+              <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-save"></i> Guardar Evento</button>
               <button type="reset" class="btn btn-light btn-block"><i class="fa fa-undo"></i> Limpiar</button>
             </div>
           </div> 
@@ -81,10 +81,6 @@
         required: true,
         minlength: 15
       },
-      descr_not: {
-        required: true,
-        minlength: 15
-      },
     },
 
     messages: {
@@ -93,13 +89,9 @@
         minlength: "El Título debe contener al menos 6 caracteres"
       },
       descr_reg: {
-        required: "Ingrese una Descripción Corta",
+        required: "Ingrese una Descripción",
         minlength: "La Descripcion debe contener al menos 6 caracteres"
       },
-      descr_not: {
-        required: "Ingrese una Descripción Larga",
-        minlength: "La Descripción debe contener al menos 15 caracteres"
-      },  
     },
 
     errorElement: "em",

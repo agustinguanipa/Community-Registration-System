@@ -5,7 +5,8 @@
 	$nombr_reg = $_POST['nombr_reg'];
 	$descr_reg = $_POST['descr_reg'];
 	$fecre_reg = $_POST['fecre_reg'];
-	$ident_jef=$_POST['ident_jef'];
+	
+	$jefes = array($_POST['ident_jef']);
 
 	$ident_ref = 1;
 	$statu_reg = 1;
@@ -15,18 +16,11 @@
 
 		if ($query_insert) {
 
-			foreach ($_POST['ident_jef'] as $value) {
-            $ident_jef.= $value.", ";
-            $query_insert_det = mysqli_query($conexion,"INSERT INTO det_reg VALUES()");
+			foreach ($_POST['ident_jef'] as $jefes) {
+            $query_insert_det = mysqli_query($conexion,"INSERT INTO det_reg(ident_reg,ident_jef) VALUES('$ident_reg','$ident_jef')");
         }
 		 		
 		 }
 		
-
-		 
-
-	
-
-		 
 	header('location: ../paginas/registro_registro_exito.php');
 ?>

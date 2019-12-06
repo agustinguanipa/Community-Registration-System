@@ -19,7 +19,7 @@ if (empty($_GET['id'])) {
 
 $id = $_GET['id'];
 
-	$query_user = mysqli_query($conexion,"SELECT u.ident_per, u.cedul_per,u.nombr_per, u.apeli_per, u.fecna_per, u.telem_per, u.telec_per, u.email_per, u.direc_per, u.tifam_per, u.tibom_per, u.seria_per, u.usuar_per, r.ident_tip, r.nombr_tip FROM tab_per u INNER JOIN tab_tip r ON u.ident_tip = r.ident_tip WHERE ident_per = '$id' AND statu_per = 1");
+	$query_user = mysqli_query($conexion,"SELECT u.ident_per, u.cedul_per,u.nombr_per, u.apeli_per, u.fecna_per, u.telem_per, u.telec_per, u.email_per, u.calle_per, u.direc_per, u.tifam_per, u.tibom_per, u.seria_per, r.ident_tip, r.nombr_tip FROM tab_per u INNER JOIN tab_tip r ON u.ident_tip = r.ident_tip WHERE ident_per = '$id' AND statu_per = 1");
 	
 	
 $result_user = mysqli_num_rows($query_user);

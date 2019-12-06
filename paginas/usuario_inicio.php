@@ -14,7 +14,7 @@ if (!empty($_SESSION['active'])) {
 
       require_once 'conexion.php';
       $usuar_jef = mysqli_real_escape_string($conexion, $_POST['usuar_jef']);
-      $contr_jef = mysqli_real_escape_string($conexion, $_POST['contr_jef']);
+      $contr_jef = md5(mysqli_real_escape_string($conexion, $_POST['contr_jef']));
 
       $query = mysqli_query($conexion,"SELECT u.ident_jef,u.cedul_jef,u.nombr_jef,u.apeli_jef,u.fecna_jef,u.telem_jef,u.telec_jef,u.email_jef,u.direc_jef,u.tibom_jef,u.seria_jef,u.usuar_jef,u.contr_jef,u.statu_jef, r.ident_tip, r.nombr_tip FROM tab_jef u INNER JOIN tab_tip r ON u.ident_tip = r.ident_tip WHERE u.usuar_jef = '$usuar_jef' AND u.contr_jef = '$contr_jef'");
       mysqli_close($conexion);

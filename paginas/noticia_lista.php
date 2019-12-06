@@ -24,7 +24,13 @@
 	    </div>
 	    <div class="row" style="padding-top: 2px;">
 	    	<div class="col-sm-8">
-					<a href="noticia_registro.php" class="btn btn-info float-left"><i class="fa fa-plus"></i> Publicar Noticia</a>
+	    		<?php  
+							if ($data['nombr_tip'] != 'ADMINISTRADOR' && ($_SESSION['ident_tip'] == 1 || $_SESSION['ident_tip'] == 2)) {
+							?>
+								<a href="noticia_registro.php" class="btn btn-info float-left"><i class="fa fa-plus"></i> Publicar Noticia</a>
+						<?php	
+								}
+							?>
 				</div>
 				<form action="noticia_buscar.php" method="GET" class="col-sm-4" style="padding-top: 1px;">
 					<div class="input-group">			
@@ -85,13 +91,22 @@
 											<a href="noticia_ver.php?id=<?php echo $data['ident_not']; ?>" class="look"><i class="fa fa-eye"></i></a>
 										</td>
 										<td class='text-center'>
+											<?php  
+												if ($data['nombr_tip'] != 'ADMINISTRADOR' && ($_SESSION['ident_tip'] == 1 || $_SESSION['ident_tip'] == 2)) {
+												?>
 											<a href="noticia_editar.php?id=<?php echo $data['ident_not']; ?>" class="edit"><i class="fa fa-edit"></i></a>
+											<?php	
+													}
+												?>
 										</td>
 										<td class='text-center'>
-											
+											<?php  
+												if ($data['nombr_tip'] != 'ADMINISTRADOR' && ($_SESSION['ident_tip'] == 1 || $_SESSION['ident_tip'] == 2)) {
+												?>
 													<a href="noticia_borrar.php?id=<?php echo $data['ident_not']; ?>" class="delete eliminar"><i class="fa fa-trash-alt"></i></a>
-													
-												
+												<?php	
+													}
+												?>	
 										</td>
 									</tr>
 

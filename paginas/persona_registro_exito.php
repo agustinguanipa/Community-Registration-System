@@ -20,7 +20,7 @@
 				</div>
 				<div class="card-footer">
            <a href="persona_registro.php" class="btn btn-info float-left"><i class="fa fa-plus"></i> Registrar otra Persona</a> 
-           <a href="persona_lista.php" class="btn btn-primary float-right"><i class="fa fa-arrow-right"></i> Ir al Listado</a> 
+           <a href="persona_lista.php" class="btn btn-primary float-right">Ir al Listado <i class="fa fa-arrow-right"></i></a> 
 				</div>
     </div> 
   </div>

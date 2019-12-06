@@ -80,13 +80,12 @@
 										<td class='text-center'><?php echo $data['fecpu_not']; ?></td>
 										<td class='text-center'>
 											<?php  
-												if ($data['ident_tip'] != 1) {
+												if ($data['nombr_tip'] != 'ADMINISTRADOR' && ($_SESSION['ident_tip'] == 1 || $_SESSION['ident_tip'] == 2)) {
 												?>
 													<a href="noticia_restaurar.php?id=<?php echo $data['ident_not']; ?>" class="restaurar"><i class="fa fa-check"></i></a>
-													
 												<?php	
-												}
-											?>
+													}
+												?>
 										</td>
 									</tr>
 

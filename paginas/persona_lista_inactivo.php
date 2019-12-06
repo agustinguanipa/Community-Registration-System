@@ -85,7 +85,13 @@
 										<td class='text-center'><?php echo $data['telem_per']; ?></td>
 										<td class='text-center'><?php echo $data['email_per']; ?></td>
 										<td class='text-center'>
-											<a href="persona_restaurar.php?id=<?php echo $data['ident_per']; ?>" class="restaurar"><i class="fa fa-check"></i></a>
+											<?php  
+												if ($data['nombr_tip'] != 'ADMINISTRADOR' && ($_SESSION['ident_tip'] == 1 || $_SESSION['ident_tip'] == 2)) {
+												?>
+													<a href="persona_restaurar.php?id=<?php echo $data['ident_per']; ?>" class="restaurar"><i class="fa fa-check"></i></a>
+												<?php	
+														}
+													?>	
 										</td>
 									</tr>
 

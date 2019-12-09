@@ -40,7 +40,7 @@
                 $query_jef = mysqli_query($conexion,"SELECT * FROM tab_jef");
                 $result_jef = mysqli_num_rows($query_jef);
               ?>
-              <select class="selectpicker" id="ident_jef" name="ident_jef" data-live-search="true" multiple>
+              <select class="selectpicker" id="ident_jef" name="ident_jef" multiple data-live-search="true">
                 <?php 
                   if ($result_jef > 0) {
                   while ($jef = mysqli_fetch_array($query_jef)) {?>
@@ -118,38 +118,5 @@
   jQuery.validator.addMethod("lettersonly", function(value, element) {
   return this.optional(element) || /^[A-Z^\s]+$/i.test(value);
 }, "Letters only please"); 
-
-</script>
-
-
-
-<script type="text/javascript">
-  
-$('#data_source').multiselect({
-    templates: {
-        li: '<li><a href="javascript:void(0);"><label class="pl-2"></label></a></li>'
-    },
-    nonSelectedText: 'Seleccione los Jefes de Familia...',
-    enableFiltering: true,
-    filterBehavior: 'text',
-    enableCaseInsensitiveFiltering: true,
-    templates: {
-        li: '<li><a href="javascript:void(0);"><label class="pl-2"></label></a></li>',
-        filter: '<li class="multiselect-item filter"><div class="input-group m-0 mb-1"><input class="form-control multiselect-search" type="text"></div></li>',
-        filterClearBtn: '<div class="input-group-append"><button class="btn btn btn-info multiselect-clear-filter" type="button"><i class="fa fa-times"></i></button></div>'
-    },
-});
-var options = [
-    {label: 'Tony', title: 'Tony', value: '1', selected: true},
-    {label: 'Tammy', title: 'Tammy', value: '2'},
-    {label: 'Bob', title: 'Bob', value: '3'},
-    {label: 'Betty', title: 'Betty', value: '4'},
-    {label: 'Jim', title: 'Jim', value: '5', selected: true},
-    {label: 'James', title: 'James', value: '6'},
-    {label: 'Jerry', title: 'Jerry', value: '7', disabled: true},
-    {label: 'Amy', title: 'Amy', value: '8'},
-    {label: 'Albert', title: 'Albert', value: '9'}
-];
-
 
 </script>

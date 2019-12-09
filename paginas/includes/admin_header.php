@@ -40,9 +40,6 @@
   <!--- Bootstrap 4 Select--->
   <script type="text/javascript" src="../libs/bootstrap-select-1.13.12/dist/js/bootstrap-select.js"></script>
   <link rel="stylesheet" href="../libs/bootstrap-select-1.13.12/dist/css/bootstrap-select.css" type="text/css"/>
-
-  <script type="text/javascript" src="../libs/bootstrap-multiselect/dist/js/bootstrap-multiselect.js"></script>
-  <link rel="stylesheet" href="../libs/bootstrap-multiselect/dist/css/bootstrap-multiselect.css" type="text/css"/>  
   <!--- Bootstrap 4 UI E-Commerce --->
   <script src="../libs/bootstrap-ecommerce-uikit/ui-ecommerce/js/bootstrap.bundle.min.js" type="text/javascript"></script>
   <link href="../libs/bootstrap-ecommerce-uikit/ui-ecommerce/css/bootstrap.css" rel="stylesheet" type="text/css"/>

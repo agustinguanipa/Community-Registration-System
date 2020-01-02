@@ -47,13 +47,13 @@
 		  </div>
 		</div>
 		<div class="card mb-3">
-		  <img src="../imagen/panel-2.jpg" class="card-img-top" alt="Panel Registros">
+		  <img src="../imagen/panel-2.jpg" class="card-img-top" alt="Panel Eventos">
 		  <div class="card-body">
-		    <h5 class="card-title"><b>Registros</b></h5>
-		    <p class="card-text">Registros de CLAP, Gas y demás</p>
+		    <h5 class="card-title"><b>Eventos</b></h5>
+		    <p class="card-text">Registros de Jornadas, CLAP, Gas y demás</p>
 		  </div>
 		  <div class="card-footer">
-		  	<a href="registro_lista.php" class="btn btn-primary">Ver Registros</a>
+		  	<a href="registro_lista.php" class="btn btn-primary">Ver Eventos</a>
 		  </div>
 		</div>
 	  

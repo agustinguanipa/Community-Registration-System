@@ -56,7 +56,7 @@ $data = mysqli_fetch_array($query_user);
 		      </form>
 				</div>
 				<div class="card-footer">
-           <a href="persona_lista.php" class="btn btn-info float-left"><i class="fa fa-arrow-left"></i> Volver al Listado</a> 
+           <a href="persona_lista_inactivo.php" class="btn btn-info float-left"><i class="fa fa-arrow-left"></i> Volver al Listado</a> 
 				</div>
     </div> 
   </div>

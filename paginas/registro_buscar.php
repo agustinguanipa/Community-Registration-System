@@ -9,6 +9,14 @@
   require_once('includes/admin_header.php');
 ?>
 
+<?php 
+	$busqueda = strtolower($_REQUEST['busqueda']);
+	if (empty($busqueda)) {
+		header('location: registro_lista.php');
+		mysqli_close($conexion);
+	}
+?>
+
 <div class="container-fluid">
 	<div class="table-wrapper">
 	    <div class="table-title">
@@ -52,7 +60,12 @@
 							
 						// Paginador 
 
-							$sql_registe = mysqli_query($conexion,"SELECT COUNT(*) as total_registro FROM tab_reg WHERE statu_reg = 1");
+							$sql_registe = mysqli_query($conexion,"SELECT COUNT(*) as total_registro FROM tab_reg WHERE 
+								(ident_reg LIKE '%busqueda%' OR
+								nombr_reg LIKE '%busqueda%' OR
+								descr_reg LIKE '%busqueda%' OR
+								fecre_reg LIKE '%busqueda%')
+								AND statu_reg = 1");
 							$result_registe = mysqli_fetch_array($sql_registe);
 							$total_registro = $result_registe['total_registro'];
 
@@ -69,7 +82,12 @@
 							$desde = ($pagina-1) * $por_pagina;
 							$total_paginas = ceil($total_registro / $por_pagina);
 
-							$query = mysqli_query($conexion,"SELECT ident_reg, nombr_reg, descr_reg, fecre_reg FROM tab_reg WHERE statu_reg = 1 ORDER BY ident_reg DESC LIMIT $desde,$por_pagina");
+							$query = mysqli_query($conexion,"SELECT ident_reg, nombr_reg, descr_reg, fecre_reg FROM tab_reg WHERE 
+								( ident_reg LIKE '%$busqueda%' OR
+								nombr_reg LIKE '%$busqueda%' OR  
+								descr_reg LIKE '%$busqueda%' OR 
+								fecre_reg LIKE '%$busqueda%')
+								AND statu_reg = 1  ORDER BY ident_reg ASC LIMIT $desde,$por_pagina");
 							mysqli_close($conexion);
 							$result = mysqli_num_rows($query);
 

@@ -20,7 +20,7 @@
           <div class="form-row">
             <div class="col form-group col-lg-8">
               <label class="form-label" for="nombr_reg"><b>Nombre: </b></label>
-              <input type="text" class="form-control" name="nombr_reg" autocomplete="off" id="nombr_reg"  maxlength="100" onkeyup="this.value = this.value.toUpperCase();" required>
+              <input type="text" class="form-control" name="nombr_reg" autocomplete="off" id="nombr_reg"  maxlength="100" onkeyup="this.value = this.value.toUpperCase();" placeholder="Jornada, CLAP, Gas y otros" required>
             </div>
             <div class="col form-group col-lg-4">
               <label class="form-label" for="fecre_reg"><b>Fecha de Registro: </b></label>
@@ -30,7 +30,7 @@
           <div class="form-row">
             <div class="col form-group">
               <label class="form-label" for="descr_reg"><b>Descripción: </b></label>
-              <input type="text" class="form-control" name="descr_reg" autocomplete="off" id="descr_reg" maxlength="100" onkeyup="this.value = this.value.toUpperCase();" required>
+              <input type="text" class="form-control" name="descr_reg" autocomplete="off" id="descr_reg" maxlength="100" onkeyup="this.value = this.value.toUpperCase();" placeholder="Lugar, Calle o Sitio" required>
             </div>
           </div>
           <div class="form-row">
@@ -40,7 +40,7 @@
                 $query_jef = mysqli_query($conexion,"SELECT * FROM tab_jef");
                 $result_jef = mysqli_num_rows($query_jef);
               ?>
-              <select class="selectpicker" id="ident_jef" name="ident_jef" multiple data-live-search="true">
+              <select class="selectpicker" id="ident_jef[]" name="ident_jef[]" multiple data-live-search="true">
                 <?php 
                   if ($result_jef > 0) {
                   while ($jef = mysqli_fetch_array($query_jef)) {?>
@@ -71,7 +71,7 @@
 
 <script type="text/javascript">
   $( document ).ready( function () {
-  $( "#noticia_registro" ).validate( {
+  $( "#registro_nuevo" ).validate( {
     rules: {
       nombr_reg: {
         required: true,
@@ -81,16 +81,22 @@
         required: true,
         minlength: 15
       },
+      fecre_reg: {
+        required: true
+      },
     },
 
     messages: {
       nombr_reg: {
-        required: "Ingrese un Título",
-        minlength: "El Título debe contener al menos 6 caracteres"
+        required: "Ingrese un Nombre",
+        minlength: "El Nombre debe contener al menos 6 caracteres"
       },
       descr_reg: {
         required: "Ingrese una Descripción",
         minlength: "La Descripcion debe contener al menos 6 caracteres"
+      },
+      fecre_reg: {
+        required: "Ingrese una Fecha"
       },
     },
 

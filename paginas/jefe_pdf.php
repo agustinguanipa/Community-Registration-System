@@ -7,7 +7,9 @@ use Dompdf\Dompdf;
 
 
 
- $html=file_get_contents_curl("http://localhost/Consejo%20Comunal%20Ambrosio%20Plaza/paginas/jefe_lista.php");
+
+
+$html=file_get_contents_curl("http://localhost/Consejo%20Comunal%20Ambrosio%20Plaza/paginas/jefe_lista.php");
 
  
 // Instanciamos un objeto de la clase DOMPDF.

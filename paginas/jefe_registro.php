@@ -82,7 +82,7 @@
             <div class="col form-group">
               <label class="form-label" for="ident_tip"><b>Tipo de Usuario: </b></label>
               <?php 
-                $query_tip = mysqli_query($conexion,"SELECT * FROM  tab_tip");
+                $query_tip = mysqli_query($conexion,"SELECT * FROM  tab_tip WHERE ident_tip != 1");
                 $result_tip = mysqli_num_rows($query_tip);
               ?>
               <select class="form-control" name="ident_tip" id="ident_tip">

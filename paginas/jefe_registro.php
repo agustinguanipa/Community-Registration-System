@@ -20,15 +20,15 @@
           <div class="form-row">
             <div class="col form-group">
               <label class="form-label" for="cedul_jef"><b>Cédula de Identidad: </b></label>
-              <input type="text" class="form-control" name="cedul_jef" autocomplete="off" id="cedul_jef" placeholder="26607655" maxlength="10" onkeyup="this.value = this.value.toUpperCase();" required>
+              <input type="text" class="form-control" name="cedul_jef" autocomplete="off" id="cedul_jef" maxlength="10" onkeyup="this.value = this.value.toUpperCase();" required>
             </div>
             <div class="col form-group">
               <label class="form-label" for="nombr_jef"><b>Nombre: </b></label>
-              <input type="text" class="form-control" name="nombr_jef" autocomplete="off" id="nombr_jef" placeholder="Carlos" maxlength="20" onkeyup="this.value = this.value.toUpperCase();" required>
+              <input type="text" class="form-control" name="nombr_jef" autocomplete="off" id="nombr_jef" maxlength="20" onkeyup="this.value = this.value.toUpperCase();" required>
             </div>
             <div class="col form-group">
               <label class="form-label" for="apeli_jef"><b>Apellido: </b></label>
-              <input type="text" class="form-control" name="apeli_jef" autocomplete="off" id="apeli_jef" placeholder="Agustin" maxlength="20" onkeyup="this.value = this.value.toUpperCase();">
+              <input type="text" class="form-control" name="apeli_jef" autocomplete="off" id="apeli_jef" maxlength="20" onkeyup="this.value = this.value.toUpperCase();">
             </div>
           </div>
           <div class="form-row">
@@ -53,19 +53,21 @@
             <div class="col form-group col-lg-4">
               <label class="form-label" for="calle_jef"><b>Calle o Carrera: </b></label>
               <select class="form-control" id="calle_jef" name="calle_jef">
+                <option disabled selected value>Seleccionar una Opción...</option>
                 <option value="CALLE 2">CALLE 2</option>
                 <option value="CARRERA 7">CARRERA 7</option>
               </select>
             </div>
             <div class="col form-group col-lg-8">
               <label class="form-label" for="direc_jef"><b>Dirección: </b></label>
-              <input type="text" class="form-control" name="direc_jef" autocomplete="off" id="direc_jef" placeholder="Calle 2 Bellavista" onkeyup="this.value = this.value.toUpperCase();">
+              <input type="text" class="form-control" name="direc_jef" autocomplete="off" id="direc_jef" placeholder="Residencia / Urbanizacion" onkeyup="this.value = this.value.toUpperCase();">
             </div>
           </div>
           <div class="form-row">
             <div class="col form-group">
               <label class="form-label" for="tibom_jef"><b>Tipo de Bombona: </b></label>
               <select class="form-control" id="tibom_jef" name="tibom_jef">
+                <option disabled selected value>Seleccionar una Opción...</option>
                 <option value="10 KG">10 KG</option>
                 <option value="18 KG">18 KG</option>
                 <option value="27 KG">27 KG</option>
@@ -75,17 +77,16 @@
             </div>
             <div class="col form-group">
               <label class="form-label" for="seria_jef"><b>Serial del Carnet de la Patria: </b></label>
-              <input type="text" class="form-control" name="seria_jef" autocomplete="off" id="seria_jef" placeholder="0123456789" maxlength="20">
+              <input type="text" class="form-control" name="seria_jef" autocomplete="off" id="seria_jef" maxlength="20">
             </div>
-          </div>
-          <div class="form-row">
             <div class="col form-group">
               <label class="form-label" for="ident_tip"><b>Tipo de Usuario: </b></label>
               <?php 
                 $query_tip = mysqli_query($conexion,"SELECT * FROM  tab_tip WHERE ident_tip != 1");
                 $result_tip = mysqli_num_rows($query_tip);
               ?>
-              <select class="form-control" name="ident_tip" id="ident_tip">
+              <select class="form-control" name="ident_tip" id="ident_tip" required>
+                <option disabled selected value>Seleccionar una Opción...</option>
                 <?php 
                   if ($result_tip > 0) {
                   while ($tip = mysqli_fetch_array($query_tip)) {?>
@@ -96,22 +97,26 @@
                 ?>
               </select>
             </div>
-            <div class="col form-group">
-              <label class="form-label" for="usuar_jef"><b>Usuario: </b></label>
-              <input type="text" class="form-control tipo" name="usuar_jef" autocomplete="off" id="usuar_jef" placeholder="miusuario" maxlength="20" onkeyup="this.value = this.value.toUpperCase();">
-            </div>
-            <div class="col form-group">
-              <label class="form-label" for="contr_jef"><b>Contraseña: </b></label>
-              <input type="password" class="form-control tipo" name="contr_jef" autocomplete="off" id="contr_jef" placeholder="********" maxlength="20">
-            </div>
-            <div class="col form-group">
-              <label class="form-label" for="confirm_password"><b>Confirmar Contraseña: </b></label>
-              <input type="password" class="form-control tipo" name="confirm_password" autocomplete="off" id="confirm_password" placeholder="********" maxlength="20">
-            </div>
           </div>
+          <div id="hidden_div" style="display: none;">
+            <div class="form-row">
+              <div class="col form-group">
+                <label class="form-label" for="usuar_jef"><b>Usuario: </b></label>
+                <input type="text" class="form-control tipo" name="usuar_jef" autocomplete="off" id="usuar_jef" placeholder="miusuario" maxlength="20" onkeyup="this.value = this.value.toUpperCase();">
+              </div>
+              <div class="col form-group">
+                <label class="form-label" for="contr_jef"><b>Contraseña: </b></label>
+                <input type="password" class="form-control tipo" name="contr_jef" autocomplete="off" id="contr_jef" placeholder="********" maxlength="20">
+              </div>
+              <div class="col form-group">
+                <label class="form-label" for="confirm_password"><b>Confirmar Contraseña: </b></label>
+                <input type="password" class="form-control tipo" name="confirm_password" autocomplete="off" id="confirm_password" placeholder="********" maxlength="20">
+              </div>
+            </div>
+          </div> 
           <div class="form-row">
             <div class="col form-group">
-              <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-user"></i> Registrar Usuario</button>
+              <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-user"></i> Registrar Jefe de Familia</button>
               <button type="reset" class="btn btn-light btn-block"><i class="fa fa-undo"></i> Limpiar</button>
             </div>
           </div> 
@@ -160,24 +165,26 @@
         required: true
       },
       telem_jef: {
-        required: true,
         number: false,
         minlength: 15
       },
       telec_jef: {
-        required: true,
         number: false,
         minlength: 15
       },
       email_jef: {
-        required: true,
         email: true
+      },
+      calle_jef: {
+        required: true
       },
       direc_jef: {
         required: true
       },
+      tibom_jef: {
+        required: true
+      },
       seria_jef: {
-        required: true,
         number: false
       },
       usuar_jef: {
@@ -203,7 +210,10 @@
         required: true,
         minlength: 4,
         equalTo: "#contr_jef"
-      }, 
+      },
+      ident_tip: {
+        required: true
+      },
     },
 
     messages: {
@@ -227,24 +237,26 @@
         required: "Ingrese una Fecha de Nacimiento"
       },
       telem_jef: {
-        required: "Ingrese un Número de Teléfono Valido",
         number: "Ingrese un Número de Teléfono Valido",
         minlength: "Ingrese un Número de Teléfono Valido"
       },
       telec_jef: {
-        required: "Ingrese un Número de Teléfono Valido",
         number: "Ingrese un Número de Teléfono Valido",
         minlength: "Ingrese un Número de Teléfono Valido"
       },
       email_jef: {
-        required: "Ingrese una Dirección de Correo Electrónico Válida",
         email: "Ingrese una Dirección de Correo Electrónico Válida"
+      },
+      calle_jef: {
+        required: "Seleccione una Opcion"
       },
       direc_jef: {
         required: "Ingrese una Dirección"
       },
+      tibom_jef: {
+        required: "Seleccione una Opcion"
+      },
       seria_jef: {
-        required: "Ingrese un Serial del Carnet",
         number: "Ingrese un Serial del Carnet"
       },
       usuar_jef: {
@@ -261,7 +273,9 @@
         minlength: "Tu Contraseña debe contener al menos 5 caracteres",
         equalTo: "Ingrese la Misma Contraseña"
       },
-      
+      ident_tip: {
+        required: "Seleccione una Opcion"
+      },
     },
 
     errorElement: "em",
@@ -304,5 +318,14 @@ $('.telec-mask').mask('(0000) 000 0000');
     }).change(); // execute on load
   });
 
+
+</script>
+
+<script type="text/javascript">
+  
+  document.getElementById('ident_tip').addEventListener('change', function () {
+    var style = this.value != 4  ? 'block' : 'none';
+    document.getElementById('hidden_div').style.display = style;
+});
 
 </script>

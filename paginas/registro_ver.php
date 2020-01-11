@@ -32,7 +32,7 @@ if ($result == 0)
 	$nombr_reg = $data['nombr_reg'];
 	$descr_reg = $data['descr_reg'];
 	$fecre_reg = $data['fecre_reg'];
-	
+	$ident_reg = $data['ident_reg'];
 	$cedul_jef = $data['cedul_jef'];
 	$nombr_jef = $data['nombr_jef'];
 	$apeli_jef = $data['apeli_jef'];
@@ -92,7 +92,8 @@ mysqli_close($conexion);
 		  </div>
 		</div>
 		<div class="card-footer">
-	     <a href="registro_lista.php" class="btn btn-info float-left"><i class="fa fa-arrow-left"></i> Volver al Listado</a> 
+			<a href="listas/generaListaEvento.php?id=<?php echo $data['ident_reg']; ?>" class="btn btn-info float-right mx-2" target="_blank"><i class="fa fa-print" u="<?php echo $data['ident_reg']; ?>"></i> Generar PDF</a> 
+	    <a href="registro_lista.php" class="btn btn-info float-left"><i class="fa fa-arrow-left"></i> Volver al Listado</a> 
 		</div>
 	</div>
 </div>

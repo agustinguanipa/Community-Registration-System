@@ -19,7 +19,7 @@ if (empty($_GET['id'])) {
 
 $id = $_GET['id'];
 
-	$query_jef = mysqli_query($conexion,"SELECT u.ident_jef,u.cedul_jef,u.nombr_jef, u.apeli_jef, u.fecna_jef, u.telem_jef, u.telec_jef, u.email_jef, u.calle_jef, u.direc_jef, u.usuar_jef, u.tibom_jef, u.seria_jef, r.ident_tip, r.nombr_tip FROM tab_jef u INNER JOIN tab_tip r ON u.ident_jef = r.ident_tip WHERE ident_jef = '$id' AND statu_jef = 1");
+	$query_jef = mysqli_query($conexion,"SELECT u.ident_jef,u.cedul_jef,u.nombr_jef, u.apeli_jef, u.fecna_jef, u.telem_jef, u.telec_jef, u.email_jef, u.calle_jef, u.direc_jef, u.usuar_jef, u.tibom_jef, u.seria_jef, u.ident_tip, r.ident_tip, r.nombr_tip FROM tab_jef u INNER JOIN tab_tip r ON u.ident_tip = r.ident_tip WHERE ident_jef = '$id' AND statu_jef = 1");
 	
 $result_jef = mysqli_num_rows($query_jef);
 

@@ -86,7 +86,7 @@
 							$result_registe = mysqli_fetch_array($sql_registe);
 							$total_registro = $result_registe['total_registro'];
 
-							$por_pagina = 5;
+							$por_pagina = 10;
 
 							if (empty($_GET['pagina'])) 
 							{

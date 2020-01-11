@@ -43,7 +43,7 @@ if (!empty($_SESSION['active'])) {
         header('location: admin_panel.php');
       }else{
 
-        $alert = '(*) El usuario y/o contraseña son incorrectos.';
+        $alert = 'El Usuario y/o Contraseña son Incorrectos.';
         session_destroy();
       }
     }

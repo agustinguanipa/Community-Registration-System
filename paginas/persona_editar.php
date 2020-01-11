@@ -19,7 +19,7 @@ if (empty($_GET['id'])) {
 
 $id = $_GET['id'];
 
-	$query_user = mysqli_query($conexion,"SELECT u.ident_per, u.cedul_per,u.nombr_per, u.apeli_per, u.fecna_per, u.telem_per, u.telec_per, u.email_per, u.calle_per, u.direc_per, u.tifam_per, u.tibom_per, u.seria_per, r.ident_tip, r.nombr_tip FROM tab_per u INNER JOIN tab_tip r ON u.ident_tip = r.ident_tip WHERE ident_per = '$id' AND statu_per = 1");
+	$query_user = mysqli_query($conexion,"SELECT u.ident_per, u.cedul_per,u.nombr_per, u.apeli_per, u.fecna_per, u.telem_per, u.telec_per, u.email_per, u.calle_per, u.direc_per, u.tifam_per, u.tibom_per, u.seria_per, r.ident_jef, r.nombr_jef, r.apeli_jef FROM tab_per u INNER JOIN tab_jef r ON u.ident_jef = r.ident_jef WHERE ident_per = '$id' AND statu_per = '1'");
 	
 	
 $result_user = mysqli_num_rows($query_user);
@@ -37,7 +37,7 @@ if ($result_user == 0)
   $telem_per = $data_per['telem_per'];
   $telec_per = $data_per['telec_per'];
   $email_per = $data_per['email_per'];
-  $calle_jef = $data_per['calle_jef'];
+  $calle_per = $data_per['calle_per'];
   $direc_per = $data_per['direc_per'];
   $tifam_per = $data_per['tifam_per'];
   $tibom_per = $data_per['tibom_per'];
@@ -81,7 +81,7 @@ mysqli_close($conexion);
                   $query_jef = mysqli_query($conexion,"SELECT * FROM tab_jef");
                   $result_jef = mysqli_num_rows($query_jef);
                 ?>
-                <select class="form-control" name="ident_jef" id="ident_jef">
+                <select class="form-control notItemOne" name="ident_jef" id="ident_jef">
                   <option value="<?php echo $ident_jef;?>"><?php echo $nombr_jef;?> <?php echo $apeli_jef;?></option>
                   <?php 
                     if ($result_jef > 0) {
@@ -116,7 +116,7 @@ mysqli_close($conexion);
               <div class="col form-group col-lg-4">
                 <label class="form-label" for="calle_per"><b>Calle o Carrera: </b></label>
                 <select class="form-control notItemOne" id="calle_per" name="calle_per">
-                  <option value="<?php echo $calle_jef;?>"><?php echo $calle_jef;?></option>
+                  <option value="<?php echo $calle_per;?>"><?php echo $calle_per;?></option>
                   <option value="CALLE 2">CALLE 2</option>
                   <option value="CARRERA 7">CARRERA 7</option>
                 </select>
@@ -132,9 +132,18 @@ mysqli_close($conexion);
                 <select class="form-control notItemOne" name="tifam_per" id="tifam_per">
                   <option value="<?php echo $tifam_per;?>"><?php echo $tifam_per;?></option>
                   <option value="MADRE/PADRE">MADRE/PADRE</option>
-                  <option value="HIJO/HIJA">HIJO/HIJA</option>
+                  <option value="ESPOSA/ESPOSO">ESPOSA/ESPOSO</option>
+                  <option value="NUERA/YERNO">NUERA/YERNO</option>
+                  <option value="SUEGRA/SUEGRO">SUEGRA/SUEGRO</option>
+                  <option value="ABUELA/ABUELO">ABUELA/ABUELO</option>
                   <option value="NIETO/NIETA">NIETO/NIETA</option>
-                  <option value="ESPOSO/ESPOSA">ESPOSO/ESPOSA</option>
+                  <option value="HERMANA/HERMANO">HERMANA/HERMANO</option>
+                  <option value="CUÑADA/CUÑADO">CUÑADA/CUÑADO</option>
+                  <option value="TIA/TIO">TIA/TIO</option>
+                  <option value="SOBRINA/SOBRINO">SOBRINA/SOBRINO</option>
+                  <option value="HIJA/HIJO">HIJA/HIJO</option>
+                  <option value="PRIMA/PRIMO">PRIMA/PRIMO</option>
+                  <option value="CONCUBINA/CONCUBINO">CONCUBINA/CONCUBINO</option>
                 </select>
               </div>
               <div class="col form-group">
@@ -197,12 +206,10 @@ mysqli_close($conexion);
         minlength: 15
       },
       telec_per: {
-        required: true,
         number: false,
         minlength: 15
       },
       email_per: {
-        required: true,
         email: true
       },
       direc_per: {
@@ -233,12 +240,10 @@ mysqli_close($conexion);
         minlength: "Ingrese un Número de Teléfono Valido"
       },
       telec_per: {
-        required: "Ingrese un Número de Teléfono Valido",
         number: "Ingrese un Número de Teléfono Valido",
         minlength: "Ingrese un Número de Teléfono Valido"
       },
       email_per: {
-        required: "Ingrese una Dirección de Correo Electrónico Válida",
         email: "Ingrese una Dirección de Correo Electrónico Válida"
       },
       direc_per: {

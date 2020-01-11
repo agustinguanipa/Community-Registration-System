@@ -2,13 +2,15 @@
   require_once '../conexion.php';
 
 	use Dompdf\Dompdf;
+
+	$id = $_GET['id'];
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
-	<title>Jefes de Familia | Consejo Comunal Ambrosio Plaza</title>
+	<title>Evento | Consejo Comunal Ambrosio Plaza</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="././libs/bootstrap-4.1.3-dist/css/bootstrap.min.css"/>
   <script src="././libs/bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
@@ -45,7 +47,8 @@
 			<td class="info_cliente">
 				<div class="card">
 					<div class="card-header">
-						<h3 class="h3"><b>Jefes de Familia</b></h3>
+						<h3 class="h3"><b>Evento</b></h3>
+						<h3 class="h3"><b>Lista de Beneficiados</b></h3>
 					</div>
 				</div>
 			</td>
@@ -65,8 +68,7 @@
 			</thead>
 			<tbody id="detalle_productos">
 				<?php
-				        
-			    $sql = "SELECT * FROM tab_jef WHERE statu_jef = 1";
+			    $sql = "SELECT u.ident_reg, u.ident_jef, r.ident_jef, r.nombr_jef, r.apeli_jef FROM det_reg u INNER JOIN tab_jef r ON u.ident_jef = r.ident_jef WHERE ident_reg = '$id'";
 
 			    $result = mysqli_query($conexion, $sql);
 

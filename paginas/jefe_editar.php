@@ -1,4 +1,6 @@
-<?php 
+<?php
+  session_start();
+
   require_once('includes/admin_header.php');
 
   if (!isset($_SESSION['active'])) {
@@ -17,7 +19,7 @@ if (empty($_GET['id'])) {
 
 $id = $_GET['id'];
 
-  $query_jef = mysqli_query($conexion,"SELECT u.ident_jef,u.cedul_jef,u.nombr_jef, u.apeli_jef, u.fecna_jef, u.telem_jef, u.telec_jef, u.email_jef, u.calle_jef, u.direc_jef, u.tibom_jef, u.seria_jef, r.ident_tip, r.nombr_tip FROM tab_jef u INNER JOIN tab_tip r ON u.ident_jef = r.ident_tip WHERE ident_jef = '$id' AND statu_jef = 1");
+  $query_jef = mysqli_query($conexion,"SELECT u.ident_jef,u.cedul_jef,u.nombr_jef, u.apeli_jef, u.fecna_jef, u.telem_jef, u.telec_jef, u.email_jef, u.calle_jef, u.direc_jef, u.tibom_jef, u.seria_jef, u.ident_tip, r.ident_tip, r.nombr_tip FROM tab_jef u INNER JOIN tab_tip r ON u.ident_tip = r.ident_tip WHERE ident_jef = '$id' AND statu_jef = 1");
   
 $result_jef = mysqli_num_rows($query_jef);
 
@@ -98,25 +100,6 @@ mysqli_close($conexion);
 		        </div>
             <div class="form-row">
               <div class="col form-group">
-                <label class="form-label" for="ident_tip"><b>Tipo de Usuario: </b></label>
-                <?php
-                  include "conexion.php";
-                  $query_tip = mysqli_query($conexion,"SELECT * FROM tab_tip");
-                  $result_tip = mysqli_num_rows($query_tip);
-                ?>
-                <select class="form-control notItemOne" name="ident_tip" id="ident_tip">
-                  <option value="<?php echo $ident_tip;?>"><?php echo $nombr_tip;?></option>
-                  <?php 
-                    if ($result_tip > 0) {
-                    while ($tip = mysqli_fetch_array($query_tip)) {?>
-                    <option value="<?php echo $tip['ident_tip'];?>"><?php echo $tip['nombr_tip'];?></option>
-                  <?php
-                  }
-                  }
-                  ?>
-                </select>
-              </div>
-              <div class="col form-group">
                 <label class="form-label" for="tibom_jef"><b>Tipo de Bombona: </b></label>
                 <select class="form-control notItemOne" id="tibom_jef" name="tibom_jef">
                   <option value="<?php echo $tibom_jef;?>"><?php echo $tibom_jef;?></option>
@@ -165,17 +148,14 @@ mysqli_close($conexion);
         required: true
       },
       telem_jef: {
-        required: true,
         number: false,
         minlength: 15
       },
       telec_jef: {
-        required: true,
         number: false,
         minlength: 15
       },
       email_jef: {
-        required: true,
         email: true
       },
       direc_jef: {
@@ -201,17 +181,14 @@ mysqli_close($conexion);
         required: "Ingrese una Fecha de Nacimiento"
       },
       telem_jef: {
-        required: "Ingrese un Número de Teléfono Valido",
         number: "Ingrese un Número de Teléfono Valido",
         minlength: "Ingrese un Número de Teléfono Valido"
       },
       telec_jef: {
-        required: "Ingrese un Número de Teléfono Valido",
         number: "Ingrese un Número de Teléfono Valido",
         minlength: "Ingrese un Número de Teléfono Valido"
       },
       email_jef: {
-        required: "Ingrese una Dirección de Correo Electrónico Válida",
         email: "Ingrese una Dirección de Correo Electrónico Válida"
       },
       direc_jef: {

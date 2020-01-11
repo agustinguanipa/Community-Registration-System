@@ -20,15 +20,15 @@
           <div class="form-row">
             <div class="col form-group">
               <label class="form-label" for="cedul_per"><b>Cédula de Identidad: </b></label>
-              <input type="text" class="form-control" name="cedul_per" autocomplete="off" id="cedul_per" placeholder="26607655" maxlength="10" onkeyup="this.value = this.value.toUpperCase();" required>
+              <input type="text" class="form-control" name="cedul_per" autocomplete="off" id="cedul_per" maxlength="10" onkeyup="this.value = this.value.toUpperCase();" required>
             </div>
             <div class="col form-group">
               <label class="form-label" for="nombr_per"><b>Nombre: </b></label>
-              <input type="text" class="form-control" name="nombr_per" autocomplete="off" id="nombr_per" placeholder="Carlos" maxlength="20" onkeyup="this.value = this.value.toUpperCase();" required>
+              <input type="text" class="form-control" name="nombr_per" autocomplete="off" id="nombr_per" maxlength="20" onkeyup="this.value = this.value.toUpperCase();" required>
             </div>
             <div class="col form-group">
               <label class="form-label" for="apeli_per"><b>Apellido: </b></label>
-              <input type="text" class="form-control" name="apeli_per" autocomplete="off" id="apeli_per" placeholder="Agustin" maxlength="20" onkeyup="this.value = this.value.toUpperCase();">
+              <input type="text" class="form-control" name="apeli_per" autocomplete="off" id="apeli_per" maxlength="20" onkeyup="this.value = this.value.toUpperCase();">
             </div>
           </div>
           <div class="form-row">
@@ -53,13 +53,14 @@
             <div class="col form-group col-lg-4">
               <label class="form-label" for="calle_per"><b>Calle o Carrera: </b></label>
               <select class="form-control" id="calle_per" name="calle_per">
+                <option disabled selected value>Seleccionar una Opción...</option>
                 <option value="CALLE 2">CALLE 2</option>
                 <option value="CARRERA 7">CARRERA 7</option>
               </select>
             </div>
             <div class="col form-group col-lg-8">
               <label class="form-label" for="direc_per"><b>Dirección: </b></label>
-              <input type="text" class="form-control" name="direc_per" autocomplete="off" id="direc_per" placeholder="Calle 2 Bellavista" onkeyup="this.value = this.value.toUpperCase();">
+              <input type="text" class="form-control" name="direc_per" autocomplete="off" id="direc_per" placeholder="Residencia / Urbanizacion" onkeyup="this.value = this.value.toUpperCase();">
             </div>
           </div>
           <div class="form-row">
@@ -70,6 +71,7 @@
                 $result_jef = mysqli_num_rows($query_jef);
               ?>
               <select class="form-control" name="ident_jef" id="ident_jef">
+                <option disabled selected value>Seleccionar una Opción...</option>
                 <?php 
                   if ($result_jef > 0) {
                   while ($jef = mysqli_fetch_array($query_jef)) {?>
@@ -83,15 +85,26 @@
             <div class="col form-group">
               <label class="form-label" for="tifam_per"><b>Tipo de Familiar: </b></label>
               <select class="form-control" id="tifam_per" name="tifam_per">
+                <option disabled selected value>Seleccionar una Opción...</option>
                 <option value="MADRE/PADRE">MADRE/PADRE</option>
-                <option value="HIJO/HIJA">HIJO/HIJA</option>
+                <option value="ESPOSA/ESPOSO">ESPOSA/ESPOSO</option>
+                <option value="NUERA/YERNO">NUERA/YERNO</option>
+                <option value="SUEGRA/SUEGRO">SUEGRA/SUEGRO</option>
+                <option value="ABUELA/ABUELO">ABUELA/ABUELO</option>
                 <option value="NIETO/NIETA">NIETO/NIETA</option>
-                <option value="ESPOSO/ESPOSA">ESPOSO/ESPOSA</option>
+                <option value="HERMANA/HERMANO">HERMANA/HERMANO</option>
+                <option value="CUÑADA/CUÑADO">CUÑADA/CUÑADO</option>
+                <option value="TIA/TIO">TIA/TIO</option>
+                <option value="SOBRINA/SOBRINO">SOBRINA/SOBRINO</option>
+                <option value="HIJA/HIJO">HIJA/HIJO</option>
+                <option value="PRIMA/PRIMO">PRIMA/PRIMO</option>
+                <option value="CONCUBINA/CONCUBINO">CONCUBINA/CONCUBINO</option>
               </select>
             </div>
             <div class="col form-group">
               <label class="form-label" for="tibom_per"><b>Tipo de Bombona: </b></label>
               <select class="form-control" id="tibom_per" name="tibom_per">
+                <option disabled selected value>Seleccionar una Opción...</option>
                 <option value="10 KG">10 KG</option>
                 <option value="18 KG">18 KG</option>
                 <option value="27 KG">27 KG</option>
@@ -155,20 +168,29 @@
         required: true
       },
       telem_per: {
-        required: true,
         number: false,
         minlength: 15
       },
       telec_per: {
-        required: true,
         number: false,
         minlength: 15
       },
       email_per: {
-        required: true,
         email: true
       },
+      calle_per: {
+        required: true
+      },
       direc_per: {
+        required: true
+      },
+      ident_jef: {
+        required: true
+      },
+      tifam_per: {
+        required: true
+      },
+      tibom_per: {
         required: true
       },
       seria_per: {
@@ -197,21 +219,30 @@
         required: "Ingrese una Fecha de Nacimiento"
       },
       telem_per: {
-        required: "Ingrese un Número de Teléfono Valido",
         number: "Ingrese un Número de Teléfono Valido",
         minlength: "Ingrese un Número de Teléfono Valido"
       },
       telec_per: {
-        required: "Ingrese un Número de Teléfono Valido",
         number: "Ingrese un Número de Teléfono Valido",
         minlength: "Ingrese un Número de Teléfono Valido"
       },
       email_per: {
-        required: "Ingrese una Dirección de Correo Electrónico Válida",
         email: "Ingrese una Dirección de Correo Electrónico Válida"
+      },
+      calle_per: {
+        required: "Seleccione una Opcion"
       },
       direc_per: {
         required: "Ingrese una Dirección"
+      },
+      ident_jef: {
+        required: "Seleccione una Opcion"
+      },
+      tifam_per: {
+        required: "Seleccione una Opcion"
+      },
+      tibom_per: {
+        required: "Seleccione una Opcion"
       },
       seria_per: {
         number: "Ingrese solo números"

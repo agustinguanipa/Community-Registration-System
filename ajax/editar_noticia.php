@@ -42,6 +42,5 @@ include "../paginas/conexion.php";
 			}
 		}
 	
-
 	header('location: ../paginas/noticia_actualizar_exito.php');
 ?>

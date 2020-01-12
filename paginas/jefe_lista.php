@@ -29,6 +29,17 @@
 						?>
 							<a href="jefe_registro.php" class="btn btn-info float-left"><i class="fa fa-plus"></i> Registrar Jefe de Familia</a>
 							<a href="listas/generaListaJefes.php" class="btn btn-info float-left mx-2" target="_blank"><i class="fa fa-print"></i> Generar PDF</a>
+							<!--
+							<div class="dropdown show">
+							  <a class="btn btn-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-print"></i> Generar PDF</a>
+							  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+							  	<a class="dropdown-item" href="listas/generaListaJefes.php" target="_blank">TODOS</a>
+							  	<a class="dropdown-item disabled" href="#">Por Calle...</a>
+							    <a class="dropdown-item" href="#">CALLE 2</a>
+							    <a class="dropdown-item" href="#">CARRERA 7</a>
+							  </div>
+							</div>
+						-->
 					<?php	
 						}
 					?>

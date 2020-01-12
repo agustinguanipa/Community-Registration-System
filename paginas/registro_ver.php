@@ -92,7 +92,7 @@ mysqli_close($conexion);
 		  </div>
 		</div>
 		<div class="card-footer">
-			<a href="listas/generaListaEvento.php?id=<?php echo $data['ident_reg']; ?>" class="btn btn-info float-right mx-2" target="_blank"><i class="fa fa-print" u="<?php echo $data['ident_reg']; ?>"></i> Generar PDF</a> 
+			<!-- <a href="listas/generaListaEvento.php?id=<?php echo $data['ident_reg']; ?>" class="btn btn-info float-right mx-2" target="_blank"><i class="fa fa-print" u="<?php echo $data['ident_reg']; ?>"></i> Generar PDF</a> -->
 	    <a href="registro_lista.php" class="btn btn-info float-left"><i class="fa fa-arrow-left"></i> Volver al Listado</a> 
 		</div>
 	</div>

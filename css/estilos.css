@@ -129,4 +129,17 @@ background: linear-gradient(90deg, rgba(255,207,148,1) 0%, rgba(233,160,75,1) 51
   display: none;
 }
 
+#fondo_com1{
+  background-image: url("../imagen/sc-1.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 0px;
+}
+
+#fondo_com2{
+  background-image: url("../imagen/marcha-1.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 0px;
+}
 

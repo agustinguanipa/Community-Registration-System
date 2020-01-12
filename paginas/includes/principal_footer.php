@@ -1,5 +1,5 @@
 <!--Footer-->
-  <footer class="sticky-footer section-footer bg2 mt-2">
+  <footer class="sticky-footer section-footer bg2">
     <div class="container my-auto">
       <section class="footer-bottom row">
         <div class="col-sm-6"> 

@@ -117,8 +117,12 @@ mysqli_close($conexion);
                 <label class="form-label" for="calle_per"><b>Calle o Carrera: </b></label>
                 <select class="form-control notItemOne" id="calle_per" name="calle_per">
                   <option value="<?php echo $calle_per;?>"><?php echo $calle_per;?></option>
+                  <option value="AVENIDA ESPANA">AVENIDA ESPANA</option>
+                  <option value="AVENIDA UNIVERSIDAD">AVENIDA UNIVERSIDAD</option>
                   <option value="CALLE 2">CALLE 2</option>
+                  <option value="CARRERA 6">CARRERA 6</option>
                   <option value="CARRERA 7">CARRERA 7</option>
+                  <option value="CARRERA 8">CARRERA 8</option>
                 </select>
               </div>
               <div class="col form-group col-lg-8">

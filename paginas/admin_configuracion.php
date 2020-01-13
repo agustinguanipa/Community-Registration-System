@@ -80,7 +80,7 @@
 	              <input class="form-control newPass" type="password" name="txtPassConfirm" id="txtPassConfirm" placeholder="*********" required>
 	            </div>
 	          </div>
-	          <div class="alertChangePass" style="display: none;"></div>
+	           <div class="message"><?php if(isset($message)) { echo $message; } ?></div>
 	          <div class="form-row">
 	            <div class="col form-group">
 	              <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-key"></i> Cambiar Contraseña</button>
@@ -98,7 +98,7 @@
 
 <script type="text/javascript">
 	$( document ).ready( function () {
-  $( "#frmChangessPass" ).validate( {
+  $( "#frmChangePass" ).validate( {
     rules: {
     	txtPassUser: {
     		required: true,
@@ -118,15 +118,15 @@
     messages: {
     	txtPassUser: {
     		required: "Ingrese su Contraseña Actual",
-        minlength: "Tu Contraseña debe contener al menos 5 caracteres"
+        minlength: "Tu Contraseña debe contener al menos 4 caracteres"
     	},
       txtNewPassUser: {
         required: "Ingrese una Contraseña Nueva",
-        minlength: "Tu Contraseña debe contener al menos 5 caracteres"
+        minlength: "Tu Contraseña debe contener al menos 4 caracteres"
       },
       txtPassConfirm: {
         required: "Ingrese una Contraseña",
-        minlength: "Tu Contraseña debe contener al menos 5 caracteres",
+        minlength: "Tu Contraseña debe contener al menos 4 caracteres",
         equalTo: "Ingrese la Misma Contraseña"
       },
       

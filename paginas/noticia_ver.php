@@ -59,6 +59,7 @@ mysqli_close($conexion);
 		  <div class="form-row">
 		    <div class="col form-group">
 		      <label class="form-label" for="descr_not"><b>Descripción Larga: </b></label>
+		      <br>
 		      <label><?php echo $descr_not; ?></label>
 		    </div>
 		  </div>

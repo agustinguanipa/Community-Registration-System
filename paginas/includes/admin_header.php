@@ -52,7 +52,9 @@
   <script src="../libs/bootstrap-ecommerce-uikit/ui-ecommerce/js/script.js" type="text/javascript"></script>
   <!--- Bootstrap 4 File Style 2 --->
   <script type="text/javascript" src="../libs/bootstrap-filestyle-2.1.0/src/bootstrap-filestyle.min.js"> </script>
-
+  <!--- CKEditor --->
+  <script src="../libs/ckeditor/ckeditor.js"></script>
+  
 </head>
 
 <body>

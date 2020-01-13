@@ -46,6 +46,11 @@
             <div class="col form-group">
               <label class="form-label" for="descr_not"><b>Descripción Larga: </b></label>
               <textarea class="form-control" name="descr_not" autocomplete="off" id="descr_not"  maxlength="2000"></textarea>
+              <script>
+                // Replace the <textarea id="editor1"> with a CKEditor
+                // instance, using default configuration.
+                CKEDITOR.replace( 'descr_not' );
+            </script>
             </div>
           </div>
           <div class="form-row">
@@ -90,7 +95,7 @@
       },
       desco_not: {
         required: "Ingrese una Descripción Corta",
-        minlength: "La Descripcion debe contener al menos 6 caracteres"
+        minlength: "La Descripcion debe contener al menos 15 caracteres"
       },
       descr_not: {
         required: "Ingrese una Descripción Larga",

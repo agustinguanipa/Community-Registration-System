@@ -29,6 +29,6 @@ $pdf->render();
  
 $pdf->load_html(ob_get_clean()); 
  
-$pdf->stream('Jefes de Familia.pdf',array('Attachment'=>0));
+$pdf->stream('Jefes de Familia - Consejo Comunal Ambrosio Plaza.pdf',array('Attachment'=>0));
 
 ?>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 17, 2020 at 01:29 PM
+-- Generation Time: Jan 17, 2020 at 02:36 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.7
 
@@ -91,18 +91,6 @@ CREATE TABLE `tab_not` (
   `statu_not` varchar(45) DEFAULT NULL,
   `ident_jef` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Triggers `tab_not`
---
-DROP TRIGGER IF EXISTS `entrada_noticia`;
-DELIMITER $$
-CREATE TRIGGER `entrada_noticia` AFTER INSERT ON `tab_not` FOR EACH ROW BEGIN 
-  INSERT INTO insert_noticia(ident_not, ident_jef)
-    VALUES(new.ident_not, new.ident_jef);
-END
-$$
-DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -240,7 +228,7 @@ ALTER TABLE `insert_noticia`
 -- AUTO_INCREMENT for table `tab_jef`
 --
 ALTER TABLE `tab_jef`
-  MODIFY `ident_jef` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ident_jef` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tab_not`

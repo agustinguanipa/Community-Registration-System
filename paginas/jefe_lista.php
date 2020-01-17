@@ -28,7 +28,8 @@
 						if ($data['nombr_tip'] != 'ADMINISTRADOR' && ($_SESSION['ident_tip'] == 1 || $_SESSION['ident_tip'] == 2)) {
 						?>
 							<a href="jefe_registro.php" class="btn btn-info float-left"><i class="fa fa-plus"></i> Registrar Jefe de Familia</a>
-							<a href="listas/generaListaJefes.php" class="btn btn-info float-left mx-2" target="_blank"><i class="fa fa-print"></i> Generar PDF</a>
+							<a href="listas/generaListaJefes.php" class="btn btn-info float-left mx-2" target="_blank"><i class="fa fa-print"></i> Exportar a PDF</a>
+							<a href="listas/csvlistaJefes.php" class="btn btn-info float-left" target="_blank"><i class="fa fa-file-excel"></i> Exportar a CSV</a>
 							<!--
 							<div class="dropdown show">
 							  <a class="btn btn-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-print"></i> Generar PDF</a>

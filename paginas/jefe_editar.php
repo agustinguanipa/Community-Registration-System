@@ -118,6 +118,25 @@ mysqli_close($conexion);
                 <label class="form-label" for="seria_jef"><b>Serial del Carnet de la Patria: </b></label>
                 <input type="text" class="form-control" name="seria_jef" autocomplete="off" id="seria_jef" value="<?php echo $seria_jef; ?>" maxlength="20">
               </div>
+              <div class="col form-group">
+                <label class="form-label" for="ident_tip"><b>Tipo de Usuario: </b></label>
+                <?php
+                  include "conexion.php";
+                  $query_tip = mysqli_query($conexion,"SELECT * FROM tab_tip WHERE ident_tip != 1");
+                  $result_tip = mysqli_num_rows($query_tip);
+                ?>
+                <select class="form-control notItemOne" name="ident_tip" id="ident_tip" required>
+                  <option value="<?php echo $ident_tip;?>"><?php echo $nombr_tip;?></option>
+                  <?php 
+                    if ($result_tip > 0) {
+                    while ($tip = mysqli_fetch_array($query_tip)) {?>
+                    <option value="<?php echo $tip['ident_tip'];?>"><?php echo $tip['nombr_tip'];?></option>
+                  <?php
+                  }
+                  }
+                  ?>
+                </select>
+              </div>
 		        </div>
 		        <div class="form-row">
 		          <div class="col form-group">
@@ -232,5 +251,14 @@ mysqli_close($conexion);
 
 $('.telem-mask').mask('(0000) 000 0000');
 $('.telec-mask').mask('(0000) 000 0000');
+
+</script>
+
+<script type="text/javascript">
+  
+  document.getElementById('ident_tip').addEventListener('change', function () {
+    var style = this.value != 4  ? 'block' : 'none';
+    document.getElementById('hidden_div').style.display = style;
+});
 
 </script>

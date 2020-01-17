@@ -1,4 +1,6 @@
-<?php 
+<?php
+
+	session_start();
 
 	include "../paginas/conexion.php";
 
@@ -6,6 +8,7 @@
 	$desco_not = $_POST['desco_not'];
 	$descr_not = $_POST['descr_not'];
 	$statu_not = 1;
+	$ident_jef = $_SESSION['idUser'];
 	
 	$foto = $_FILES['foto'];
 
@@ -23,7 +26,7 @@
 		$src = $destino.$imgNoticia;
 	}
 
-		$query_insert = mysqli_query($conexion,"INSERT INTO tab_not(titul_not,desco_not,descr_not,image_not,statu_not) VALUES('$titul_not','$desco_not','$descr_not','$imgNoticia','$statu_not')");
+		$query_insert = mysqli_query($conexion,"INSERT INTO tab_not(titul_not,desco_not,descr_not,image_not,statu_not,ident_jef) VALUES('$titul_not','$desco_not','$descr_not','$imgNoticia','$statu_not','$ident_jef')");
 
 		if ($query_insert) {
 			if ($nombre_foto != '') 

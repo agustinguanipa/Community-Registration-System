@@ -316,17 +316,6 @@ $('.telec-mask').mask('(0000) 000 0000');
 
 <script type="text/javascript">
   
-  $(function() {
-    $("select.form-control").on("change",function() {
-      $(".tipo").prop('disabled',this.value=="CIUDADANO");
-    }).change(); // execute on load
-  });
-
-
-</script>
-
-<script type="text/javascript">
-  
   document.getElementById('ident_tip').addEventListener('change', function () {
     var style = this.value != 4  ? 'block' : 'none';
     document.getElementById('hidden_div').style.display = style;

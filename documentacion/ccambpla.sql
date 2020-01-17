@@ -2,44 +2,52 @@
 -- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: sql201.byetcluster.com
--- Tiempo de generación: 13-01-2020 a las 14:01:25
--- Versión del servidor: 5.6.45-86.1
--- Versión de PHP: 7.2.22
+-- Host: localhost:3306
+-- Generation Time: Jan 17, 2020 at 01:29 PM
+-- Server version: 5.7.26
+-- PHP Version: 7.3.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
 --
--- Base de datos: `epiz_25048938_ccambpla`
+-- Database: `ccambpla`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `det_reg`
+-- Table structure for table `det_reg`
 --
 
+DROP TABLE IF EXISTS `det_reg`;
 CREATE TABLE `det_reg` (
   `correlativo` int(11) NOT NULL,
   `ident_reg` int(11) NOT NULL,
   `ident_jef` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tab_jef`
+-- Table structure for table `insert_noticia`
 --
 
+DROP TABLE IF EXISTS `insert_noticia`;
+CREATE TABLE `insert_noticia` (
+  `id` int(11) NOT NULL,
+  `ident_not` int(11) NOT NULL,
+  `ident_jef` int(11) NOT NULL,
+  `fecre_not` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tab_jef`
+--
+
+DROP TABLE IF EXISTS `tab_jef`;
 CREATE TABLE `tab_jef` (
   `ident_jef` int(11) NOT NULL,
   `cedul_jef` int(11) DEFAULT NULL,
@@ -57,10 +65,10 @@ CREATE TABLE `tab_jef` (
   `contr_jef` varchar(45) DEFAULT NULL,
   `statu_jef` char(1) DEFAULT NULL,
   `ident_tip` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `tab_jef`
+-- Dumping data for table `tab_jef`
 --
 
 INSERT INTO `tab_jef` (`ident_jef`, `cedul_jef`, `nombr_jef`, `apeli_jef`, `fecna_jef`, `telem_jef`, `telec_jef`, `email_jef`, `calle_jef`, `direc_jef`, `tibom_jef`, `seria_jef`, `usuar_jef`, `contr_jef`, `statu_jef`, `ident_tip`) VALUES
@@ -69,9 +77,10 @@ INSERT INTO `tab_jef` (`ident_jef`, `cedul_jef`, `nombr_jef`, `apeli_jef`, `fecn
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tab_not`
+-- Table structure for table `tab_not`
 --
 
+DROP TABLE IF EXISTS `tab_not`;
 CREATE TABLE `tab_not` (
   `ident_not` int(11) NOT NULL,
   `titul_not` varchar(100) DEFAULT NULL,
@@ -79,15 +88,29 @@ CREATE TABLE `tab_not` (
   `descr_not` varchar(2000) DEFAULT NULL,
   `image_not` varchar(250) DEFAULT NULL,
   `fecpu_not` datetime DEFAULT CURRENT_TIMESTAMP,
-  `statu_not` varchar(45) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `statu_not` varchar(45) DEFAULT NULL,
+  `ident_jef` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Triggers `tab_not`
+--
+DROP TRIGGER IF EXISTS `entrada_noticia`;
+DELIMITER $$
+CREATE TRIGGER `entrada_noticia` AFTER INSERT ON `tab_not` FOR EACH ROW BEGIN 
+  INSERT INTO insert_noticia(ident_not, ident_jef)
+    VALUES(new.ident_not, new.ident_jef);
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tab_per`
+-- Table structure for table `tab_per`
 --
 
+DROP TABLE IF EXISTS `tab_per`;
 CREATE TABLE `tab_per` (
   `ident_per` int(11) NOT NULL,
   `cedul_per` int(11) DEFAULT NULL,
@@ -105,35 +128,37 @@ CREATE TABLE `tab_per` (
   `statu_per` char(1) DEFAULT NULL,
   `ident_tip` int(11) NOT NULL,
   `ident_jef` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tab_reg`
+-- Table structure for table `tab_reg`
 --
 
+DROP TABLE IF EXISTS `tab_reg`;
 CREATE TABLE `tab_reg` (
   `ident_reg` int(11) NOT NULL,
   `nombr_reg` varchar(45) DEFAULT NULL,
   `descr_reg` varchar(250) DEFAULT NULL,
   `fecre_reg` date DEFAULT NULL,
   `statu_reg` char(1) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tab_tip`
+-- Table structure for table `tab_tip`
 --
 
+DROP TABLE IF EXISTS `tab_tip`;
 CREATE TABLE `tab_tip` (
   `ident_tip` int(11) NOT NULL,
   `nombr_tip` varchar(45) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `tab_tip`
+-- Dumping data for table `tab_tip`
 --
 
 INSERT INTO `tab_tip` (`ident_tip`, `nombr_tip`) VALUES
@@ -143,11 +168,11 @@ INSERT INTO `tab_tip` (`ident_tip`, `nombr_tip`) VALUES
 (4, 'CIUDADANO');
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `det_reg`
+-- Indexes for table `det_reg`
 --
 ALTER TABLE `det_reg`
   ADD PRIMARY KEY (`correlativo`),
@@ -155,20 +180,28 @@ ALTER TABLE `det_reg`
   ADD KEY `fk_det_reg_tab_reg1_idx` (`ident_reg`);
 
 --
--- Indices de la tabla `tab_jef`
+-- Indexes for table `insert_noticia`
+--
+ALTER TABLE `insert_noticia`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `ident_not` (`ident_not`);
+
+--
+-- Indexes for table `tab_jef`
 --
 ALTER TABLE `tab_jef`
   ADD PRIMARY KEY (`ident_jef`),
   ADD KEY `fk_tab_jef_tab_tip1_idx` (`ident_tip`);
 
 --
--- Indices de la tabla `tab_not`
+-- Indexes for table `tab_not`
 --
 ALTER TABLE `tab_not`
-  ADD PRIMARY KEY (`ident_not`);
+  ADD PRIMARY KEY (`ident_not`),
+  ADD KEY `ident_jef` (`ident_jef`);
 
 --
--- Indices de la tabla `tab_per`
+-- Indexes for table `tab_per`
 --
 ALTER TABLE `tab_per`
   ADD PRIMARY KEY (`ident_per`),
@@ -176,58 +209,75 @@ ALTER TABLE `tab_per`
   ADD KEY `fk_tab_per_tab_jef1_idx` (`ident_jef`);
 
 --
--- Indices de la tabla `tab_reg`
+-- Indexes for table `tab_reg`
 --
 ALTER TABLE `tab_reg`
   ADD PRIMARY KEY (`ident_reg`);
 
 --
--- Indices de la tabla `tab_tip`
+-- Indexes for table `tab_tip`
 --
 ALTER TABLE `tab_tip`
   ADD PRIMARY KEY (`ident_tip`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `det_reg`
+-- AUTO_INCREMENT for table `det_reg`
 --
 ALTER TABLE `det_reg`
   MODIFY `correlativo` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `tab_jef`
+-- AUTO_INCREMENT for table `insert_noticia`
 --
-ALTER TABLE `tab_jef`
-  MODIFY `ident_jef` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `insert_noticia`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `tab_not`
+-- AUTO_INCREMENT for table `tab_jef`
+--
+ALTER TABLE `tab_jef`
+  MODIFY `ident_jef` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `tab_not`
 --
 ALTER TABLE `tab_not`
   MODIFY `ident_not` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `tab_per`
+-- AUTO_INCREMENT for table `tab_per`
 --
 ALTER TABLE `tab_per`
   MODIFY `ident_per` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `tab_reg`
+-- AUTO_INCREMENT for table `tab_reg`
 --
 ALTER TABLE `tab_reg`
   MODIFY `ident_reg` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `tab_tip`
+-- AUTO_INCREMENT for table `tab_tip`
 --
 ALTER TABLE `tab_tip`
   MODIFY `ident_tip` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-COMMIT;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `insert_noticia`
+--
+ALTER TABLE `insert_noticia`
+  ADD CONSTRAINT `insert_noticia_ibfk_1` FOREIGN KEY (`ident_not`) REFERENCES `tab_not` (`ident_not`);
+
+--
+-- Constraints for table `tab_not`
+--
+ALTER TABLE `tab_not`
+  ADD CONSTRAINT `tab_not_ibfk_1` FOREIGN KEY (`ident_jef`) REFERENCES `tab_jef` (`ident_jef`);

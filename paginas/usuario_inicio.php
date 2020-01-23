@@ -17,30 +17,49 @@ if (!empty($_SESSION['active'])) {
       $contr_jef = md5(mysqli_real_escape_string($conexion, $_POST['contr_jef']));
 
       $query = mysqli_query($conexion,"SELECT u.ident_jef,u.cedul_jef,u.nombr_jef,u.apeli_jef,u.fecna_jef,u.telem_jef,u.telec_jef,u.email_jef,u.direc_jef,u.tibom_jef,u.seria_jef,u.usuar_jef,u.contr_jef,u.statu_jef, r.ident_tip, r.nombr_tip FROM tab_jef u INNER JOIN tab_tip r ON u.ident_tip = r.ident_tip WHERE u.usuar_jef = '$usuar_jef' AND u.contr_jef = '$contr_jef'");
-      mysqli_close($conexion);
+     
       $result = mysqli_num_rows($query);
 
       if ($result > 0)
       {
-        $data = mysqli_fetch_array($query);
+
+        $query_r =  mysqli_query($conexion,"SELECT * FROM tab_jef WHERE usuar_jef = '$usuar_jef' AND statu_jef = 0");
         
-        $_SESSION['active'] = true;
-        $_SESSION['idUser'] = $data['ident_jef'];
-        $_SESSION['nombr_jef'] = $data['nombr_jef'];
-        $_SESSION['apeli_jef'] = $data['apeli_jef'];
-        $_SESSION['fecna_jef'] = $data['fecna_jef'];
-        $_SESSION['telem_jef'] = $data['telem_jef'];
-        $_SESSION['telec_jef'] = $data['telec_jef'];
-        $_SESSION['email_jef'] = $data['email_jef'];
-        $_SESSION['direc_jef'] = $data['direc_jef'];
-        $_SESSION['tibom_jef'] = $data['tibom_jef'];
-        $_SESSION['seria_jef'] = $data['seria_jef'];
-        $_SESSION['usuar_jef'] = $data['usuar_jef'];
-        $_SESSION['statu_jef'] = $data['statu_jef'];
-        $_SESSION['ident_tip'] = $data['ident_tip'];
-        $_SESSION['nombr_tip'] = $data['nombr_tip'];
-        
-        header('location: admin_panel.php');
+        $result_r  = mysqli_num_rows($query_r);
+
+         if ($result_r > 0) {
+            $alert = 'El Usuario no tiene acceso a esta sección.';
+            session_destroy();
+          }
+
+          $query_s =  mysqli_query($conexion,"SELECT * FROM tab_jef WHERE usuar_jef = '$usuar_jef' AND ident_tip = 4");
+          mysqli_close($conexion);
+          $result_s  = mysqli_num_rows($query_s);
+          if ($result_s > 0) {
+              $alert = 'El Usuario no tiene acceso a esta sección.';
+              session_destroy();
+            }else{
+
+              $data = mysqli_fetch_array($query);
+              
+              $_SESSION['active'] = true;
+              $_SESSION['idUser'] = $data['ident_jef'];
+              $_SESSION['nombr_jef'] = $data['nombr_jef'];
+              $_SESSION['apeli_jef'] = $data['apeli_jef'];
+              $_SESSION['fecna_jef'] = $data['fecna_jef'];
+              $_SESSION['telem_jef'] = $data['telem_jef'];
+              $_SESSION['telec_jef'] = $data['telec_jef'];
+              $_SESSION['email_jef'] = $data['email_jef'];
+              $_SESSION['direc_jef'] = $data['direc_jef'];
+              $_SESSION['tibom_jef'] = $data['tibom_jef'];
+              $_SESSION['seria_jef'] = $data['seria_jef'];
+              $_SESSION['usuar_jef'] = $data['usuar_jef'];
+              $_SESSION['statu_jef'] = $data['statu_jef'];
+              $_SESSION['ident_tip'] = $data['ident_tip'];
+              $_SESSION['nombr_tip'] = $data['nombr_tip'];
+              
+              header('location: admin_panel.php');
+            }
       }else{
 
         $alert = 'El Usuario y/o Contraseña son Incorrectos.';

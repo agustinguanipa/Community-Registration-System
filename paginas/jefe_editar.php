@@ -19,7 +19,7 @@ if (empty($_GET['id'])) {
 
 $id = $_GET['id'];
 
-  $query_jef = mysqli_query($conexion,"SELECT u.ident_jef,u.cedul_jef,u.nombr_jef, u.apeli_jef, u.fecna_jef, u.telem_jef, u.telec_jef, u.email_jef, u.calle_jef, u.direc_jef, u.tibom_jef, u.seria_jef, u.ident_tip, r.ident_tip, r.nombr_tip FROM tab_jef u INNER JOIN tab_tip r ON u.ident_tip = r.ident_tip WHERE ident_jef = '$id' AND statu_jef = 1");
+  $query_jef = mysqli_query($conexion,"SELECT u.ident_jef,u.cedul_jef,u.nombr_jef, u.apeli_jef, u.fecna_jef, u.telem_jef, u.telec_jef, u.email_jef, u.calle_jef, u.direc_jef, u.tibom_jef, u.usuar_jef, u.seria_jef, u.ident_tip, r.ident_tip, r.nombr_tip FROM tab_jef u INNER JOIN tab_tip r ON u.ident_tip = r.ident_tip WHERE ident_jef = '$id' AND statu_jef = 1");
   
 $result_jef = mysqli_num_rows($query_jef);
 
@@ -122,7 +122,7 @@ mysqli_close($conexion);
                 <label class="form-label" for="ident_tip"><b>Tipo de Usuario: </b></label>
                 <?php
                   include "conexion.php";
-                  $query_tip = mysqli_query($conexion,"SELECT * FROM tab_tip WHERE ident_tip != 1");
+                  $query_tip = mysqli_query($conexion,"SELECT * FROM tab_tip WHERE ident_tip != 1"); 
                   $result_tip = mysqli_num_rows($query_tip);
                 ?>
                 <select class="form-control notItemOne" name="ident_tip" id="ident_tip" required>
@@ -138,6 +138,22 @@ mysqli_close($conexion);
                 </select>
               </div>
 		        </div>
+            <div id="hidden_div" style="display: none;">
+              <div class="form-row">
+                <div class="col form-group">
+                  <label class="form-label" for="usuar_jef"><b>Usuario: </b></label>
+                  <input type="text" class="form-control tipo" name="usuar_jef" autocomplete="off" id="usuar_jef" value="<?php echo $usuar_jef; ?>" maxlength="20" onkeyup="this.value = this.value.toUpperCase();">
+                </div>
+                <div class="col form-group">
+                  <label class="form-label" for="contr_jef"><b>Contraseña: </b></label>
+                  <input type="password" class="form-control tipo" name="contr_jef" autocomplete="off" id="contr_jef" placeholder="********" maxlength="20">
+                </div>
+                <div class="col form-group">
+                  <label class="form-label" for="confirm_password"><b>Confirmar Contraseña: </b></label>
+                  <input type="password" class="form-control tipo" name="confirm_password" autocomplete="off" id="confirm_password" placeholder="********" maxlength="20">
+                </div>
+              </div>
+            </div> 
 		        <div class="form-row">
 		          <div class="col form-group">
 		            <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-user"></i> Actualizar Jefe de Familia</button>
@@ -187,6 +203,33 @@ mysqli_close($conexion);
       seria_jef: {
         number: true
       },
+      usuar_jef: {
+        required: true,
+        minlength: 2,
+        remote: {
+          url: "jefe_usuario_availability.php",
+          type: "post",
+          data:
+            {
+              usuar_jef: function()
+              {
+                return $('#jefe_editar :input[name="usuar_jef"]').val();
+              }
+            }
+        }     
+      },
+      contr_jef: {
+        required: true,
+        minlength: 4
+      },
+      confirm_password: {
+        required: true,
+        minlength: 4,
+        equalTo: "#contr_jef"
+      },
+      ident_tip: {
+        required: true
+      },
     },
 
     messages: {
@@ -219,7 +262,24 @@ mysqli_close($conexion);
       },
       seria_jef: {
         number: "Ingrese solo números"
-      }, 
+      },
+      usuar_jef: {
+        required: "Ingrese un Nombre de Usuario",
+        minlength: "El Nombre de Usuario debe contener al menos 2 caracteres",
+        remote: jQuery.validator.format("{0} no esta disponible")
+      },
+      contr_jef: {
+        required: "Ingrese una Contraseña",
+        minlength: "Tu Contraseña debe contener al menos 5 caracteres"
+      },
+      confirm_password: {
+        required: "Ingrese una Contraseña",
+        minlength: "Tu Contraseña debe contener al menos 5 caracteres",
+        equalTo: "Ingrese la Misma Contraseña"
+      },
+      ident_tip: {
+        required: "Seleccione una Opcion"
+      },
     },
 
     errorElement: "em",

@@ -23,7 +23,7 @@
               <input type="text" class="form-control" name="nombr_reg" autocomplete="off" id="nombr_reg"  maxlength="100" onkeyup="this.value = this.value.toUpperCase();" placeholder="Jornada, CLAP, Gas y otros" required>
             </div>
             <div class="col form-group col-lg-4">
-              <label class="form-label" for="fecre_reg"><b>Fecha de Registro: </b></label>
+              <label class="form-label" for="fecre_reg"><b>Fecha del Evento: </b></label>
               <input type="date" class="form-control" name="fecre_reg" autocomplete="off" id="fecre_reg" placeholder="">
             </div>
           </div>
@@ -84,6 +84,9 @@
       fecre_reg: {
         required: true
       },
+      ident_jef: {
+        required: true
+      },
     },
 
     messages: {
@@ -97,6 +100,9 @@
       },
       fecre_reg: {
         required: "Ingrese una Fecha"
+      },
+      ident_jef: {
+        required: "Ingrese Jefes de Familia"
       },
     },
 

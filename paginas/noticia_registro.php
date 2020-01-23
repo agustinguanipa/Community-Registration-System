@@ -45,7 +45,7 @@
           <div class="form-row">        
             <div class="col form-group">
               <label class="form-label" for="descr_not"><b>Descripción Larga: </b></label>
-              <textarea class="form-control" name="descr_not" autocomplete="off" id="descr_not"  maxlength="2000"></textarea>
+              <textarea class="form-control" name="descr_not" autocomplete="off" id="descr_not"  maxlength="5000"></textarea>
               <script>
                 // Replace the <textarea id="editor1"> with a CKEditor
                 // instance, using default configuration.

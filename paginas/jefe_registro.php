@@ -83,24 +83,56 @@
               <label class="form-label" for="seria_jef"><b>Serial del Carnet de la Patria: </b></label>
               <input type="text" class="form-control" name="seria_jef" autocomplete="off" id="seria_jef" maxlength="20">
             </div>
-            <div class="col form-group">
-              <label class="form-label" for="ident_tip"><b>Tipo de Usuario: </b></label>
-              <?php 
-                $query_tip = mysqli_query($conexion,"SELECT * FROM  tab_tip WHERE ident_tip != 1");
-                $result_tip = mysqli_num_rows($query_tip);
+            <!--- Administrador -->
+            <?php  
+              if ($data['nombr_tip'] != 'ADMINISTRADOR' && $_SESSION['ident_tip'] == 1) {
               ?>
-              <select class="form-control" name="ident_tip" id="ident_tip" required>
-                <option disabled selected value>Seleccionar una Opción...</option>
-                <?php 
-                  if ($result_tip > 0) {
-                  while ($tip = mysqli_fetch_array($query_tip)) {?>
-                  <option value="<?php echo $tip['ident_tip'];?>"><?php echo $tip['nombr_tip'];?></option>
-                <?php
+                <div class="col form-group">
+                  <label class="form-label" for="ident_tip"><b>Tipo de Usuario: </b></label>
+                  <?php 
+                    $query_tip = mysqli_query($conexion,"SELECT * FROM tab_tip WHERE ident_tip != 1");
+                    $result_tip = mysqli_num_rows($query_tip);
+                  ?>
+                  <select class="form-control" name="ident_tip" id="ident_tip" required>
+                    <option disabled selected value>Seleccionar una Opción...</option>
+                    <?php 
+                      if ($result_tip > 0) {
+                      while ($tip = mysqli_fetch_array($query_tip)) {?>
+                      <option value="<?php echo $tip['ident_tip'];?>"><?php echo $tip['nombr_tip'];?></option>
+                    <?php
+                    }
+                    }
+                    ?>
+                  </select>
+                </div>
+            <?php 
                 }
+              ?>
+            <!---Vocero -->
+            <?php  
+              if ($data['nombr_tip'] != 'VOCERO' && $_SESSION['ident_tip'] == 2) {
+              ?>
+                <div class="col form-group">
+                  <label class="form-label" for="ident_tip"><b>Tipo de Usuario: </b></label>
+                  <?php 
+                    $query_tip = mysqli_query($conexion,"SELECT * FROM tab_tip WHERE ident_tip != 1 AND ident_tip != 2");
+                    $result_tip = mysqli_num_rows($query_tip);
+                  ?>
+                  <select class="form-control" name="ident_tip" id="ident_tip" required>
+                    <option disabled selected value>Seleccionar una Opción...</option>
+                    <?php 
+                      if ($result_tip > 0) {
+                      while ($tip = mysqli_fetch_array($query_tip)) {?>
+                      <option value="<?php echo $tip['ident_tip'];?>"><?php echo $tip['nombr_tip'];?></option>
+                    <?php
+                    }
+                    }
+                    ?>
+                  </select>
+                </div>
+            <?php 
                 }
-                ?>
-              </select>
-            </div>
+              ?>
           </div>
           <div id="hidden_div" style="display: none;">
             <div class="form-row">

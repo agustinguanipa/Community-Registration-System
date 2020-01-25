@@ -66,7 +66,7 @@
 			<tbody id="detalle_productos">
 				<?php
 				        
-			    $sql = "SELECT * FROM tab_jef WHERE statu_jef = 1";
+			    $sql = "SELECT * FROM tab_jef WHERE statu_jef = 1 AND ident_jef != 1 ORDER BY ident_tip";
 
 			    $result = mysqli_query($conexion, $sql);
 
